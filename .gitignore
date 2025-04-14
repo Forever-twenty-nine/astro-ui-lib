@@ -1,0 +1,24 @@
+# Node
+node_modules/
+dist/
+.cache/
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Astro build
+public/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Env
+.env
+.env.*
