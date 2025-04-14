@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    "./NavLinks": "./components/NavLinks.astro"
+    "./NavLinks": "./components/NavLinks.astro",
+    "./Nav": "./components/block/Nav.astro"
   },
   "files": [
     "components"
