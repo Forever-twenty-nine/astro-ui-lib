@@ -4,6 +4,7 @@
   "type": "module",
   "main": "./index.ts",
   "exports": {
+    ".": "./index.ts",
     "./NavLinks": "./components/NavLinks.astro",
     "./Nav": "./components/block/Nav.astro"
   },
