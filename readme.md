@@ -60,3 +60,13 @@ astro-ui-lib/
 ├── package.json
 └── README.md
 ```
+📁 Styles
+```
+global-components.css
+```
+Se instala Tailwind CLI para ejecutarlo independiente con el siguiente comando:
+
+```bash
+npx @tailwindcss/cli -i ./tailwind.css -o ./global-components.css --watch --minify
+```
+

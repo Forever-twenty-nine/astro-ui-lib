@@ -4,12 +4,24 @@
   "type": "module",
   "exports": {
     "./NavLinks": "./components/NavLinks.astro",
-    "./Test": "./components/block/Test.astro"
+    "./Test": "./components/block/Test.astro",
+    "./Style": "./global-components.css"
   },
   "files": [
-    "components"
+    "components",
+    "*.astro",
+    "*.ts",
+    "global-components.css"
   ],
-  "keywords": ["astro", "components", "ui"],
+  "keywords": [
+    "astro",
+    "components",
+    "ui"
+  ],
   "author": "FTN",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "tailwindcss": "^4.1.4"
+  }
 }
