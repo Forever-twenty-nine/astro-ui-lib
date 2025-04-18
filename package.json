@@ -3,8 +3,15 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    "./NavLinks": "./components/NavLinks.astro",
     "./Test": "./components/block/Test.astro",
+    "./Nav": "./components/block/Nav.astro",
+    "./Favicon": "./components/head/Favicon.astro",
+    "./Metadata": "./components/head/Metadata.astro",
+    "./Section": "./components/scaffolding/Section.astro",
+    "./Container": "./components/scaffolding/Container.astro",
+    "./Brand": "./components/ui/Brand.astro",
+    "./Button": "./components/ui/Button.astro",
+    "./Typography": "./components/ui/Typography.astro",
     "./Style": "./global-components.css"
   },
   "files": [

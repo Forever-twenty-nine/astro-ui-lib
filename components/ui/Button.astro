@@ -1,0 +1,65 @@
+---
+interface ButtonProps {
+    id?: string | undefined;              
+    type?: 'solid' | 'ghost' | 'soft' | 'transparent' | 'inverted' | 'transparentInverted'; 
+    class?: string;      
+    target?: string;  
+    disabled?: boolean;        
+    href?: string;   
+    size?: 'normal' | 'small';         
+}
+
+const {
+    id,
+    type = 'solid',
+    class: className = "",
+    disabled = false,
+    target,
+    href,
+    size = 'normal'
+}: ButtonProps = Astro.props;
+
+const commonClasses = 'inline-flex rounded-lg items-center justify-center border-2 border-solid border-transparent text-base 2xl:text-xl 3xl:text-2xl font-medium transition-all ease-linear duration-200 active:scale-90 ';
+
+const sizeClasses = size === 'small'
+    ? 'px-5 py-3'
+    : 'px-5 py-2.5 2xl:px-8 2xl:py-5'
+
+const buttonClasses = `${commonClasses} ${sizeClasses} 
+    ${type === 'solid'
+    ? 'bg-white text-blue-700 hover:bg-white/90 hover:shadow-md active:bg-[var(--brand-gray-950)]'
+    : type === 'ghost'
+    ? '!border-[var(--brand-gray-900)] text-[var(--brand-gray-900)] hover:bg-[var(--brand-gray-100)] active:bg-[var(--brand-gray-200)]'
+    : type === 'soft'
+    ? 'bg-[var(--brand-gray-50)] hover:bg-[var(--brand-gray-100)] active:bg-[var(--brand-gray-200)]'
+    : type === 'transparent'
+    ? 'bg-transparent hover:bg-[var(--brand-gray-100)] active:bg-[var(--brand-gray-200)]'
+    : type === 'inverted'
+    ? 'bg-[var(--brand-gray-50)] hover:bg-[var(--brand-gray-100)] active:bg-white'
+    : type === 'transparentInverted'
+    ? 'text-[var(--brand-gray-200)] hover:text-white hover: hover:border-[var(--brand-gray-200)]'
+    : 'bg-transparent'
+} ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} ${className}`
+---
+
+<!-- Condicionalmente renderiza un <button> o un <a> -->
+{href ? (
+    <a
+        id={id}
+        href={href}
+        class={buttonClasses}
+        aria-disabled={disabled} 
+        target={target} 
+    >
+        <slot/>
+    </a>
+) : (
+    <button
+        id={id}
+        type="button"
+        class={buttonClasses}
+        disabled={disabled}
+    >
+        <slot/>
+    </button>
+)}
