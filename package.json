@@ -13,6 +13,7 @@
     "./BrandLink": "./components/ui/BrandLink.astro",
     "./Button": "./components/ui/Button.astro",
     "./Typography": "./components/ui/Typography.astro",
+    "./Overlay": "./components/ui/Overlay.astro",
     "./Style": "./global-components.css"
   },
   "files": [
