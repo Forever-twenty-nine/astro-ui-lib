@@ -1,6 +1,8 @@
 ---
-import { config } from "../../config";
+const { favicon } = Astro.props;
 
 ---
 
-<link rel="icon" type="image/svg+xml" href={config.favicon} />
+{favicon && (
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+)}
