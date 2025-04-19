@@ -1,0 +1,30 @@
+---
+// import { config } from "config"
+import Container from "../scaffolding/Container.astro"
+import BrandLink from "../ui/BrandLink.astro"
+import Nav from "./Nav.astro"
+
+const {
+  id: idName = '',
+  class: className = '',
+  navLinks = [],
+  brand = {} // { href, id, class }
+} = Astro.props
+---
+
+<header
+  id={idName || undefined}
+  class={`fixed top-0 left-0 w-full shadow-md py-2 z-50 ${className}`}
+>
+  <Container class="flex justify-between items-center">
+    <BrandLink
+      hrefLink={brand.href || "#"}
+      idLink={brand.id || undefined}
+      classLink={brand.class || ""}
+      brandSrc={brand.src}
+      brandAlt={brand.alt}
+      classImage={brand.classImage}
+    />
+    <Nav links={navLinks} />
+  </Container>
+</header>

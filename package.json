@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    "./Test": "./components/block/Test.astro",
     "./Nav": "./components/block/Nav.astro",
+    "./HeaderFixed": "./components/block/HeaderFixed.astro",
     "./Favicon": "./components/head/Favicon.astro",
     "./Metadata": "./components/head/Metadata.astro",
     "./Section": "./components/scaffolding/Section.astro",
     "./Container": "./components/scaffolding/Container.astro",
     "./Brand": "./components/ui/Brand.astro",
+    "./BrandLink": "./components/ui/BrandLink.astro",
     "./Button": "./components/ui/Button.astro",
     "./Typography": "./components/ui/Typography.astro",
     "./Style": "./global-components.css"
@@ -29,6 +30,7 @@
   "license": "MIT",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.4",
+    "astro": "^5.7.4",
     "tailwindcss": "^4.1.4"
   }
 }
