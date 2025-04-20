@@ -3,7 +3,10 @@
     
     /* DESIGN TOKENS  |  Rule 60-30-10 */
     /* https://www.tints.dev/ */
-    
+
+
+    /* Design Tokens - Primative */    
+    /* ------------------------- */
     /* Primary (60%) */
     --color-primary-50: oklch(92.88% 0.004 286.32);
     --color-primary-100: oklch(89.76% 0.004 271.37);
@@ -43,7 +46,6 @@
     --color-accent-900: oklch(34.9% 0.089 126.65);
     --color-accent-950: oklch(23.78% 0.059 123.95);
 
-
     /* Info */
     --color-info-50: oklch(0.984 0.003 247.858);
     --color-info-100: oklch(0.968 0.007 247.896);
@@ -56,4 +58,16 @@
     --color-info-800: oklch(0.279 0.041 260.031);
     --color-info-900: oklch(0.208 0.042 265.755);
     --color-info-950: oklch(0.129 0.042 264.695);
+
+    /* Design Tokens - Components */    
+    /* -------------------------- */
+    /* - buttons */
+    --radius-button: 8px;
+    --color-button: var(--color-info-950);
+
+    --color-button-solid-bg: var(--color-accent-400);
+    --color-button-solid-bg-hover: var(--color-accent-400);
+    --color-button-solid-border: var(--color-accent-400); 
+    /* ufff faltan muchas variables más  */
+
 }
