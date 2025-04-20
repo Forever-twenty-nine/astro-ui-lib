@@ -5,7 +5,7 @@
     "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"]
+      // "@components/*": ["components/*"] /* not working?*/
     },
     "jsx": "preserve"
   },
