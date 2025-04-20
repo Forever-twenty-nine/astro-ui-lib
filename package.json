@@ -11,6 +11,7 @@
     "./HeaderFixed": "./components/scaffolding/HeaderFixed.astro",
     "./Section": "./components/scaffolding/Section.astro",
     "./Container": "./components/scaffolding/Container.astro",
+    "./Footer": "./components/scaffolding/Footer.astro",
     
     "./Brand": "./components/ui/Brand.astro",
     "./BrandLink": "./components/ui/BrandLink.astro",

@@ -2,12 +2,14 @@
 interface Link {
     href: string;
     text: string;
+    navLinkClass: string;
 }
 
 const {
     id: idName = "",
     class: className = "",
-    links = []
+    links = [],
+    navLinkClass="",
 } = Astro.props;
 
 ---
@@ -23,7 +25,7 @@ const {
                     <li>
                         <a
                             href={link.href}
-                            class="text-xl mb-4 md:text-base md:!mb-0 font-normal text-gray-700 px-3 py-2 block transition duration-200 hover:text-blue-600"
+                            class={`text-xl mb-4 md:text-base md:!mb-0 font-normal text-gray-700 px-3 py-2 block transition duration-200 hover:text-blue-600 ${navLinkClass} `}
                         >
                             {link.text}
                         </a>
