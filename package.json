@@ -20,6 +20,7 @@
     
     "./Hero1": "./components/section/Hero-1.astro",
     "./About1": "./components/section/About-1.astro",
+    "./Banner1": "./components/section/Banner-1.astro",
 
     "./Style": "./global-components.css"
   },

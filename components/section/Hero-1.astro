@@ -13,6 +13,7 @@ interface Props {
     titleClass?: string;
     description?: string;
     descriptionClass?: string;
+    buttonType?: string;
     buttonHref?: string;
     buttonText?: string
     imageSrc?: string;
@@ -28,6 +29,7 @@ const {
     titleClass,
     description,
     descriptionClass,
+    buttonType,
     buttonHref,
     buttonText,
     imageSrc,
@@ -61,6 +63,7 @@ const {
                     {description}
                 </Typography>
                 <Button
+                    type={buttonType}
                     href={buttonHref}>
                     {buttonText}
                 </Button>

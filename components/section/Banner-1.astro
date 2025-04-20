@@ -1,0 +1,66 @@
+---
+import Typography from "../ui/Typography.astro";
+import Container from "../scaffolding/Container.astro";
+import Section from "../scaffolding/Section.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+    sectionId?: string;
+    sectionClass?: string;
+    containerId?: string;
+    containerClass?: string;
+    title?: string;
+    titleClass?: string;
+    description?: string;
+    descriptionClass?: string;
+    buttonHref?: string;
+    buttonText?: string;
+    buttonType?: string;
+}
+
+const {
+    sectionId,
+    sectionClass,
+    containerId,
+    containerClass,
+    title,
+    titleClass,
+    description,
+    descriptionClass,
+    buttonHref,
+    buttonText,
+    buttonType,
+} = Astro.props
+
+---
+
+<Section
+    id={sectionId}
+    class={`bg-accent-500 ${sectionClass}`}
+>
+    <Container
+        id={containerId}
+        class={`text-center ${containerClass}`}
+    >
+
+        <Typography 
+            tag="h2"
+            class={`mb-6 text-info-950 ${titleClass}`}
+        >
+            {title}
+        </Typography>
+
+        <Typography
+            class={`mb-8 text-info-600 ${descriptionClass}`}
+            set:html={description}
+        />
+                
+        <Button
+            href={buttonHref}
+            type={buttonType}
+        >
+            {buttonText}
+        </Button>
+
+    </Container>
+</Section>
