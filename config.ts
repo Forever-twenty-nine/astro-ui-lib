@@ -1,11 +1,11 @@
 export interface SiteConfig {
-    autor: string;
-    autorUrl: string;
+    author: string;
+    authorUrl: string;
     site: string;
     siteLegend: string;
-    siteTitle: string;
-    siteDescription: string;
-    siteUrl: string;
+    title: string;
+    description: string;
+    url: string;
     favicon: string;
     brandSrc: string;
     brandAlt: string;
@@ -16,18 +16,18 @@ export interface SiteConfig {
 }
 
 export const config: SiteConfig = {
-    autor: 'FTN Agency',
-    autorUrl: 'https://wwww.ftn.com',
-    site: 'Company name',
-    siteLegend: 'Digital solutions for entrepreneurs and modern businesses.',
-    siteTitle: 'Landing page for startups',
-    siteDescription: 'The company sells a lot of things ',
-    siteUrl: 'https://wwww.namecompany.com/',
-    favicon: '/favicon.svg',
-    brandSrc: '/brand.svg',
-    brandAlt: 'Logo de NameCompany',
-    mailto: 'mailto:contacto@company.com',
+    author: 'Default Agency',
+    authorUrl: 'https://wwww.defaultftn.com',
+    site: 'Default Name',
+    siteLegend: 'Default legend',
+    title: 'Default title',
+    description: 'Default description',
+    url: 'https://wwww.defaultnamecompany.com/',
+    favicon: '/default.svg',
+    brandSrc: '/defaultBrand.svg',
+    brandAlt: 'Default Brand ALT',
+    mailto: 'mailto:default@company.com',
     social: {
-        instagram: 'lkajsdfjh'
+        instagram: 'default'
     },
 }

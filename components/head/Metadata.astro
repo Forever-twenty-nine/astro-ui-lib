@@ -1,17 +1,28 @@
 ---
-
 import { config } from '../../config'
+
+interface Props {
+  site?: string;  
+  title?: string;
+  description?: string;
+  url?: string;
+  author?: string;
+}
+
+const {
+    site = config.site,
+    title = config.title,
+    description = config.description,
+    url = config.url,
+    author = config.author
+} = Astro.props
 
 ---
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="index, follow" />
+<title>{title} | {site}</title>
 
-<title>{config.siteTitle} | {config.site}</title>
-    
-<meta name="title" content={config.siteTitle} />
-<meta name="description" content={config.siteDescription} />
-<meta name="autor" content={config.autor} />
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="author" content={author} />
 
-<link href={config.siteUrl} rel="canonical" />
+<link href={url} rel="canonical" />
