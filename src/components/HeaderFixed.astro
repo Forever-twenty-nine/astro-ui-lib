@@ -1,9 +1,9 @@
 ---
 // import { config } from "config"
 import Overlay from "../ui/Overlay.astro"
-import Container from "../scaffolding/Container.astro"
+import Container from "../elements/Container.astro"
 import BrandLink from "../ui/BrandLink.astro"
-import Nav from "./Nav.astro"
+import Nav from "../elements/Nav.astro"
 
 const {
   id: idName = '',
@@ -57,9 +57,15 @@ const {
         const menuOverlay = document.getElementById("menu-overlay");
 
         const openMenu = () => {
-            navMenu.classList.remove("translate-x-full");
-            navMenu.classList.add("translate-x-0");
-            menuToggle.setAttribute("aria-expanded", "true");
+            if (navMenu) {
+                navMenu.classList.remove("translate-x-full");
+            }
+            if (navMenu) {
+                navMenu.classList.add("translate-x-0");
+            }
+            if (menuToggle) {
+                menuToggle.setAttribute("aria-expanded", "true");
+            }
             if (menuOverlay) {
                 menuOverlay.classList.remove("opacity-0", "pointer-events-none");
                 menuOverlay.classList.add("opacity-60");
@@ -67,9 +73,15 @@ const {
         };
 
         const closeMenu = () => {
-            navMenu.classList.remove("translate-x-0");
-            navMenu.classList.add("translate-x-full");
-            menuToggle.setAttribute("aria-expanded", "false");
+            if (navMenu) {
+                navMenu.classList.remove("translate-x-0");
+            }
+            if (navMenu) {
+                navMenu.classList.add("translate-x-full");
+            }
+            if (menuToggle) {
+                menuToggle.setAttribute("aria-expanded", "false");
+            }
             if (menuOverlay) {
                 menuOverlay.classList.add("opacity-0", "pointer-events-none");
                 menuOverlay.classList.remove("opacity-60");
