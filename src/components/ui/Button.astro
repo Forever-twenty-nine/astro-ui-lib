@@ -1,0 +1,75 @@
+---
+interface ButtonProps {
+    id?: string | undefined;
+    type?:
+        | "solid"
+        | "ghost"
+        | "soft"
+        | "transparent"
+        | "inverted"
+        | "transparentInverted";
+    class?: string;
+    // Cambia el tipo de 'target' a una unión de los valores estándar + undefined
+    target?: "_self" | "_blank" | "_parent" | "_top" | undefined;
+    disabled?: boolean;
+    href?: string;
+    size?: "normal" | "small";
+}
+
+const {
+    id,
+    type = "solid",
+    class: className = "",
+    disabled = false,
+    target,
+    href,
+    size = "normal",
+}: ButtonProps = Astro.props;
+
+const commonClasses =
+    "rounded-button text-button inline-flex items-center justify-center border-2 border-solid text-base 2xl:text-xl 3xl:text-2xl font-medium transition-all ease-linear duration-200 active:scale-95 ";
+
+const sizeClasses =
+    size === "small" ? "px-5 py-3" : "px-5 py-2.5 2xl:px-8 2xl:py-5";
+
+// Objeto de mapeo para las clases de tipo
+const typeClassesMap: Record<NonNullable<ButtonProps["type"]>, string> = {
+    solid: "bg-button-solid-bg border-button-solid-border hover:bg-button-solid-bg-hover hover:shadow-lg active:bg-accent-950 active:text-accent-50",
+    ghost: "!border-[var(--brand-gray-900)] text-[var(--brand-gray-900)] hover:bg-[var(--brand-gray-100)] active:bg-[var(--brand-gray-200)]",
+    soft: "bg-[var(--brand-gray-50)] hover:bg-[var(--brand-gray-100)] active:bg-[var(--brand-gray-200)]",
+    transparent:
+        "bg-transparent hover:bg-[var(--brand-gray-100)] active:bg-[var(--brand-gray-200)]",
+    inverted:
+        "bg-[var(--brand-gray-50)] hover:bg-[var(--brand-gray-100)] active:bg-white",
+    transparentInverted:
+        "text-[var(--brand-gray-200)] hover:text-white hover: hover:border-[var(--brand-gray-200)]",
+};
+
+// Obtiene las clases de tipo usando el mapeo, con un fallback a transparent si el tipo no existe (aunque la interfaz lo previene)
+const typeClasses = typeClassesMap[type] || typeClassesMap.transparent;
+
+const disabledClasses = disabled
+    ? "opacity-50 cursor-not-allowed"
+    : "cursor-pointer";
+
+// Combina todas las clases
+const buttonClasses = `${commonClasses} ${sizeClasses} ${typeClasses} ${disabledClasses} ${className}`;
+---
+
+{
+    href ? (
+        <a
+            id={id}
+            href={href}
+            class={buttonClasses}
+            aria-disabled={disabled}
+            target={target}
+        >
+            <slot />
+        </a>
+    ) : (
+        <button id={id} type="button" class={buttonClasses} disabled={disabled}>
+            <slot />
+        </button>
+    )
+}

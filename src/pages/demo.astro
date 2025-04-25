@@ -1,0 +1,209 @@
+---
+// src/pages/demo.astro
+
+// Importa tus estilos globales de Tailwind
+// Usa @import en un archivo CSS fuente si usas el plugin @tailwindcss/vite
+// Si usas la integración @astrojs/tailwind, probablemente no necesites este import directo aquí
+import "../styles/global.css"; // Asegúrate que esta ruta apunte a tu archivo CSS base
+
+// Importa los componentes de tu librería
+// Ajusta las rutas según tu estructura final dentro de src/components/
+import HeaderFixed from '../components/composed/HeaderFixed.astro';
+import Footer from '../components/composed/Footer.astro';
+import Hero1 from '../components/section/Hero-1.astro';
+import About1 from '../components/section/About-1.astro';
+import Banner1 from '../components/section/Banner-1.astro';
+
+// Importa elementos y componentes UI si los usas directamente en la demo (además de en tus secciones/compuestos)
+// Si usas aliases como @components, asegúrate de que tsconfig.json esté configurado:
+// "paths": { "@components/*": ["src/components/*"] }
+import Section from '../components/elements/Section.astro'; // Usado en la sección de ejemplo "Componentes en Acción"
+import Container from '../components/elements/Container.astro'; // Usado en la sección de ejemplo "Componentes en Acción"
+import Typography from '../components/ui/Typography.astro'; // Usado en la sección de ejemplo "Componentes en Acción"
+import Button from '../components/ui/Button.astro'; // Usado en la sección de ejemplo "Componentes en Acción"
+
+// Importa componentes de Head si los usas
+import Metadata from '../components/head/Metadata.astro';
+import Favicon from '../components/head/Favicon.astro';
+
+
+// --- Define datos de ejemplo para pasar a tus componentes ---
+
+// Datos para la navegación (HeaderFixed y Footer)
+const navLinks = [
+  { href: '#hero', text: 'Inicio' },
+  { href: '#about', text: 'Sobre Nosotros' },
+  { href: '#components', text: 'Componentes' }, // Enlace a la sección de ejemplo
+  { href: '#contact', text: 'Contacto' }, // Ejemplo de otro enlace
+];
+
+// Datos para el logo/marca (HeaderFixed)
+const brandData = {
+  href: '/',
+  // Usando Placehold.org para imagen de logo de prueba
+  src: 'https://placehold.org/150x50/4A90E2/FFFFFF?text=Mi+Logo',
+  alt: 'Logo de Mi Librería UI',
+  class: 'custom-brand-class', // Clases CSS adicionales para el BrandLink
+  classImage: 'h-8 w-auto', // Clases CSS adicionales para la imagen dentro del BrandLink
+};
+
+// Datos para la sección Hero-1
+const heroData = {
+  title: 'Bienvenido a Mi Librería de Componentes Astro',
+  description: 'Componentes UI modernos y reutilizables construidos con Astro y Tailwind CSS.',
+  buttonText: 'Explorar Componentes',
+  buttonHref: '#components', // Enlaza al ID de la sección de ejemplo
+  buttonType: 'solid', // Tipo de botón de tu librería
+  // Usando Placehold.org para imagen de héroe de prueba
+  imageSrc: 'https://placehold.org/800x500/800080/FFFFFF?text=Imagen+Hero',
+  imageAlt: 'Imagen de ejemplo para la sección Hero',
+};
+
+// Datos para la sección About-1
+const aboutData = {
+    tagTitle: 'Sobre Nosotros',
+    title: 'El Propósito Detrás de la Librería',
+    // Usando Placehold.org para imagen de about de prueba
+    imageSrc: 'https://placehold.org/600x400/3CB371/FFFFFF?text=Imagen+About',
+    imageAlt: 'Imagen de ejemplo para la sección About',
+    paragraphs: [
+        { content: 'Esta librería proporciona una colección de componentes Astro pre-diseñados y fáciles de usar.' },
+        // Ejemplo con HTML en el contenido (si tu Typography usa set:html)
+        { content: 'Los componentes están construidos con Tailwind CSS y diseñados para ser flexibles y personalizables. Puedes usar <strong>negrita</strong>, <em>cursiva</em>, o incluso <a href="#">enlaces</a> si la prop de contenido lo permite.', tag: 'p', class: 'mt-4 text-gray-700' },
+        // Ejemplo de un párrafo que renderiza como <small>
+        { content: 'Ideal para acelerar el desarrollo de tus proyectos web.', tag: 'small', class: 'block mt-4 text-gray-600' },
+    ]
+};
+
+// Datos para la sección Banner-1
+const bannerData = {
+    title: '¡Empieza a Construir Hoy!',
+    description: 'Integra estos componentes fácilmente en tus proyectos Astro.',
+    buttonText: 'Instalar Librería',
+    buttonHref: '#installation', // Ejemplo de enlace
+    buttonType: 'ghost', // Otro tipo de botón
+};
+
+// Datos para el Footer
+const footerData = {
+    // Usando Placehold.org para imagen de logo del footer de prueba
+    imageSrc: 'https://placehold.org/100x30/A9A9A9/1C1D20?text=Logo+Footer',
+    imageAlt: 'Logo Footer Demo',
+    legend: 'Hecho con ❤️ y Astro',
+    navLinks: navLinks, // Reutiliza los mismos enlaces de navegación
+    copyright: '© 2024 Mi Librería UI. Todos los derechos reservados.',
+    author: 'Desarrollado por [Tu Nombre]',
+};
+
+
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    {/* Componentes Head */}
+    {/* Usa Metadata para el título de la página, descripción, etc. */}
+    
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {/* Importa tus estilos globales de Tailwind */}
+    {/* Si usas el plugin @tailwindcss/vite y un archivo CSS fuente con @import "tailwindcss"; */}
+    {/* Asegúrate de que esta etiqueta <style> o la integración correcta inyecten el CSS */}
+    <style>
+      @import url('../styles/global.css'); /* Asegúrate que la ruta sea correcta */
+      /* Si global.css ya importa design-tokens.css, no lo necesitas aquí */
+      /* @import url('../styles/design-tokens.css'); */
+    </style>
+    {/* Si usas la integración oficial @astrojs/tailwind, NO necesitas el tag <style> anterior */}
+    {/* La integración inyecta los estilos automáticamente */}
+
+  </head>
+  <body>
+    {/* Usa tus componentes aquí */}
+
+    {/* Header Fijo */}
+    <HeaderFixed navLinks={navLinks} brand={brandData} /> {/* Pasa datos de navegación y marca */}
+
+    <main>
+        {/* Sección Hero */}
+        {/* Usa el ID para poder enlazar desde el nav */}
+        <Hero1
+            
+            title={heroData.title}
+            description={heroData.description}
+            buttonText={heroData.buttonText}
+            buttonHref={heroData.buttonHref}
+            buttonType={heroData.buttonType}
+            imageSrc={heroData.imageSrc}
+            imageAlt={heroData.imageAlt}
+        />
+
+        {/* Sección About */}
+        {/* Usa el ID para poder enlazar desde el nav */}
+        <About1
+            
+            tagTitle={aboutData.tagTitle}
+            title={aboutData.title}
+            imageSrc={aboutData.imageSrc}
+            imageAlt={aboutData.imageAlt}
+            paragraphs={aboutData.paragraphs}
+        />
+
+        {/* Ejemplo de otra sección genérica con elementos internos */}
+        {/* Usa el ID para poder enlazar desde el nav */}
+        <Section id="components" sectionClass="bg-gray-100"> {/* Añade una clase de fondo a la sección */}
+            <Container containerClass="py-12"> {/* Añade padding extra al contenedor si Section no lo tiene */}
+                 <Typography tag="h2" class="text-center mb-8 text-gray-800">Componentes Individuales en Acción</Typography>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div class="p-4 border rounded shadow-sm flex flex-col items-center text-center">
+                         <Typography tag="h3" class="mb-4">Botones</Typography>
+                         <div class="flex gap-4">
+                             <Button type="solid">Botón Sólido</Button>
+                             <Button type="ghost">Botón Ghost</Button>
+                         </div>
+                     </div>
+                      <div class="p-4 border rounded shadow-sm flex flex-col items-center text-center">
+                         <Typography tag="h3" class="mb-4">Tipografía</Typography>
+                          <Typography tag="h4">Título H4</Typography>
+                          <Typography tag="p">Este es un párrafo con <Button type="transparent">un botón</Button> inline.</Typography>
+                          <Typography tag="small">Texto pequeño (small tag)</Typography>
+                     </div>
+                 </div>
+                 {/* Puedes seguir añadiendo ejemplos de otros componentes aquí */}
+            </Container>
+        </Section>
+
+        {/* Sección Banner */}
+        <Banner1
+            title={bannerData.title}
+            description={bannerData.description}
+            buttonText={bannerData.buttonText}
+            buttonHref={bannerData.buttonHref}
+            buttonType={bannerData.buttonType}
+        />
+
+        {/* Sección de Contacto de ejemplo ( vacía, solo para el enlace del nav) */}
+         <Section id="contact" sectionClass="py-20 bg-white">
+             <Container>
+                 <Typography tag="h2" class="text-center">Contacto</Typography>
+                 <Typography tag="p" class="text-center mt-4">Esta sería la sección de contacto.</Typography>
+             </Container>
+         </Section>
+
+    </main>
+
+    {/* Footer */}
+    {/* Pasa todos los datos desde el objeto footerData */}
+    <Footer
+
+        copyright={footerData.copyright}
+        author={footerData.author}
+        imageSrc={footerData.imageSrc}
+        imageAlt={footerData.imageAlt}
+        legend={footerData.legend}
+    />
+
+  </body>
+</html>

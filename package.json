@@ -3,44 +3,40 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-
-    "./Favicon": "./components/head/Favicon.astro",
-    "./Metadata": "./components/head/Metadata.astro",
-    
-    "./Nav": "./components/scaffolding/Nav.astro",
-    "./HeaderFixed": "./components/scaffolding/HeaderFixed.astro",
-    "./Section": "./components/scaffolding/Section.astro",
-    "./Container": "./components/scaffolding/Container.astro",
-    "./Footer": "./components/scaffolding/Footer.astro",
-    
-    "./Brand": "./components/ui/Brand.astro",
-    "./BrandLink": "./components/ui/BrandLink.astro",
-    "./Button": "./components/ui/Button.astro",
-    "./Typography": "./components/ui/Typography.astro",
-    "./Overlay": "./components/ui/Overlay.astro",
-    
-    "./Hero1": "./components/section/Hero-1.astro",
-    "./About1": "./components/section/About-1.astro",
-    "./Banner1": "./components/section/Banner-1.astro",
-
-    "./Style": "./global-components.css"
+    "./Favicon": "./dist/components/head/Favicon.astro",
+    "./Metadata": "./dist/components/head/Metadata.astro",
+    "./HeaderFixed": "./dist/components/composed/HeaderFixed.astro",
+    "./Footer": "./dist/components/composed/Footer.astro",
+    "./Hero1": "./dist/components/section/Hero-1.astro",
+    "./About1": "./dist/components/section/About-1.astro",
+    "./Banner1": "./dist/components/section/Banner-1.astro"
   },
   "files": [
-    "components",
-    "*.astro",
-    "*.ts",
-    "global-components.css"
+    "dist"
   ],
   "keywords": [
     "astro",
     "components",
-    "ui"
+    "ui",
+    "tailwind"
   ],
   "author": "FTN",
   "license": "MIT",
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.4",
-    "astro": "^5.7.4",
+  "devDependencies": {
     "tailwindcss": "^4.1.4"
+  },
+  "scripts": {
+  "build:lib": "astro build --config astro.library.mjs", 
+  "dev": "astro dev" 
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "astro": "^5.7.5",
+    "tailwindcss": "^4.1.4"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.4"
   }
 }

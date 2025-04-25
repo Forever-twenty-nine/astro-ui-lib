@@ -4,10 +4,24 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "baseUrl": ".",
+    // Configura el alias @components si lo usas.
     "paths": {
-      // "@components/*": ["components/*"] /* not working?*/
+       "@components/*": ["src/components/*"]
     },
-    "jsx": "preserve"
+    "jsx": "preserve", // Necesario para archivos .jsx y .tsx si los tienes
+    "allowJs": true,   // Permite que TypeScript procese archivos .js también
+    "esModuleInterop": true, // Recomendado para importaciones
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true, // Si importas archivos .json (ej: config.json)
+    "isolatedModules": true, // Recomendado por Astro
+
+    // ¡Esta línea es CRUCIAL para que TypeScript entienda .astro!
+    "types": ["astro/client"],
+
+    "strict": true // Opcional pero muy recomendado para mejor seguridad de tipos
   },
-  "include": ["components"]
+  // Incluye la carpeta src completa y todo dentro de ella
+  "include": ["src/**/*"],
+  // Excluye carpetas de node_modules y build (dist)
+  "exclude": ["node_modules", "dist"]
 }
