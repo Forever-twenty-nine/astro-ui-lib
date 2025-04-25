@@ -5,9 +5,6 @@
     "moduleResolution": "Node",
     "baseUrl": ".",
     // Configura el alias @components si lo usas.
-    "paths": {
-       "@components/*": ["src/components/*"]
-    },
     "jsx": "preserve", // Necesario para archivos .jsx y .tsx si los tienes
     "allowJs": true,   // Permite que TypeScript procese archivos .js también
     "esModuleInterop": true, // Recomendado para importaciones
@@ -21,7 +18,7 @@
     "strict": true // Opcional pero muy recomendado para mejor seguridad de tipos
   },
   // Incluye la carpeta src completa y todo dentro de ella
-  "include": ["src/**/*"],
+  "include": ["src"],
   // Excluye carpetas de node_modules y build (dist)
   "exclude": ["node_modules", "dist"]
 }

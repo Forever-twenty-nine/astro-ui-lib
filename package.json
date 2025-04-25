@@ -26,8 +26,8 @@
     "tailwindcss": "^4.1.4"
   },
   "scripts": {
-  "build:lib": "astro build --config astro.library.mjs", 
-  "dev": "astro dev" 
+    "build:lib": "astro build --config astro.library.mjs",
+    "dev": "astro dev"
   },
   "publishConfig": {
     "access": "public"
@@ -37,6 +37,8 @@
     "tailwindcss": "^4.1.4"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.4"
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "typescript": "^5.8.3"
   }
 }
