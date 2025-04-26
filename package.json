@@ -18,16 +18,21 @@
     "astro",
     "components",
     "ui",
-    "tailwind"
+    "tailwind",
+    "library"
   ],
   "author": "FTN",
   "license": "MIT",
   "devDependencies": {
-    "tailwindcss": "^4.1.4"
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "fs-extra": "^11.3.0",
+    "typescript": "^5.8.3"
   },
   "scripts": {
-    "build:lib": "astro build --config astro.library.mjs",
-    "dev": "astro dev"
+    "dev": "astro dev",
+    "copy:components": "node scripts/copy-components.cjs",
+    "publish": "npm run copy:components"
   },
   "publishConfig": {
     "access": "public"
@@ -35,10 +40,5 @@
   "peerDependencies": {
     "astro": "^5.7.5",
     "tailwindcss": "^4.1.4"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@tailwindcss/vite": "^4.1.4",
-    "typescript": "^5.8.3"
   }
 }
