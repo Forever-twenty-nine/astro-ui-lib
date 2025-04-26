@@ -1,0 +1,182 @@
+---
+// Estilos de tailwind CSS
+import "../styles/global.css";
+// Componentes compuestos
+import HeaderFixed from "../components/composed/HeaderFixed.astro";
+import Footer from "../components/composed/Footer.astro";
+// Secciones compuestas
+import Hero1 from "../components/section/Hero-1.astro";
+import About1 from "../components/section/About-1.astro";
+import Banner1 from "../components/section/Banner-1.astro";
+// Componentes individuales
+import Section from "../components/elements/Section.astro";
+import Container from "../components/elements/Container.astro";
+import Typography from "../components/ui/Typography.astro";
+import Button from "../components/ui/Button.astro";
+
+const navLinks = [
+    { href: "#hero", text: "Inicio" },
+    { href: "#about", text: "Sobre Nosotros" },
+    { href: "#components", text: "Componentes" }, 
+    { href: "#contact", text: "Contacto" }, 
+];
+const brandData = {
+    href: "/",
+    src: "https://placehold.org/150x50/4A90E2/FFFFFF?text=Mi+Logo",
+    alt: "Logo de Mi Librería UI",
+    class: "custom-brand-class", 
+    classImage: "h-8 w-auto", 
+};
+
+const heroData = {
+    title: "Bienvenido a Mi Librería de Componentes Astro",
+    description:
+        "Componentes UI modernos y reutilizables construidos con Astro y Tailwind CSS.",
+    buttonText: "Explorar Componentes",
+    buttonHref: "#components", 
+    buttonType: "solid", 
+    imageSrc: "https://placehold.org/800x500/800080/FFFFFF?text=Imagen+Hero",
+    imageAlt: "Imagen de ejemplo para la sección Hero",
+};
+
+const aboutData = {
+    tagTitle: "Sobre Nosotros",
+    title: "El Propósito Detrás de la Librería",
+    imageSrc: "https://placehold.org/600x400/3CB371/FFFFFF?text=Imagen+About",
+    imageAlt: "Imagen de ejemplo para la sección About",
+    paragraphs: [
+        {
+            content:
+                "Esta librería proporciona una colección de componentes Astro pre-diseñados y fáciles de usar.",
+        },
+
+        {
+            content:
+                'Los componentes están construidos con Tailwind CSS y diseñados para ser flexibles y personalizables. Puedes usar <strong>negrita</strong>, <em>cursiva</em>, o incluso <a href="#">enlaces</a> si la prop de contenido lo permite.',
+            tag: "p",
+            class: "mt-4 text-gray-700",
+        },
+        {
+            content: "Ideal para acelerar el desarrollo de tus proyectos web.",
+            tag: "small",
+            class: "block mt-4 text-gray-600",
+        },
+    ],
+};
+
+const bannerData = {
+    title: "¡Empieza a Construir Hoy!",
+    description: "Integra estos componentes fácilmente en tus proyectos Astro.",
+    buttonText: "Instalar Librería",
+    buttonHref: "#installation", 
+    buttonType: "ghost", 
+};
+
+const footerData = {
+    imageSrc: "https://placehold.org/100x30/A9A9A9/1C1D20?text=Logo+Footer",
+    imageAlt: "Logo Footer Demo",
+    legend: "Hecho con ❤️ y Astro",
+    navLinks: navLinks, 
+    copyright: "© 2025 Mi Librería UI. Todos los derechos reservados.",
+    author: "Desarrollado por [Tu Nombre]",
+};
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+
+        <HeaderFixed navLinks={navLinks} brand={brandData} />
+        <main class="pt-14">
+            <Hero1
+                title={heroData.title}
+                description={heroData.description}
+                buttonText={heroData.buttonText}
+                buttonHref={heroData.buttonHref}
+                buttonType={heroData.buttonType}
+                imageSrc={heroData.imageSrc}
+                imageAlt={heroData.imageAlt}
+            />
+
+            <About1
+                tagTitle={aboutData.tagTitle}
+                title={aboutData.title}
+                imageSrc={aboutData.imageSrc}
+                imageAlt={aboutData.imageAlt}
+                paragraphs={aboutData.paragraphs}
+            />
+
+            <Section id="components" sectionClass="bg-gray-100">
+               
+                <Container containerClass="py-12">
+
+                    <Typography tag="h2" class="text-center mb-8 text-gray-800"
+                        >Componentes Individuales en Acción</Typography
+                    >
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div
+                            class="p-4 border rounded shadow-sm flex flex-col items-center text-center"
+                        >
+                            <Typography tag="h3" class="mb-4"
+                                >Botones</Typography
+                            >
+                            <div class="flex gap-4">
+                                <Button type="solid">Botón Sólido</Button>
+                                <Button type="ghost">Botón Ghost</Button>
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 border rounded shadow-sm flex flex-col items-center text-center"
+                        >
+                            <Typography tag="h3" class="mb-4"
+                                >Tipografía</Typography
+                            >
+                            <Typography tag="h4">Título H4</Typography>
+                            <Typography tag="p"
+                                >Este es un párrafo con <Button
+                                    type="transparent">un botón</Button
+                                > inline.</Typography
+                            >
+                            <Typography tag="small"
+                                >Texto pequeño (small tag)</Typography
+                            >
+                        </div>
+                    </div>
+                    
+                </Container>
+            </Section>
+
+            {/* Sección Banner */}
+            <Banner1
+                title={bannerData.title}
+                description={bannerData.description}
+                buttonText={bannerData.buttonText}
+                buttonHref={bannerData.buttonHref}
+                buttonType={bannerData.buttonType}
+            />
+
+            <Section id="contact" sectionClass="py-20 bg-white">
+                <Container>
+                    <Typography tag="h2" class="text-center"
+                        >Contacto</Typography
+                    >
+                    <Typography tag="p" class="text-center mt-4"
+                        >Esta sería la sección de contacto.</Typography
+                    >
+                </Container>
+            </Section>
+        </main>
+
+        <Footer
+            copyright={footerData.copyright}
+            author={footerData.author}
+            imageSrc={footerData.imageSrc}
+            imageAlt={footerData.imageAlt}
+            legend={footerData.legend}
+        />
+    </body>
+</html>
