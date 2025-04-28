@@ -30,6 +30,10 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Forever-twenty-nine/astro-ui-lib.git"
+  },
   "peerDependencies": {
     "astro": "^5.7.5",
     "tailwindcss": "^4.1.4"
