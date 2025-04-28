@@ -6,6 +6,11 @@
   "files": [
     "dist"
   ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "keywords": [
     "astro",
     "components",
@@ -25,7 +30,8 @@
     "dev": "astro dev",
     "copy:components": "node scripts/copy-components.cjs",
     "generate:index": "node scripts/generate-index.cjs",
-    "prepare:dist": "npm run copy:components && npm run generate:index",
+    "build": "tsc -p tsconfig.json", 
+    "prepare:dist": "npm run copy:components && npm run generate:index && npm run build",
     "publish": "npm run prepare:dist"
   },
   "publishConfig": {
