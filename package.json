@@ -1,16 +1,8 @@
 {
-  "name": "astro-ui-lib",
+  "name": "@forever-twenty-nine/astro-ui-lib",
   "version": "0.1.0",
   "type": "module",
-  "exports": {
-    "./Favicon": "./dist/components/head/Favicon.astro",
-    "./Metadata": "./dist/components/head/Metadata.astro",
-    "./HeaderFixed": "./dist/components/composed/HeaderFixed.astro",
-    "./Footer": "./dist/components/composed/Footer.astro",
-    "./Hero1": "./dist/components/section/Hero-1.astro",
-    "./About1": "./dist/components/section/About-1.astro",
-    "./Banner1": "./dist/components/section/Banner-1.astro"
-  },
+  "description": "A library of reusable Astro components styled with Tailwind CSS.",
   "files": [
     "dist"
   ],
@@ -35,7 +27,8 @@
     "publish": "npm run copy:components"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
   },
   "peerDependencies": {
     "astro": "^5.7.5",
