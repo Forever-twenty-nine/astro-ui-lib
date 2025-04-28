@@ -1,22 +1,13 @@
 ---
-import { config } from '../../../config'
-
 interface Props {
-  site?: string;  
-  title?: string;
-  description?: string;
+  site: string;
+  title: string;
+  description: string;
   url?: string;
   author?: string;
 }
 
-const {
-    site = config.site,
-    title = config.title,
-    description = config.description,
-    url = config.url,
-    author = config.author
-} = Astro.props
-
+const { site, title, description, url, author } = Astro.props;
 ---
 
 <meta charset="utf-8" />
