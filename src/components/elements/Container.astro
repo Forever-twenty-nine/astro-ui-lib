@@ -1,20 +1,21 @@
 ---
+interface Props {
+  id?: string;
+  variant?: "default" | "compact";
+}
 
 const {
-    id: idName = '',
-    class: className = ''
-} = Astro.props
+  id: idName = '',
+  variant = 'default',
+}: Props = Astro.props;
 
+const paddingClass = variant === "compact" ? "px-4" : "px-6";
 ---
 
 <div    
-    id={idName || undefined}
-    class={`max-w-7xl mx-auto px-6 ${className}`}
+  id={idName || undefined}
+  class={`max-w-7xl mx-auto ${paddingClass}`}
 >
-
-    <slot/>
-
+  <slot />
 </div>
 
-
-{/* bg-violet-300/90 sm:bg-red-200/90 md:bg-green-200/90 lg:bg-blue-200/90 xl:bg-pink-200/90 2xl:bg-yellow-200/90 3xl:bg-sky-20 */}

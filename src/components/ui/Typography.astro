@@ -1,7 +1,10 @@
 ---
-const { tag = "p", class: extraClasses } = Astro.props;
+interface Props {
+  tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small";
+  variant?: "default" | "muted";
+}
 
-const commonClasses = "";
+const { tag = "p", variant = "default" }: Props = Astro.props;
 
 const baseClasses = {
   h1: "text-6xl font-bold",
@@ -14,48 +17,15 @@ const baseClasses = {
   small: "text-sm",
 };
 
-const tagClasses =
-  baseClasses[tag as keyof typeof baseClasses] || baseClasses.h3;
+const variantClasses = {
+  default: "",
+  muted: "text-gray-400",
+};
 
-const allClasses = `${commonClasses} ${tagClasses} ${extraClasses}`;
+const classes = `${baseClasses[tag] || baseClasses.h3} ${variantClasses[variant]}`;
+const Tag = tag;
 ---
 
-{
-  tag === "h1" ? (
-    <h1 class={allClasses}>
-      <slot />
-    </h1>
-  ) : tag === "h2" ? (
-    <h2 class={allClasses}>
-      <slot />
-    </h2>
-  ) : tag === "h3" ? (
-    <h3 class={allClasses}>
-      <slot />
-    </h3>
-  ) : tag === "h4" ? (
-    <h4 class={allClasses}>
-      <slot />
-    </h4>
-  ) : tag === "h5" ? (
-    <h5 class={allClasses}>
-      <slot />
-    </h5>
-  ) : tag === "h6" ? (
-    <h6 class={allClasses}>
-      <slot />
-    </h6>
-  ) : tag === "p" ? (
-    <p class={allClasses}>
-      <slot />
-    </p>
-  ) : tag === "small" ? (
-    <p class={allClasses}>
-      <slot />
-    </p>
-  ) : (
-    <p class={allClasses}>
-      <slot />
-    </p>
-  )
-}
+<Tag class={classes}>
+  <slot />
+</Tag>

@@ -3,75 +3,63 @@ import Typography from "../ui/Typography.astro";
 import Container from "../elements/Container.astro";
 import Nav from "../elements/Nav.astro";
 
+interface Link {
+  href: string;
+  text: string;
+}
+
 interface Props {
-    legend?: string;
-    imageSrc?: string;
-    imageAlt?:string;
-    imageClass?: string;
-    navLinks?: string;
-    copyright: string;
-    author: string;
+  legend?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  navLinks?: Link[];
+  copyright?: string;
+  author?: string;
 }
 
 const {
-    legend,
-    imageSrc,
-    imageAlt,
-    imageClass,
-    navLinks = [],
-    copyright,
-    author
-} = Astro.props
+  legend,
+  imageSrc,
+  imageAlt,
+  navLinks = [],
+  copyright,
+  author,
+}: Props = Astro.props;
 ---
 
-<footer
-    class={`bg-primary-950 py-10`}
->
-    <Container>
-        <div
-            class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-            {/* left */}
-            <div>
-                <img
-                    src={imageSrc}
-                    alt={imageAlt}
-                    loading="lazy"
-                    class={`h-7 w-auto mb-2 ${imageClass ?? ""}`}
-                />
-                <Typography
-                    class="text-info-200"
-                >
-                    {legend}    
-                </Typography>
-            </div>
+<footer class="bg-primary-950 py-10">
+  <Container>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+      <div>
+        {imageSrc && (
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            loading="lazy"
+            class="h-7 w-auto mb-2"
+          />
+        )}
+        {legend && (
+          <Typography variant="muted">{legend}</Typography>
+        )}
+      </div>
 
-            {/* right */}
-            <div>
-                <Nav
-                    id=""
-                    class=""
-                    links={navLinks} 
-                    navLinkClass="text-info-200"
-                />
-            </div>
-        </div>
+      <div>
+        <Nav links={navLinks} variant="muted" />
+      </div>
+    </div>
 
-        <div class="mt-8">
-            <Typography
-                tag="small"
-                class="text-gray-400 mb-0.5">
-                {copyright}
-                
-            </Typography>   
-            <Typography
-                tag="small"
-                class="text-gray-400">
-                {author}
-                
-            </Typography> 
-        </div>
-        
-        
-    </Container>
-
+    <div class="mt-8">
+      {copyright && (
+        <Typography tag="small" variant="muted">
+          {copyright}
+        </Typography>
+      )}
+      {author && (
+        <Typography tag="small" variant="muted">
+          {author}
+        </Typography>
+      )}
+    </div>
+  </Container>
 </footer>
