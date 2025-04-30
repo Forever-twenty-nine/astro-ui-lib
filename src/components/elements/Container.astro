@@ -9,7 +9,13 @@ const {
   variant = 'default',
 }: Props = Astro.props;
 
-const paddingClass = variant === "compact" ? "px-4" : "px-6";
+const validVariants = {
+  default: "px-6",
+  compact: "px-4",
+};
+
+const paddingClass = validVariants[variant] ?? validVariants.default;
+
 ---
 
 <div    

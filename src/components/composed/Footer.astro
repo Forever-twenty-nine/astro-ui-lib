@@ -9,6 +9,7 @@ interface Link {
 }
 
 interface Props {
+  className?: string;
   legend?: string;
   imageSrc?: string;
   imageAlt?: string;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const {
+  className,
   legend,
   imageSrc,
   imageAlt,
@@ -27,9 +29,8 @@ const {
 }: Props = Astro.props;
 ---
 
-<footer class="bg-primary-950 py-10">
-  <!-- DEBUG: for tailwind to detect -->
-  <div class="bg-pink-500 text-white">test</div>
+<footer class={`${className ? className : 'bg-gray-900'} py-10`}>
+
 
   <Container>
     <div
