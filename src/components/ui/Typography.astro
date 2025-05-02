@@ -2,9 +2,14 @@
 interface Props {
   tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small";
   variant?: "default" | "muted";
+  class?: string;
 }
 
-const { tag = "p", variant = "default" }: Props = Astro.props;
+const {
+  tag = "p",
+  variant = "default",
+  class: extraClass = "",
+}: Props = Astro.props;
 
 const baseClasses = {
   h1: "text-6xl font-bold",
@@ -22,10 +27,12 @@ const variantClasses = {
   muted: "text-gray-400",
 };
 
-const classes = `${baseClasses[tag] || baseClasses.h3} ${variantClasses[variant]}`;
+const staticClass = `${baseClasses[tag] || baseClasses.h3} ${variantClasses[variant]}`;
+const finalClass = `${staticClass} ${extraClass}`.trim();
+
 const Tag = tag;
 ---
 
-<Tag class={classes}>
+<Tag class={finalClass}>
   <slot />
 </Tag>

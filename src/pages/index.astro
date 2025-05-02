@@ -17,15 +17,15 @@ import Button from "../components/ui/Button.astro";
 const navLinks = [
     { href: "#hero", text: "Inicio" },
     { href: "#about", text: "Sobre Nosotros" },
-    { href: "#components", text: "Componentes" }, 
-    { href: "#contact", text: "Contacto" }, 
+    { href: "#components", text: "Componentes" },
+    { href: "#contact", text: "Contacto" },
 ];
 const brandData = {
     href: "/",
     src: "https://placehold.org/150x50/4A90E2/FFFFFF?text=Mi+Logo",
     alt: "Logo de Mi Librería UI",
-    class: "custom-brand-class", 
-    classImage: "h-8 w-auto", 
+    class: "custom-brand-class",
+    classImage: "h-8 w-auto",
 };
 
 const heroData = {
@@ -33,8 +33,8 @@ const heroData = {
     description:
         "Componentes UI modernos y reutilizables construidos con Astro y Tailwind CSS.",
     buttonText: "Explorar Componentes",
-    buttonHref: "#components", 
-    buttonType: "solid", 
+    buttonHref: "#components",
+    buttonType: "solid",
     imageSrc: "https://placehold.org/800x500/800080/FFFFFF?text=Imagen+Hero",
     imageAlt: "Imagen de ejemplo para la sección Hero",
 };
@@ -68,15 +68,15 @@ const bannerData = {
     title: "¡Empieza a Construir Hoy!",
     description: "Integra estos componentes fácilmente en tus proyectos Astro.",
     buttonText: "Instalar Librería",
-    buttonHref: "#installation", 
-    buttonType: "ghost", 
+    buttonHref: "#installation",
+    buttonType: "ghost",
 };
 
 const footerData = {
     imageSrc: "https://placehold.org/100x30/A9A9A9/1C1D20?text=Logo+Footer",
     imageAlt: "Logo Footer Demo",
     legend: "Hecho con ❤️ y Astro",
-    navLinks: navLinks, 
+    navLinks: navLinks,
     copyright: "© 2025 Mi Librería UI. Todos los derechos reservados.",
     author: "Desarrollado por [Tu Nombre]",
 };
@@ -89,8 +89,8 @@ const footerData = {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
+        <HeaderFixed links={navLinks} brand={brandData} />
 
-        <HeaderFixed navLinks={navLinks} brand={brandData} />
         <main class="pt-14">
             <Hero1
                 title={heroData.title}
@@ -111,9 +111,7 @@ const footerData = {
             />
 
             <Section id="components" sectionClass="bg-gray-100">
-               
-                <Container containerClass="py-12">
-
+                <Container class="py-12">
                     <Typography tag="h2" class="text-center mb-8 text-gray-800"
                         >Componentes Individuales en Acción</Typography
                     >
@@ -146,7 +144,6 @@ const footerData = {
                             >
                         </div>
                     </div>
-                    
                 </Container>
             </Section>
 

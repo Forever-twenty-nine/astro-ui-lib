@@ -2,11 +2,13 @@
 interface Props {
   id?: string;
   variant?: "default" | "compact";
+  class?: string;
 }
 
 const {
-  id: idName = '',
-  variant = 'default',
+  id: idName = "",
+  variant = "default",
+  class: extraClass = "",
 }: Props = Astro.props;
 
 const validVariants = {
@@ -16,12 +18,11 @@ const validVariants = {
 
 const paddingClass = validVariants[variant] ?? validVariants.default;
 
+// Clase base segura para purge
+const baseClass = `max-w-7xl mx-auto ${paddingClass}`;
+const finalClass = `${baseClass} ${extraClass}`.trim();
 ---
 
-<div    
-  id={idName || undefined}
-  class={`max-w-7xl mx-auto ${paddingClass}`}
->
+<div id={idName || undefined} class={finalClass}>
   <slot />
 </div>
-
