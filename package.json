@@ -45,7 +45,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Forever-twenty-nine/astro-ui-lib.git"
+    "url": "git+https://github.com/Forever-twenty-nine/astro-ui-lib.git"
+  },
+  "homepage": "https://github.com/Forever-twenty-nine/astro-ui-lib#readme",
+  "bugs": {
+    "url": "https://github.com/Forever-twenty-nine/astro-ui-lib/issues"
   },
   "peerDependencies": {
     "astro": "^5.7.5",
