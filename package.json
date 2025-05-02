@@ -37,7 +37,7 @@
     "preversion": "npm run prepare:dist",
     "version": "node scripts/log-version.cjs",
     "postversion": "git push && git push --tags",
-    "publish": "npm publish"
+    "release": "npm version patch && npm publish"
   },
   "publishConfig": {
     "access": "public",
