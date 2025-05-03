@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.76](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.75...v0.1.76) (2025-05-03)
+
 ### [0.1.75](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.74...v0.1.75) (2025-05-03)
 
 ### [0.1.74](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.73...v0.1.74) (2025-05-03)
