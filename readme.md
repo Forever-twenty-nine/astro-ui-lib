@@ -144,3 +144,15 @@ Si deseas editar la librería y publicarla, asegúrate de configurar una variabl
      ```
 
 Esto garantizará que puedas publicar la librería sin problemas.
+
+## Commit Semántico
+
+Para que standard-version genere bien el CHANGELOG.md, tus commits deben seguir el formato Conventional Commits, por ejemplo:
+
+ - feat: agrega nuevo componente Hero
+
+ - fix: corrige bug en el Header
+
+ - chore: actualiza dependencias
+
+ - docs: mejora documentación
