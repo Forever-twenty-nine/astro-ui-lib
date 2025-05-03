@@ -13,40 +13,39 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }} # Token con permisos de escritura
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           registry-url: 'https://npm.pkg.github.com/'
-          scope: '@forever-twenty-nine'
+          always-auth: true
 
-      - name: Configure npm authentication
+      - name: Authenticate with GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          echo "@forever-twenty-nine:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+          echo "@forever-twenty-nine:registry=https://npm.pkg.github.com" >> ~/.npmrc
 
       - name: Install dependencies
         run: npm install
 
-      - name: Prepare dist folder
-        run: npm run prepare:dist
+      - name: Build the library
+        run: npm run build
 
-      - name: Generate changelog
-        run: npx standard-version --skip.tag --skip.commit
+      - name: Bump version and generate changelog
+        run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Publish package
+      - name: Push version and tags
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin main --follow-tags
+
+      - name: Publish to GitHub Packages
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish
-
-      - name: Push tag and changelog to GitHub
-        env:
-          GH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md package.json
-          git commit -m "chore(release): publish from GitHub Actions"
-          git tag v$(node -p "require('./package.json').version")
-          git push origin main --tags
