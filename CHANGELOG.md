@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.20](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.19...v0.1.20) (2025-05-03)
+
+
+### Features
+
+* actualizar flujo de trabajo de publicación en publish.yml ([ef3d9c5](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/ef3d9c57bed2244020faf2935a59bbd89aefb7f6))
+* actualizar versión de Node.js a 20 y mejorar autenticación en el flujo de trabajo de publicación ([73f0fc1](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/73f0fc12e1d43a069c731e113ce6cf51866890c6))
+* renombrar trabajo de publicación y mejorar configuración del flujo de trabajo en publish.yml ([ab5707e](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/ab5707e5dd3c5a52a5acdf2a66877b765ade7efb))
+
+
+### Bug Fixes
+
+* agregar opciones de fetch-depth y fetch-tags en el paso de checkout del flujo de trabajo de publicación ([3331d34](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/3331d34f23fafdc1cf0141df03a603e8b24a662e))
+* corregir el comando de push para usar el token de acceso en el flujo de trabajo de publicación ([502c4ff](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/502c4ff0f51cb66a3751a570365a2b919e08ed40))
+* corregir el uso del token de GitHub en el flujo de trabajo de publicación ([7bd40af](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/7bd40af1c845cdeb7792987a7218cf19d0198745))
+* corregir el uso del token de GitHub en el paso de generación de changelog ([4d524a8](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/4d524a851e9db029ab207382dd6f3f079b08603a))
+* corregir token en el paso de checkout del flujo de trabajo de publicación ([8eb4943](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/8eb494324430a34cd561cf8150cee972f607a792))
+* corregir token en el paso de checkout y mejorar configuración de identidad de Git en el flujo de trabajo de publicación ([f28fed1](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/f28fed15bdb0180fa77f3e89de3b5a3d34eb4582))
+* eliminar package-lock.json del flujo de trabajo de publicación en publish.yml ([9746a59](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/9746a59162367756390c59c9b8803c045623c356))
+* mejorar la configuración del flujo de trabajo de publicación al ajustar la persistencia de credenciales y limpiar el formato ([68aa3b5](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/68aa3b513b4a09edf08058226d0dfac267b999a5))
+
 ### [0.1.19](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.18...v0.1.19) (2025-05-03)
 
 
