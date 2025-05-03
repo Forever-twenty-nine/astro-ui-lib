@@ -1,45 +1,57 @@
-# Astro UI Lib
+# Astro UI Library
 
-Una librería de componentes reutilizables para proyectos creados con [Astro](https://astro.build/).
+Una librería de componentes reutilizables para proyectos Astro.
 
-## 🚀 Características
+---
 
-- Componentes `.astro` listos para usar
-- Estilos con Tailwind CSS (opcional, pero recomendado)
-- Diseño limpio y fácil de integrar
-- Listo para usarse como paquete npm o desde GitHub
+## 🛠 Instalación y uso
 
-## 🛠 Instalación local durante desarrollo
+Esta librería está disponible para proyectos Astro y puede instalarse fácilmente desde GitHub Pages.
 
-Puedes usar esta librería localmente en cualquier proyecto Astro sin necesidad de publicarla en npm.
+### 📦 Instalación
 
-### 📦 Paso a paso:
+1. Agrega la librería como dependencia en tu proyecto Astro utilizando npm:
 
-1. Coloca tu proyecto y esta librería en carpetas hermanas. Ejemplo de estructura:
-```go
-/Repositorios/ 
-├── landing-basic-template/ # Tu proyecto Astro 
-└── astro-ui-lib/ # Esta librería
-```
+   ```bash
+   npm install @forever-twenty-nine/astro-ui-lib
+   ```
 
-2. Desde el proyecto destino (`landing-basic-template`), ejecuta:
+   Esto añadirá la librería a tu archivo `package.json` como una dependencia.
 
-```bash
-npm install ../astro-ui-lib
-```
-Esto añadirá la dependencia en tu package.json:
+2. Verifica que la instalación se haya realizado correctamente revisando tu archivo `package.json`:
 
-```json
-"dependencies": {
-  "astro-ui-lib": "file:../astro-ui-lib"
-}
-```
-Importa y usa los componentes en tu proyecto:
+   ```json
+   "dependencies": {
+      "@forever-twenty-nine/astro-ui-lib": "0.1.17"
+   }
+   ```
+
+### 🚀 Uso
+
+1. Importa los componentes que necesites en tus archivos `.astro`. Por ejemplo:
+
+   ```astro
+   ---
+   import { Button } from "@forever-twenty-nine/astro-ui-lib";
+   ---
+   <Button text="Haz clic aquí" />
+   ```
+
+2. Asegúrate de reiniciar el servidor de desarrollo si realizas cambios en la librería o en tu proyecto:
+
+   ```bash
+   npm run dev
+   ```
+
+### 🌟 Ejemplo completo
+
+Si deseas usar un componente como `NavLinks`, puedes hacerlo de la siguiente manera:
 
 ```astro
 ---
-import NavLinks from 'astro-ui-lib/NavLinks';
+import NavLinks from "@forever-twenty-nine/astro-ui-lib/components/ui/NavLinks";
 ---
+
 <NavLinks
   links={[
     { href: "#about", text: "Sobre Nosotros" },
@@ -47,26 +59,88 @@ import NavLinks from 'astro-ui-lib/NavLinks';
   ]}
 />
 ```
-Reinicia el servidor de desarrollo si haces cambios:
 
-```bash
-npm run dev
+¡Y listo! Ahora puedes usar los componentes de la librería en tu proyecto Astro.
+
+---
+
+## 📁 Estructura de carpetas
+
+La carpeta `src` contiene los archivos principales de la librería organizados de la siguiente manera:
+
 ```
-📁 Estructura
-```go
-astro-ui-lib/
+src/
 ├── components/
-│   └── NavLinks.astro
-├── package.json
-└── README.md
-```
-📁 Styles
-```
-global-components.css
-```
-Se instala Tailwind CLI para ejecutarlo independiente con el siguiente comando:
-
-```bash
-npx @tailwindcss/cli -i ./styles/tailwind.css -o ./global-components.css --watch --minify
+│   ├── composed/       # Componentes compuestos (e.g., Footer, HeaderFixed)
+│   ├── elements/       # Componentes básicos (e.g., Container, Nav, Section)
+│   ├── head/           # Componentes para el <head> del documento (e.g., Metadata, Favicon)
+│   ├── section/        # Componentes de secciones completas (e.g., Hero1, About1, Banner1)
+│   └── ui/             # Componentes de interfaz de usuario (e.g., Button, Typography)
+├── pages/              # Páginas principales (e.g., index.astro)
+├── styles/             # Estilos globales y tokens de diseño
+└── index.ts            # Archivo principal para exportar componentes
 ```
 
+---
+
+## 🛠 Scripts disponibles
+
+En la carpeta `scripts` se encuentran los siguientes scripts que automatizan tareas comunes:
+
+1. **Copiar componentes**  
+   Copia los componentes desde `src/components` hacia `dist/components`:
+   ```bash
+   npm run copy:components
+   ```
+
+2. **Generar índice**  
+   Genera los archivos `index.ts` e `index.d.ts` en la carpeta `dist` para exportar los componentes y declarar sus tipos:
+   ```bash
+   npm run generate:index
+   ```
+
+3. **Preparar distribución**  
+   Ejecuta los scripts de copia y generación de índice para preparar la carpeta `dist` antes de publicar:
+   ```bash
+   npm run prepare:dist
+   ```
+
+4. **Registrar versión**  
+   Muestra la versión actual de la librería que se está publicando:
+   ```bash
+   npm version
+   ```
+
+5. **Publicar la librería**  
+   Publica una nueva versión de la librería en el registro configurado:
+   ```bash
+   npm run release
+   ```
+
+---
+
+## ⚙️ Configuración adicional para desarrollo
+
+Si deseas editar la librería y publicarla, asegúrate de configurar una variable de entorno para usar tu archivo `.npmrc`. Esto es necesario para autenticarte con el registro de npm.
+
+1. Crea un archivo `.npmrc` en la raíz del proyecto si no existe.
+
+2. Agrega tu token de autenticación al archivo `.npmrc`:
+
+   ```
+   //registry.npmjs.org/:_authToken=TU_TOKEN
+   ```
+
+3. Configura la variable de entorno `NPM_TOKEN` en tu sistema operativo:
+
+   - En Windows:
+     ```bash
+     setx NPM_TOKEN "TU_TOKEN"
+     ```
+
+   - En macOS/Linux:
+     ```bash
+     export NPM_TOKEN="TU_TOKEN"
+     ```
+
+Esto garantizará que puedas publicar la librería sin problemas.
