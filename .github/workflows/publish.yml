@@ -24,12 +24,29 @@ jobs:
         run: npm install
 
       - name: Build the library
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+      - name: Create dist folder
+        run: mkdir dist
+
+      - name: Prepare for publishing
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email ""
         run: npm run prepare:dist
 
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "Error: NPM_TOKEN is not set."
+            exit 1
+          fi
+          npm publish
 
       - name: Push tags to GitHub
         run: git push --tags
