@@ -72,6 +72,7 @@ jobs:
         run: npx standard-version
         env:
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
 
       - name: Publish to GitHub Packages
         if: steps.check_version.outputs.should_publish == 'true'
