@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
           fetch-tags: true
 
@@ -36,16 +36,18 @@ jobs:
       - name: Build the library
         run: npm run build
 
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Bump version and generate changelog
         run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Push version and tags
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git push origin main --follow-tags
+        run: git push origin main --follow-tags
 
       - name: Publish to GitHub Packages
         run: npm publish

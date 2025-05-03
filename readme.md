@@ -1,158 +1,128 @@
-# Astro UI Library
+# 🌌 Astro UI Library
 
-Una librería de componentes reutilizables para proyectos Astro.
+Una librería de componentes reutilizables para proyectos Astro, creada con Tailwind CSS.
 
 ---
 
-## 🛠 Instalación y uso
+## 📦 Instalación
 
-Esta librería está disponible para proyectos Astro y puede instalarse fácilmente desde GitHub Pages.
+Puedes instalar esta librería desde GitHub Packages en tu proyecto Astro:
 
-### 📦 Instalación
+```bash
+npm install @forever-twenty-nine/astro-ui-lib
+````
 
-1. Agrega la librería como dependencia en tu proyecto Astro utilizando npm:
+Asegúrate de tener tu archivo `.npmrc` configurado correctamente:
 
-   ```bash
-   npm install @forever-twenty-nine/astro-ui-lib
-   ```
-
-   Esto añadirá la librería a tu archivo `package.json` como una dependencia.
-
-2. Verifica que la instalación se haya realizado correctamente revisando tu archivo `package.json`:
-
-   ```json
-   "dependencies": {
-      "@forever-twenty-nine/astro-ui-lib": "0.1.17"
-   }
-   ```
-
-### 🚀 Uso
-
-1. Importa los componentes que necesites en tus archivos `.astro`. Por ejemplo:
-
-   ```astro
-   ---
-   import { Button } from "@forever-twenty-nine/astro-ui-lib";
-   ---
-   <Button text="Haz clic aquí" />
-   ```
-
-2. Asegúrate de reiniciar el servidor de desarrollo si realizas cambios en la librería o en tu proyecto:
-
-   ```bash
-   npm run dev
-   ```
-
-### 🌟 Ejemplo completo
-
-Si deseas usar un componente como `NavLinks`, puedes hacerlo de la siguiente manera:
-
-```astro
----
-import NavLinks from "@forever-twenty-nine/astro-ui-lib/components/ui/NavLinks";
----
-
-<NavLinks
-  links={[
-    { href: "#about", text: "Sobre Nosotros" },
-    { href: "#contact", text: "Contacto" }
-  ]}
-/>
+```bash
+@forever-twenty-nine:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
 ```
 
-¡Y listo! Ahora puedes usar los componentes de la librería en tu proyecto Astro.
+---
+
+## 🚀 Uso
+
+Importa y utiliza los componentes como cualquier otro módulo de Astro:
+
+```html
+---
+import { Button } from "@forever-twenty-nine/astro-ui-lib";
+---
+
+<Button type="solid">Haz clic aquí</Button>
+```
+
+Para componentes por ruta:
+
+```html
+---
+import Nav from "@forever-twenty-nine/astro-ui-lib/components/elements/Nav.astro";
+---
+
+<Nav links={[{ href: "#about", text: "Sobre Nosotros" }]} />
+```
 
 ---
 
-## 📁 Estructura de carpetas
-
-La carpeta `src` contiene los archivos principales de la librería organizados de la siguiente manera:
+## 🧱 Estructura del Proyecto
 
 ```
 src/
 ├── components/
-│   ├── composed/       # Componentes compuestos (e.g., Footer, HeaderFixed)
-│   ├── elements/       # Componentes básicos (e.g., Container, Nav, Section)
-│   ├── head/           # Componentes para el <head> del documento (e.g., Metadata, Favicon)
-│   ├── section/        # Componentes de secciones completas (e.g., Hero1, About1, Banner1)
-│   └── ui/             # Componentes de interfaz de usuario (e.g., Button, Typography)
-├── pages/              # Páginas principales (e.g., index.astro)
-├── styles/             # Estilos globales y tokens de diseño
-└── index.ts            # Archivo principal para exportar componentes
+│   ├── composed/       # Ej: Footer, HeaderFixed
+│   ├── elements/       # Ej: Container, Nav, Section
+│   ├── head/           # Metadata, Favicon
+│   ├── section/        # Hero1, About1, Banner1
+│   └── ui/             # UI básica: Button, Typography
+├── pages/              # Página de test local
+├── styles/             # Estilos globales y tokens
+└── index.ts            # Punto de entrada principal
 ```
 
 ---
 
-## 🛠 Scripts disponibles
+## 🛠 Desarrollo y contribución
 
-En la carpeta `scripts` se encuentran los siguientes scripts que automatizan tareas comunes:
+### 📋 Scripts disponibles
 
-1. **Copiar componentes**  
-   Copia los componentes desde `src/components` hacia `dist/components`:
-   ```bash
-   npm run copy:components
-   ```
-
-2. **Generar índice**  
-   Genera los archivos `index.ts` e `index.d.ts` en la carpeta `dist` para exportar los componentes y declarar sus tipos:
-   ```bash
-   npm run generate:index
-   ```
-
-3. **Preparar distribución**  
-   Ejecuta los scripts de copia y generación de índice para preparar la carpeta `dist` antes de publicar:
-   ```bash
-   npm run prepare:dist
-   ```
-
-4. **Registrar versión**  
-   Muestra la versión actual de la librería que se está publicando:
-   ```bash
-   npm version
-   ```
-
-5. **Publicar la librería**  
-   Publica una nueva versión de la librería en el registro configurado:
-   ```bash
-   npm run release
-   ```
+| Script            | Descripción                                            |
+| ----------------- | ------------------------------------------------------ |
+| `dev`             | Ejecuta el entorno Astro local                         |
+| `copy:components` | Copia los componentes a `dist/components`              |
+| `generate:index`  | Genera `index.ts` e `index.d.ts` con todas las exports |
+| `prepare:dist`    | Copia + genera índice, usado antes de publicar         |
+| `build`           | Alias de `prepare:dist`                                |
+| `release`         | Ejecuta `standard-version` para nueva versión          |
+| `release:patch`   | Publica nueva versión tipo `patch`                     |
+| `release:minor`   | Publica nueva versión tipo `minor`                     |
+| `release:major`   | Publica nueva versión tipo `major`                     |
 
 ---
 
-## ⚙️ Configuración adicional para desarrollo
+### ✅ Publicar una nueva versión
 
-Si deseas editar la librería y publicarla, asegúrate de configurar una variable de entorno para usar tu archivo `.npmrc`. Esto es necesario para autenticarte con el registro de npm.
+1. Realiza los cambios en la librería.
+2. Usa uno de los siguientes comandos:
 
-1. Crea un archivo `.npmrc` en la raíz del proyecto si no existe.
+```bash
+npm run release:patch  # para cambios pequeños o fixes
+npm run release:minor  # para nuevas funcionalidades
+npm run release:major  # para cambios rompientes
+```
 
-2. Agrega tu token de autenticación al archivo `.npmrc`:
+Esto actualizará la versión, generará el `CHANGELOG.md` y creará un nuevo tag automáticamente.
 
-   ```
-   //registry.npmjs.org/:_authToken=TU_TOKEN
-   ```
+---
 
-3. Configura la variable de entorno `NPM_TOKEN` en tu sistema operativo:
+### ✍️ Commits con Convenciones
 
-   - En Windows:
-     ```bash
-     setx NPM_TOKEN "TU_TOKEN"
-     ```
+Usamos [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) para que `standard-version` genere automáticamente el changelog.
 
-   - En macOS/Linux:
-     ```bash
-     export NPM_TOKEN="TU_TOKEN"
-     ```
+Ejemplos:
 
-Esto garantizará que puedas publicar la librería sin problemas.
+* `feat: agrega nuevo componente Hero`
+* `fix: corrige error de padding en Footer`
+* `chore: actualiza dependencias`
+* `docs: mejora instrucciones del README`
 
-## Commit Semántico
+---
 
-Para que standard-version genere bien el CHANGELOG.md, tus commits deben seguir el formato Conventional Commits, por ejemplo:
+## 🧪 Autenticación para publicar
 
- - feat: agrega nuevo componente Hero
+1. Crea un archivo `.npmrc` con este contenido:
 
- - fix: corrige bug en el Header
+```ini
+@forever-twenty-nine:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+```
 
- - chore: actualiza dependencias
+2. Asegúrate de tener la variable `NPM_TOKEN` definida en tu entorno local o en GitHub Actions.
 
- - docs: mejora documentación
+---
+
+## 📝 Licencia
+
+MIT © [FTN](https://github.com/Forever-twenty-nine)
+
+```
