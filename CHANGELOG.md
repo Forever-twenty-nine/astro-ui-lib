@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.85](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.82...v0.1.85) (2025-05-03)
+
+
+### Features
+
+* agregar modo de prueba visual a Banner1 ([daf0e7e](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/daf0e7e701b79995973bff2bf294fc12e4c5f4ff))
+* agregar nuevo componente FooterMinimal ([dfa6af5](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/dfa6af5e3bdabf1361e7ebdb59ed74614b89178b))
+
+
+### Bug Fixes
+
+* **About1:** corregir uso de prop 'tag' y eliminar key innecesario en Typography ([cdbd1b0](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/cdbd1b0461a8860d9edc42927b81962b3d02091d))
+* eliminar verificación de versiones en el flujo de trabajo de publicación ([1721787](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/17217879c6450a1fafeaa71792467915c7ceb8bf))
+* mejorar el flujo de trabajo de publicación con verificación de commits convencionales y control de versiones ([fddaff0](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/fddaff0d6edfd838d080f9d950c19f75b1c2c203))
+* mejorar la verificación de commits convencionales y ajustar el flujo de publicación ([71688d6](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/71688d6626612c54e66bc362e5486f7a0f80b719))
+* mejorar la verificación de versiones y commits convencionales en el flujo de trabajo de publicación ([23bbf1e](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/23bbf1e35e71986d4daeb24ab2a8dd281bc34b67))
+* **publish:** agregar verificación para omitir la publicación si la etiqueta de versión ya existe ([0606314](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/06063149421f255c4c52f1fe30093bc7b068dda6))
+* **publish:** eliminar la recuperación de etiquetas en la verificación de commits convencionales ([a5d1a95](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/a5d1a9599617416fd9d6d0428b47b1d37babe031))
+* **publish:** mejorar la verificación de versiones para omitir la publicación si la etiqueta ya existe o no hay commits convencionales ([4a15252](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/4a1525202d4e58d48fa78776af2ecda8e2b57431))
+* **publish:** simplificar la verificación de etiquetas existentes para omitir la publicación ([3b76c90](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/3b76c901fdbe15775e929a3eff31eea18d01de40))
+
 ### [0.1.82](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.81...v0.1.82) (2025-05-03)
 
 ### [0.1.81](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.80...v0.1.81) (2025-05-03)
