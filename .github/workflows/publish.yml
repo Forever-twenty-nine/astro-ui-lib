@@ -14,8 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           fetch-depth: 0
           fetch-tags: true
+
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -51,7 +53,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git push https://x-access-token:${{ secrets.NPM_TOKEN }}@github.com/Forever-twenty-nine/astro-ui-lib.git HEAD:main --follow-tags
         
-
+ 
       - name: Publish to GitHub Packages
         run: npm publish
         env:
