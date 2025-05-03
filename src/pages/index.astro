@@ -65,11 +65,16 @@ const aboutData = {
 };
 
 const bannerData = {
-    title: "¡Empieza a Construir Hoy!",
-    description: "Integra estos componentes fácilmente en tus proyectos Astro.",
-    buttonText: "Instalar Librería",
-    buttonHref: "#installation",
-    buttonType: "ghost",
+    title: "Impulsa tu negocio con nuestra solución",
+    description:
+        "Nuestro equipo ofrece las mejores herramientas <strong>personalizadas</strong> para tu crecimiento.",
+    buttonText: "Ver más",
+    buttonHref: "#servicios",
+    buttonType: "button" as const,
+};
+const bannerSinBoton = {
+    title: "Este es un banner sin botón",
+    description: "Podés usarlo para mensajes importantes sin CTA.",
 };
 
 const footerData = {
@@ -147,13 +152,31 @@ const footerData = {
                 </Container>
             </Section>
 
-            {/* Sección Banner */}
+            <!-- Sección Banner para pruebas -->
             <Banner1
+                sectionId="banner-prueba"
+                sectionClass="py-24"
+                containerId="banner-contenedor"
+                containerClass="max-w-3xl mx-auto"
                 title={bannerData.title}
+                titleClass="text-3xl md:text-4xl font-semibold"
                 description={bannerData.description}
+                descriptionClass="text-base"
                 buttonText={bannerData.buttonText}
                 buttonHref={bannerData.buttonHref}
                 buttonType={bannerData.buttonType}
+            />
+
+            <!-- Sección Banner sin botón -->
+            <Banner1
+                sectionId="banner-sin-boton"
+                sectionClass="py-24 bg-info-100"
+                containerId="container-sin-boton"
+                containerClass="text-center"
+                title={bannerSinBoton.title}
+                titleClass="text-2xl font-bold"
+                description={bannerSinBoton.description}
+                descriptionClass="text-gray-700"
             />
 
             <Section id="contact" sectionClass="py-20 bg-white">
