@@ -41,48 +41,45 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check for conventional commits and version tag
-        id: check_release
+      - name: Check if current version is already published
+        id: check_version
         run: |
+          VERSION="v$(node -p "require('./package.json').version")"
+          echo "📦 Current version: $VERSION"
           git fetch --tags
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "🛑 Tag $VERSION already exists. Skipping publish."
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Tag $VERSION not found. Continuing..."
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for conventional commits
+        if: steps.check_version.outputs.should_publish == 'true'
+        run: |
           LATEST_TAG=$(git describe --tags --abbrev=0 || echo "")
-          echo "Latest tag: $LATEST_TAG"
-          COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s" || true)
-          echo "Commits since last tag:"
+          COMMITS=$(git log "$LATEST_TAG"..HEAD --pretty=format:"%s" || true)
+          echo "Commits since $LATEST_TAG:"
           echo "$COMMITS"
-
           if ! echo "$COMMITS" | grep -qE "^(feat|fix|chore|docs|refactor|style|test|perf)\:"; then
-            echo "❌ No conventional commits found. Skipping release."
-            echo "should_release=false" >> $GITHUB_OUTPUT
+            echo "🛑 No conventional commits found. Skipping release."
             exit 0
           fi
 
-          echo "✅ Conventional commits found. Proceeding with release."
-          echo "should_release=true" >> $GITHUB_OUTPUT
-
-      - name: Bump version and generate changelog (if needed)
-        if: steps.check_release.outputs.should_release == 'true'
-        run: |
-          npx standard-version || echo "No version bump needed"
-          VERSION=$(node -p "require('./package.json').version")
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-      - name: Skip publish if tag already exists
-        if: steps.check_release.outputs.should_release == 'true'
-        run: |
-          echo "🔍 Checking if tag v${VERSION} already exists..."
-          if git rev-parse "v${VERSION}" >/dev/null 2>&1; then
-            echo "⛔ Tag v${VERSION} already exists. Skipping publish."
-            exit 0
-          fi
+      - name: Bump version and generate changelog
+        if: steps.check_version.outputs.should_publish == 'true'
+        run: npx standard-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to GitHub Packages
-        if: steps.check_release.outputs.should_release == 'true'
+        if: steps.check_version.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push version and tags
-        if: steps.check_release.outputs.should_release == 'true'
+        if: steps.check_version.outputs.should_publish == 'true'
         run: |
           git push https://x-access-token:${{ secrets.NPM_TOKEN }}@github.com/Forever-twenty-nine/astro-ui-lib.git HEAD:main --follow-tags
