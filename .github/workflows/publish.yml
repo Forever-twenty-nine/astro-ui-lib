@@ -1,4 +1,4 @@
-name: Publish Library
+name: Release and Publish to GitHub Packages
 
 on:
   push:
@@ -6,43 +6,46 @@ on:
       - main
 
 jobs:
-  publish:
-    name: Publish to GitHub Packages
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           registry-url: 'https://npm.pkg.github.com/'
-
-      - name: Configure npm auth
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          scope: '@forever-twenty-nine'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Prepare dist folder
+      - name: Build the library
+        run: npm run build
+
+      - name: Prepare dist
         run: npm run prepare:dist
 
-      # - name: Run tests (opcional)
-      #   run: npm test
-
-      - name: Configure Git identity
+      - name: Setup Git config
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Bump version
+        run: npm version patch
+
+      - name: Push version commit and tags
+        run: |
+          git push origin main
+          git push origin --tags
+
+      - name: Setup npm auth for GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Publish to GitHub Packages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm publish
-
-      - name: Push tags
-        run: git push --follow-tags
+        run: npm publish
