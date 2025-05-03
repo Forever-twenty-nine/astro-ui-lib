@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.58](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.57...v0.1.58) (2025-05-03)
+
+
+### Bug Fixes
+
+* reubicar el paso de publicación en el flujo de trabajo para mejorar la claridad y el orden ([4e0549b](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/4e0549b1f47d86762b25e99e2db13e64c2a2f7e7))
+
 ### [0.1.57](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.56...v0.1.57) (2025-05-03)
 
 ### [0.1.56](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.55...v0.1.56) (2025-05-03)
