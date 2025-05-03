@@ -7,7 +7,6 @@ on:
 
 jobs:
   publish:
-    name: Publish to GitHub Packages
     runs-on: ubuntu-latest
 
     steps:
@@ -17,31 +16,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           fetch-tags: true
-
-      - name: Determine if release should run
-        id: should_release
-        run: |
-          git fetch --tags
-          VERSION="v$(node -p "require('./package.json').version")"
-          echo "🔍 Checking if tag $VERSION already exists..."
-          if git rev-parse "$VERSION" >/dev/null 2>&1; then
-            echo "⛔ Tag $VERSION already exists. Skipping release."
-            echo "run=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          LATEST_TAG=$(git describe --tags --abbrev=0 || echo "")
-          echo "Latest tag: $LATEST_TAG"
-          COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s" || true)
-          echo "Commits since last tag:\n$COMMITS"
-
-          if echo "$COMMITS" | grep -qE "^(feat|fix|chore|docs|refactor|style|test|perf)\:"; then
-            echo "✅ Conventional commits found. Proceeding with release."
-            echo "run=true" >> $GITHUB_OUTPUT
-          else
-            echo "❌ No conventional commits found. Skipping release."
-            echo "run=false" >> $GITHUB_OUTPUT
-          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -66,21 +40,15 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump version and generate changelog
-        if: steps.should_release.outputs.run == 'true'
-        run: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Generate version and changelog (only if needed)
+        run: |
+          npx standard-version || echo "No version bump needed"
 
       - name: Publish to GitHub Packages
-        if: steps.should_release.outputs.run == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push version and tags
-        if: steps.should_release.outputs.run == 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git push https://x-access-token:${{ secrets.NPM_TOKEN }}@github.com/Forever-twenty-nine/astro-ui-lib.git HEAD:main --follow-tags
