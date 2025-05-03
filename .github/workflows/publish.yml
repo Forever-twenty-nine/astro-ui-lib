@@ -1,4 +1,4 @@
-name: Release and Publish Astro UI Library
+name: Publish Library
 
 on:
   push:
@@ -6,48 +6,47 @@ on:
       - main
 
 jobs:
-  release:
-    name: Bump Version, Generate Changelog, and Publish
+  publish:
+    name: Publish to GitHub Packages
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '18'
           registry-url: 'https://npm.pkg.github.com/'
           scope: '@forever-twenty-nine'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Configure npm authentication
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "@forever-twenty-nine:registry=https://npm.pkg.github.com/" >> ~/.npmrc
 
-      - name: Build dist
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prepare dist folder
         run: npm run prepare:dist
 
-      - name: Bump version and generate changelog
-        run: npx standard-version
+      - name: Generate changelog
+        run: npx standard-version --skip.tag --skip.commit
 
-      - name: Commit changelog and version bump
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "chore(release): update changelog and version"
-
-      - name: Push changes and tags
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin main
-          git push origin --tags
-
-      - name: Publish to GitHub Packages
+      - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish
+
+      - name: Push tag and changelog to GitHub
+        env:
+          GH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md package.json package-lock.json
+          git commit -m "chore(release): publish from GitHub Actions"
+          git tag v$(node -p "require('./package.json').version")
+          git push origin main --tags
