@@ -43,7 +43,6 @@ jobs:
 
       - name: Check for conventional commits
         run: |
-          git fetch origin main --tags
           LATEST_TAG=$(git describe --tags --abbrev=0)
           echo "Latest tag: $LATEST_TAG"
           COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s")
@@ -52,7 +51,7 @@ jobs:
             echo "❌ No conventional commits found. Skipping release."
             exit 0
           fi
-      
+
       - name: Skip release if version tag already exists
         run: |
           VERSION="v$(node -p "require('./package.json').version")"
