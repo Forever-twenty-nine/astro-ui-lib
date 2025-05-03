@@ -41,50 +41,24 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check for conventional commits
-        id: check_commits
-        run: |
-          git fetch origin main --tags
-          LATEST_TAG=$(git describe --tags --abbrev=0 || echo "")
-          echo "Latest tag: $LATEST_TAG"
-          COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s" || true)
-          echo -e "Commits since last tag:\n$COMMITS"
-          if echo "$COMMITS" | grep -qE "^(feat|fix|chore|docs|refactor|style|test|perf)\:"; then
-            echo "✅ Conventional commits found."
-            echo "should_release=true" >> $GITHUB_OUTPUT
-          else
-            echo "❌ No conventional commits found."
-            echo "should_release=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Bump version and generate changelog
-        if: steps.check_commits.outputs.should_release == 'true'
+      - name: Run standard-version to bump version and generate changelog
+        id: versioning
         run: npm run release
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Check if tag already exists
-        if: steps.check_commits.outputs.should_release == 'true'
-        id: check_tag
+      - name: Skip publish if release failed (e.g., tag exists)
+        if: steps.versioning.outcome != 'success'
         run: |
-          VERSION="v$(node -p "require('./package.json').version")"
-          echo "📦 New version: $VERSION"
-          git fetch --tags
-          if git rev-parse "$VERSION" >/dev/null 2>&1; then
-            echo "🛑 Tag $VERSION already exists. Skipping publish."
-            echo "should_publish=false" >> $GITHUB_OUTPUT
-          else
-            echo "✅ Tag $VERSION not found. Will publish."
-            echo "should_publish=true" >> $GITHUB_OUTPUT
-          fi
+          echo "🛑 Release step failed or tag already exists. Skipping publish."
+          exit 0
 
       - name: Publish to GitHub Packages
-        if: steps.check_tag.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push version and tags
-        if: steps.check_tag.outputs.should_publish == 'true'
         run: |
           git push https://x-access-token:${{ secrets.NPM_TOKEN }}@github.com/Forever-twenty-nine/astro-ui-lib.git HEAD:main --follow-tags
