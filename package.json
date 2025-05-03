@@ -34,6 +34,7 @@
     "copy:components": "node scripts/copy-components.cjs",
     "generate:index": "node scripts/generate-index.cjs",
     "prepare:dist": "npm run copy:components && npm run generate:index",
+    "build": "npm run prepare:dist",
     "preversion": "npm run prepare:dist",
     "version": "node scripts/log-version.cjs",
     "postversion": "git push && git push --tags",
