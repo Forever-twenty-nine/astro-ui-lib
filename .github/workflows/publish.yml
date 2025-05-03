@@ -52,6 +52,14 @@ jobs:
             echo "❌ No conventional commits found. Skipping release."
             exit 0
           fi
+      
+      - name: Skip release if version tag already exists
+        run: |
+          VERSION="v$(node -p "require('./package.json').version")"
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "❌ Tag $VERSION already exists. Skipping release."
+            exit 0
+          fi
 
       - name: Bump version and generate changelog
         run: npm run release
