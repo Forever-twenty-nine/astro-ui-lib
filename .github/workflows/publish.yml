@@ -43,7 +43,7 @@ jobs:
       - name: Bump version and generate changelog
         run: npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push version and tags
         run: |
