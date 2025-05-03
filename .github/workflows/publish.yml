@@ -17,6 +17,17 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           fetch-tags: true
+      
+      - name: Exit if tag for current version already exists
+        run: |
+          VERSION="v$(node -p "require('./package.json').version")"
+          echo "🔍 Checking if tag $VERSION already exists..."
+          git fetch --tags
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+          echo "⛔ Tag $VERSION already exists. Skipping release."
+          exit 0
+          fi
+  
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -49,14 +60,6 @@ jobs:
           echo "Commits since last tag:\n$COMMITS"
           if ! echo "$COMMITS" | grep -qE "^(feat|fix|chore|docs|refactor|style|test|perf)\:"; then
             echo "❌ No conventional commits found. Skipping release."
-            exit 0
-          fi
-
-      - name: Skip release if version tag already exists
-        run: |
-          VERSION="v$(node -p "require('./package.json').version")"
-          if git rev-parse "$VERSION" >/dev/null 2>&1; then
-            echo "❌ Tag $VERSION already exists. Skipping release."
             exit 0
           fi
 
