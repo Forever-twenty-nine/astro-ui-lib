@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          registry-url: 'https://npm.pkg.github.com/' # Cambia esto a 'https://registry.npmjs.org/' si publicas en npm
+          registry-url: 'https://npm.pkg.github.com/'
 
       - name: Configure npm auth
         run: |
