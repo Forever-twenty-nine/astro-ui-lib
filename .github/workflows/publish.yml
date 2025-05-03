@@ -18,7 +18,6 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -42,6 +41,18 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Check for conventional commits
+        run: |
+          git fetch origin main --tags
+          LATEST_TAG=$(git describe --tags --abbrev=0)
+          echo "Latest tag: $LATEST_TAG"
+          COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s")
+          echo "Commits since last tag:\n$COMMITS"
+          if ! echo "$COMMITS" | grep -qE "^(feat|fix|chore|docs|refactor|style|test|perf)\:"; then
+            echo "❌ No conventional commits found. Skipping release."
+            exit 0
+          fi
+
       - name: Bump version and generate changelog
         run: npm run release
         env:
@@ -51,7 +62,7 @@ jobs:
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
+
       - name: Push version and tags
         run: |
           git config user.name "github-actions[bot]"
