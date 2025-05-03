@@ -1,4 +1,4 @@
-name: Release and Publish to GitHub Packages
+name: Publish Library
 
 on:
   push:
@@ -6,46 +6,47 @@ on:
       - main
 
 jobs:
-  release:
+  publish:
+    name: Publish to GitHub Packages
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           registry-url: 'https://npm.pkg.github.com/'
           scope: '@forever-twenty-nine'
 
+      - name: Set up .npmrc for GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
       - name: Install dependencies
         run: npm install
 
-      - name: Build the library
-        run: npm run build
-
-      - name: Prepare dist
+      - name: Prepare dist folder
         run: npm run prepare:dist
 
-      - name: Setup Git config
+      - name: Bump version, commit and tag
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          npm version patch --no-git-tag-version
+          git add package.json package-lock.json
+          git commit -m "chore(release): bump version [skip ci]"
+          git tag v$(node -p "require('./package.json').version")
 
-      - name: Bump version
-        run: npm version patch
-
-      - name: Push version commit and tags
+      - name: Push changes and tags
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push origin main
-          git push origin --tags
-
-      - name: Setup npm auth for GitHub Packages
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          git push origin main --follow-tags
 
       - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish
