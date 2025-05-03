@@ -15,37 +15,51 @@ interface Props {
     descriptionClass?: string;
     buttonHref?: string;
     buttonText?: string;
-    buttonType?: string;
+    buttonType?: "button" | "submit" | "reset";
 }
 
 const {
     sectionId,
-    sectionClass,
+    sectionClass = "",
     containerId,
-    containerClass,
-    title,
-    titleClass,
+    containerClass = "",
+    title = "Título de ejemplo",
+    titleClass = "",
     description,
-    descriptionClass,
+    descriptionClass = "",
     buttonHref,
     buttonText,
     buttonType,
-} = Astro.props;
+}: Props = Astro.props;
+
+const sectionClassFinal = `bg-accent-500 ${sectionClass}`.trim();
+const containerClassFinal = `text-center ${containerClass}`.trim();
+const titleClassFinal = `mb-6 text-info-950 ${titleClass}`.trim();
+const descriptionClassFinal = `mb-8 text-info-700 ${descriptionClass}`.trim();
 ---
 
-<Section id={sectionId} class={`bg-accent-500 ${sectionClass}`}>
-    <Container id={containerId} class={`text-center ${containerClass}`}>
-        <Typography tag="h2" class={`mb-6 text-info-950 ${titleClass}`}>
+<Section id={sectionId} class={sectionClassFinal}>
+    <Container id={containerId} class={containerClassFinal}>
+        <Typography tag="h2" class={titleClassFinal}>
             {title}
         </Typography>
 
-        <Typography
-            class={`mb-8 text-info-700 ${descriptionClass}`}
-            set:html={description}
-        />
+        {
+            description && (
+                <Typography
+                    tag="p"
+                    class={descriptionClassFinal}
+                    set:html={description}
+                />
+            )
+        }
 
-        <Button href={buttonHref} type={buttonType}>
-            {buttonText}
-        </Button>
+        {
+            buttonHref && buttonText && (
+                <Button href={buttonHref} type={buttonType}>
+                    {buttonText}
+                </Button>
+            )
+        }
     </Container>
 </Section>
