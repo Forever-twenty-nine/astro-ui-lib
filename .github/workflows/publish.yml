@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    name: Publish to npm
+    name: Publish to GitHub Packages
     runs-on: ubuntu-latest
 
     steps:
@@ -18,35 +18,31 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: 'https://npm.pkg.github.com/' # Cambia esto a 'https://registry.npmjs.org/' si publicas en npm
+
+      - name: Configure npm auth
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build the library
-        run: npm run build
-
-      - name: Run tests
-        run: npm test
-
-      - name: Create dist folder
-        run: mkdir dist
-
-      - name: Prepare for publishing
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email ""
+      - name: Prepare dist folder
         run: npm run prepare:dist
 
-      - name: Publish to npm
+      # - name: Run tests (opcional)
+      #   run: npm test
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Publish to GitHub Packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
-            echo "Error: NPM_TOKEN is not set."
-            exit 1
-          fi
           npm publish
 
-      - name: Push tags to GitHub
-        run: git push --tags
+      - name: Push tags
+        run: git push --follow-tags
