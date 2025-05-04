@@ -16,6 +16,7 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
+          clean: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
