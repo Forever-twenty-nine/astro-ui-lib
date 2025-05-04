@@ -55,10 +55,14 @@ jobs:
           git fetch --tags --force
           VERSION="v$(node -p "require('./package.json').version")"
           echo "📦 Current version: $VERSION"
+
+          git tag -d "$VERSION" 2>/dev/null || true 
+
           if git rev-parse "$VERSION" >/dev/null 2>&1; then
             echo "🛑 Tag $VERSION already exists. Skipping release."
             echo "should_publish=false" >> $GITHUB_OUTPUT
             exit 0
+            
           fi
           echo "✅ Tag does not exist yet. Will publish."
           echo "should_publish=true" >> $GITHUB_OUTPUT
