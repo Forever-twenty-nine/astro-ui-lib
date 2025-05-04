@@ -9,6 +9,7 @@ import Hero1 from "../components/section/Hero1.astro";
 import Hero2 from "../components/section/Hero2.astro";
 import About1 from "../components/section/About1.astro";
 import Banner1 from "../components/section/Banner1.astro";
+import Banner2 from "../components/section/Banner2.astro";
 // Componentes individuales
 import Section from "../components/elements/Section.astro";
 import Container from "../components/elements/Container.astro";
@@ -191,6 +192,14 @@ const footerData = {
                 titleClass="text-2xl font-bold"
                 description={bannerSinBoton.description}
                 descriptionClass="text-gray-700"
+            />
+            
+            <!-- Banner2: con imagen a la izquierda y texto a la derecha -->
+            <Banner2
+                title="Transforma tu presencia online"
+                description="Creamos soluciones digitales a medida. Contactanos hoy mismo y llevá tu proyecto al siguiente nivel."
+                buttonText="Conocé más"
+                buttonHref="/servicios"
             />
 
             <Section id="contact" sectionClass="py-20 bg-white">
