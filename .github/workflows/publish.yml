@@ -1,6 +1,5 @@
 name: Publish Library
 
-# 🚀 Este workflow se ejecuta cuando hay un push a la rama main
 on:
   push:
     branches:
@@ -16,11 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0           # Clona todo el historial (necesario para ver todos los tags)
-          fetch-tags: true         # Incluye tags en el clone
-          clean: true              # Limpia el workspace para evitar archivos viejos
+          fetch-depth: 0
+          fetch-tags: true
+          clean: true
 
-      # 🧱 2. Configura Node.js en la versión 20 y el registro de GitHub Packages
+      # 🧱 2. Configura Node.js y el registro de GitHub Packages
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,62 +27,64 @@ jobs:
           registry-url: 'https://npm.pkg.github.com/'
           always-auth: true
 
-      # 🔐 3. Autenticación para publicar en GitHub Packages
+      # 🔐 3. Autenticación para publicar
       - name: Authenticate with GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           echo "@forever-twenty-nine:registry=https://npm.pkg.github.com" >> ~/.npmrc
 
-      # 📦 4. Instala las dependencias del proyecto
+      # 📦 4. Instala dependencias
       - name: Install dependencies
         run: npm install
 
-      # 🛠️ 5. Compila y prepara la librería (usa tu script `build`)
+      # 🛠️ 5. Compila la librería
       - name: Build the library
         run: npm run build
 
-      # 🧑‍💻 6. Configura la identidad de Git para commits y tags automáticos
+      # 🧑‍💻 6. Configura identidad Git
       - name: Configure Git identity
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 🔍 7. Verifica si ya existe el tag de la versión actual (evita publicar dos veces la misma versión)
-      - name: Determine if release should run
-        id: check_release
+      # 🔍 7. Verifica si la nueva versión ya fue publicada
+      - name: Check if tag already exists
+        id: check_tag
         run: |
           git fetch --tags --force
           VERSION="v$(node -p "require('./package.json').version")"
           echo "📦 Current version: $VERSION"
-
-          git tag -d "$VERSION" 2>/dev/null || true 
-
           if git rev-parse "$VERSION" >/dev/null 2>&1; then
-            echo "🛑 Tag $VERSION already exists. Skipping release."
+            echo "🛑 Tag $VERSION already exists. Skipping publish."
             echo "should_publish=false" >> $GITHUB_OUTPUT
             exit 0
-
           fi
           echo "✅ Tag does not exist yet. Will publish."
           echo "should_publish=true" >> $GITHUB_OUTPUT
 
-      # 🏷️ 8. Genera el changelog, actualiza versión y crea el tag
+      # 🏷️ 8. Genera changelog y bump de versión
       - name: Bump version and generate changelog
-        if: steps.check_release.outputs.should_publish == 'true'
+        if: steps.check_tag.outputs.should_publish == 'true'
         run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 🚀 9. Publica el paquete en GitHub Packages
+      # 💾 9. Commit de versión y changelog
+      - name: Commit version and changelog
+        if: steps.check_tag.outputs.should_publish == 'true'
+        run: |
+          git add package.json CHANGELOG.md
+          git commit -m "chore(release): $(node -p "require('./package.json').version")"
+
+      # 🚀 10. Publica a GitHub Packages
       - name: Publish to GitHub Packages
-        if: steps.check_release.outputs.should_publish == 'true'
+        if: steps.check_tag.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 🔁 10. Empuja los commits y tags generados al repositorio remoto
+      # 🔁 11. Empuja los cambios al repositorio remoto
       - name: Push version and tags
-        if: steps.check_release.outputs.should_publish == 'true'
+        if: steps.check_tag.outputs.should_publish == 'true'
         run: |
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main --follow-tags
-
