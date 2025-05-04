@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.101](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.100...v0.1.101) (2025-05-04)
+
+
+### Features
+
+* agregar componente Banner2 y su implementación en index.astro ([7bf1c6b](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/7bf1c6b22b53c811afe8dc925bdc02698211f307))
+
+
+### Bug Fixes
+
+* agregar comentario de documentación para Props en Banner2.astro ([3cfd45f](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/3cfd45fae5d5c4bf7b423ad77ba21c3a923ab3f3))
+* fix publish.yml ([8591820](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/85918205ceab0a486b1cc49b0950a1852c344684))
+* fix publish.yml ([70d661a](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/70d661ac2be4fa1324b788b41d8acb144970228f))
+
 ### [0.1.100](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.95...v0.1.100) (2025-05-04)
 
 
