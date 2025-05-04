@@ -36,13 +36,7 @@
     "generate:index": "node scripts/generate-index.cjs",
     "prepare:dist": "npm run copy:components && npm run generate:index",
     "build": "npm run prepare:dist",
-    "preversion": "npm run prepare:dist",
-    "version": "node scripts/log-version.cjs",
-    "postversion": "git push && git push --tags",
-    "release": "standard-version",
-    "release:patch": "standard-version --release-as patch",
-    "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major"
+    "release": "standard-version"
   },
   "publishConfig": {
     "access": "public",
