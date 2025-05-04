@@ -1,5 +1,6 @@
 name: Publish Library
 
+# 🚀 0. Dispara el workflow cuando hay un push a la rama main
 on:
   push:
     branches:
@@ -11,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 🧾 1. Clona el repositorio con historial y tags completos
+      # 1️⃣ Clona el repositorio con todo el historial y los tags
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -19,7 +20,7 @@ jobs:
           fetch-tags: true
           clean: true
 
-      # 🧱 2. Configura Node.js y el registro de GitHub Packages
+      # 2️⃣ Configura Node.js con acceso al registro de GitHub Packages
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,27 +28,33 @@ jobs:
           registry-url: 'https://npm.pkg.github.com/'
           always-auth: true
 
-      # 🔐 3. Autenticación para publicar
+      # 3️⃣ Crea el archivo .npmrc para autenticarse con el token
       - name: Authenticate with GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           echo "@forever-twenty-nine:registry=https://npm.pkg.github.com" >> ~/.npmrc
 
-      # 📦 4. Instala dependencias
+      # 4️⃣ Instala dependencias
       - name: Install dependencies
         run: npm install
 
-      # 🛠️ 5. Compila la librería
+      # 5️⃣ Compila la librería (usa tu script personalizado)
       - name: Build the library
         run: npm run build
 
-      # 🧑‍💻 6. Configura identidad Git
+      # 6️⃣ Configura la identidad de Git (necesario para commitear y pushear)
       - name: Configure Git identity
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 🔍 7. Verifica si la nueva versión ya fue publicada
+      # 7️⃣ Bump de versión, generación de changelog y creación del tag
+      - name: Bump version and generate changelog
+        run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 8️⃣ Verifica si el nuevo tag ya existe (por si hubo errores anteriores)
       - name: Check if tag already exists
         id: check_tag
         run: |
@@ -62,22 +69,15 @@ jobs:
           echo "✅ Tag does not exist yet. Will publish."
           echo "should_publish=true" >> $GITHUB_OUTPUT
 
-      # 🏷️ 8. Genera changelog y bump de versión
-      - name: Bump version and generate changelog
-        if: steps.check_tag.outputs.should_publish == 'true'
-        run: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # 🚀 09. Publica a GitHub Packages
+      # 9️⃣ Publica la librería en GitHub Packages
       - name: Publish to GitHub Packages
         if: steps.check_tag.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 🔁 10. Empuja los cambios al repositorio remoto
+      # 🔟 Pushea los commits del bump y el changelog, junto con el tag
       - name: Push version and tags
         if: steps.check_tag.outputs.should_publish == 'true'
         run: |
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main --follow-tags
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main --follow-tags
