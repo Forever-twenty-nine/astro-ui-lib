@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.100](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.95...v0.1.100) (2025-05-04)
+
+
+### Features
+
+* agregar componente Hero2 ([11db1c1](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/11db1c13b95c1fdbd530981007cfb54e87bebe63))
+* agregar Hero2 con nueva disposición ([fe8f016](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/fe8f016338ca5821e19cfcdde114e06bd0570ca5))
+* agregar nuevo diseño alternativo para Hero2 ([4fe023b](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/4fe023bd394bcaa92a820380651828f77225e1d3))
+* update publish.yml ([57c7095](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/57c709515c14b68bc9e480c0b30e23ddede71de6))
+* Update publish.yml ([dd092be](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/dd092beacd621a16b2a89bd0f28c2d5ea48b25cc))
+* update workflow ([7a9fb98](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/7a9fb9859a1913054717693f5020b18e820130a4))
+
+
+### Bug Fixes
+
+*  update workflow ([6a5fcc1](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/6a5fcc144cb49e4782e36be9e40401038aa71fe3))
+* manual update package.json ([637095b](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/637095b7989ba9c7e5dab06d0757249ba4f95774))
+* remove stale v0.1.96 changelog entry ([e511265](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/e51126508a494c3c7e9033f2a40c145d702d78ae))
+* update at version ([8866b61](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/8866b61508cad735210cddba7f2997f362f8bbd0))
+* update publish ([065415f](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/065415fd2863ef4886958f62760288fc2f660ba0))
+* update workflow ([e6e00e6](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/e6e00e6b6f1a1d5b72cb4b5a7e29dfe3adf69a87))
+* update workflow ([22a4df9](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/22a4df921d4065c0ed85e7d4f65e5270fb65d00b))
+* update workflow ([68f6ea7](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/68f6ea7506670e946ffc2e2ba458b3b14c3e475d))
+* version manual 99 ([0d46808](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/0d468080e27ae1deb469e83e7023ece8661d73e5))
+
 ### [0.1.94](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.93...v0.1.94) (2025-05-03)
 
 ### [0.1.93](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.92...v0.1.93) (2025-05-03)
