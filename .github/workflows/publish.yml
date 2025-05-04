@@ -62,7 +62,7 @@ jobs:
             echo "🛑 Tag $VERSION already exists. Skipping release."
             echo "should_publish=false" >> $GITHUB_OUTPUT
             exit 0
-            
+
           fi
           echo "✅ Tag does not exist yet. Will publish."
           echo "should_publish=true" >> $GITHUB_OUTPUT
@@ -84,4 +84,6 @@ jobs:
       # 🔁 10. Empuja los commits y tags generados al repositorio remoto
       - name: Push version and tags
         if: steps.check_release.outputs.should_publish == 'true'
-        run: git push origin main --follow-tags
+        run: |
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main --follow-tags
+
