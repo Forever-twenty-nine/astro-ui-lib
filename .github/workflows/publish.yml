@@ -40,12 +40,17 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Bump version and generate changelog
+        run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Determine if release should run
         id: check_release
         run: |
           git fetch --tags
           VERSION="v$(node -p "require('./package.json').version")"
-          echo "📦 Current version: $VERSION"
+          echo "📦 New version: $VERSION"
 
           if git rev-parse "$VERSION" >/dev/null 2>&1; then
             echo "🛑 Tag $VERSION already exists. Skipping release."
@@ -53,25 +58,8 @@ jobs:
             exit 0
           fi
 
-          LATEST_TAG=$(git describe --tags --abbrev=0 || echo "")
-          COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s" || true)
-
-          echo "Commits since last tag:"
-          echo "$COMMITS"
-
-          if echo "$COMMITS" | grep -qE "^(feat|fix|chore|docs|refactor|style|test|perf)\:"; then
-            echo "✅ Conventional commits found. Will publish."
-            echo "should_publish=true" >> $GITHUB_OUTPUT
-          else
-            echo "❌ No conventional commits found. Skipping release."
-            echo "should_publish=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Bump version and generate changelog
-        if: steps.check_release.outputs.should_publish == 'true'
-        run: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "✅ Tag does not exist yet. Will publish."
+          echo "should_publish=true" >> $GITHUB_OUTPUT
 
       - name: Publish to GitHub Packages
         if: steps.check_release.outputs.should_publish == 'true'
