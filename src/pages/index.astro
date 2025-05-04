@@ -5,11 +5,11 @@ import "../styles/global.css";
 import HeaderFixed from "../components/composed/HeaderFixed.astro";
 import Footer from "../components/composed/Footer.astro";
 // Secciones compuestas
-import Hero1 from "../components/section/Hero1.astro";
-import Hero2 from "../components/section/Hero2.astro";
-import About1 from "../components/section/About1.astro";
-import Banner1 from "../components/section/Banner1.astro";
-import Banner2 from "../components/section/Banner2.astro";
+import Hero1 from "../components/section/hero/Hero1.astro";
+import Hero2 from "../components/section/hero/Hero2.astro";
+import About1 from "../components/section/about/About1.astro";
+import Banner1 from "../components/section/banner/Banner1.astro";
+import Banner2 from "../components/section/banner/Banner2.astro";
 // Componentes individuales
 import Section from "../components/elements/Section.astro";
 import Container from "../components/elements/Container.astro";
@@ -97,8 +97,9 @@ const footerData = {
     </head>
     <body>
         <HeaderFixed links={navLinks} brand={brandData} />
-
+        
         <main class="pt-14">
+            <!-- 🧱 Sección Hero Components -->
             <Hero1
                 title={heroData.title}
                 description={heroData.description}
@@ -120,7 +121,7 @@ const footerData = {
                 secondaryButtonHref="#info"
                 sectionClass="bg-gray-50"
             />
-
+            <!-- 🧱 Sección About -->
             <About1
                 tagTitle={aboutData.tagTitle}
                 title={aboutData.title}
@@ -128,7 +129,7 @@ const footerData = {
                 imageAlt={aboutData.imageAlt}
                 paragraphs={aboutData.paragraphs}
             />
-
+            <!-- 🧱 Sección Componentes Individuales -->
             <Section id="components" sectionClass="bg-gray-100">
                 <Container class="py-12">
                     <Typography tag="h2" class="text-center mb-8 text-gray-800"
@@ -167,7 +168,7 @@ const footerData = {
                 </Container>
             </Section>
 
-            <!-- Sección Banner para pruebas -->
+            <!-- 🧱 Sección Banners -->
             <Banner1
                 sectionId="banner-prueba"
                 sectionClass="py-24"
@@ -193,7 +194,7 @@ const footerData = {
                 description={bannerSinBoton.description}
                 descriptionClass="text-gray-700"
             />
-            
+
             <!-- Banner2: con imagen a la izquierda y texto a la derecha -->
             <Banner2
                 title="Transforma tu presencia online"
