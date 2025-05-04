@@ -80,4 +80,4 @@ jobs:
       - name: Push version and tags
         if: steps.check_tag.outputs.should_publish == 'true'
         run: |
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main --follow-tags
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main --follow-tags
