@@ -69,21 +69,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 💾 9. Commit de versión y changelog
-      - name: Commit version and changelog
-        if: steps.check_tag.outputs.should_publish == 'true'
-        run: |
-          git add package.json CHANGELOG.md
-          git commit -m "chore(release): $(node -p "require('./package.json').version")"
-
-      # 🚀 10. Publica a GitHub Packages
+      # 🚀 09. Publica a GitHub Packages
       - name: Publish to GitHub Packages
         if: steps.check_tag.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 🔁 11. Empuja los cambios al repositorio remoto
+      # 🔁 10. Empuja los cambios al repositorio remoto
       - name: Push version and tags
         if: steps.check_tag.outputs.should_publish == 'true'
         run: |
