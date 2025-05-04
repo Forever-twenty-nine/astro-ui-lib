@@ -1,6 +1,5 @@
 name: Publish Library
 
-# 🚀 0. Dispara el workflow cuando hay un push a la rama main
 on:
   push:
     branches:
@@ -12,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clona el repositorio con todo el historial y los tags
+      # 1️⃣ Clona el repositorio con historial completo y tags
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -20,7 +19,7 @@ jobs:
           fetch-tags: true
           clean: true
 
-      # 2️⃣ Configura Node.js con acceso al registro de GitHub Packages
+      # 2️⃣ Configura Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,7 +27,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com/'
           always-auth: true
 
-      # 3️⃣ Crea el archivo .npmrc para autenticarse con el token
+      # 3️⃣ Autenticación para publicar
       - name: Authenticate with GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
@@ -38,45 +37,47 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 5️⃣ Compila la librería (usa tu script personalizado)
+      # 5️⃣ Compila la librería
       - name: Build the library
         run: npm run build
 
-      # 6️⃣ Configura la identidad de Git (necesario para commitear y pushear)
+      # 6️⃣ Configura identidad de Git
       - name: Configure Git identity
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 7️⃣ Bump de versión, generación de changelog y creación del tag
+      # 7️⃣ Verifica si hay cambios relevantes (convencionales) y genera el release
       - name: Bump version and generate changelog
-        run: npm run release
+        id: versioning
+        run: |
+          npx standard-version || echo "no changes"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 8️⃣ Verifica si el nuevo tag ya existe (por si hubo errores anteriores)
-      - name: Check if tag already exists
+      # 8️⃣ Extrae versión actual para validar si se generó un release
+      - name: Check if tag was created
         id: check_tag
         run: |
           git fetch --tags --force
           VERSION="v$(node -p "require('./package.json').version")"
           echo "📦 Current version: $VERSION"
           if git rev-parse "$VERSION" >/dev/null 2>&1; then
-            echo "🛑 Tag $VERSION already exists. Skipping publish."
+            echo "✅ Tag $VERSION exists. Will publish."
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "🛑 Tag $VERSION was not created. Skipping publish."
             echo "should_publish=false" >> $GITHUB_OUTPUT
-            exit 0
           fi
-          echo "✅ Tag does not exist yet. Will publish."
-          echo "should_publish=true" >> $GITHUB_OUTPUT
 
-      # 9️⃣ Publica la librería en GitHub Packages
+      # 9️⃣ Publica en GitHub Packages si hubo release
       - name: Publish to GitHub Packages
         if: steps.check_tag.outputs.should_publish == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 🔟 Pushea los commits del bump y el changelog, junto con el tag
+      # 🔟 Empuja cambios y tags al repositorio
       - name: Push version and tags
         if: steps.check_tag.outputs.should_publish == 'true'
         run: |
