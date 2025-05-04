@@ -1,0 +1,97 @@
+---
+import Typography from "../ui/Typography.astro";
+import Container from "../elements/Container.astro";
+import Section from "../elements/Section.astro";
+import Button from "../ui/Button.astro";
+
+interface Props {
+    sectionId?: string;
+    sectionClass?: string;
+    containerId?: string;
+    containerClass?: string;
+    imageSrc?: string;
+    imageAlt?: string;
+    title?: string;
+    titleClass?: string;
+    description?: string;
+    descriptionClass?: string;
+    primaryButtonText?: string;
+    primaryButtonHref?: string;
+    secondaryButtonText?: string;
+    secondaryButtonHref?: string;
+}
+
+const {
+    sectionId,
+    sectionClass,
+    containerId,
+    containerClass,
+    imageSrc,
+    imageAlt,
+    title,
+    titleClass,
+    description,
+    descriptionClass,
+    primaryButtonText,
+    primaryButtonHref,
+    secondaryButtonText,
+    secondaryButtonHref,
+} = Astro.props;
+---
+
+<Section id={sectionId} class={`bg-white py-16 ${sectionClass ?? ""}`}>
+    <Container
+        id={containerId}
+        class={`text-center max-w-2xl mx-auto ${containerClass ?? ""}`}
+    >
+        {
+            imageSrc && (
+                <img
+                    src={imageSrc}
+                    alt={imageAlt}
+                    class="mx-auto mb-8 w-40 h-40 object-cover rounded-full shadow-md"
+                    loading="lazy"
+                />
+            )
+        }
+
+        {
+            title && (
+                <Typography
+                    tag="h1"
+                    class={`text-4xl font-bold mb-4 text-gray-900 ${titleClass ?? ""}`}
+                >
+                    {title}
+                </Typography>
+            )
+        }
+
+        {
+            description && (
+                <Typography
+                    tag="p"
+                    class={`text-lg text-gray-600 mb-8 ${descriptionClass ?? ""}`}
+                >
+                    {description}
+                </Typography>
+            )
+        }
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            {
+                primaryButtonText && primaryButtonHref && (
+                    <Button href={primaryButtonHref} type="primary">
+                        {primaryButtonText}
+                    </Button>
+                )
+            }
+            {
+                secondaryButtonText && secondaryButtonHref && (
+                    <Button href={secondaryButtonHref} type="secondary">
+                        {secondaryButtonText}
+                    </Button>
+                )
+            }
+        </div>
+    </Container>
+</Section>
