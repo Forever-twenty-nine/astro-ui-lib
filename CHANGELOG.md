@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.103](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.102...v0.1.103) (2025-05-06)
+
+
+### Features
+
+* Agrega estructura general y vistas para componentes About, Banner y Hero ([9bd2565](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/9bd256501de92c74baa1365c381bb3c2e647f635))
+
 ### [0.1.102](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.101...v0.1.102) (2025-05-04)
 
 ### [0.1.101](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.1.100...v0.1.101) (2025-05-04)
