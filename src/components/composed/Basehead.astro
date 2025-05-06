@@ -1,0 +1,25 @@
+---
+import Metadata from "../head/Metadata.astro";
+import Favicon from "../head/Favicon.astro";
+
+interface Props {
+    site: string;
+    title: string;
+    description: string;
+    url?: string;
+    author?: string;
+    favicon?: string;
+}
+
+const props = Astro.props;
+---
+
+<Metadata
+    site={props.site}
+    title={props.title}
+    description={props.description}
+    url={props.url}
+    author={props.author}
+/>
+
+<Favicon favicon={props.favicon ?? "/favicon.svg"} />

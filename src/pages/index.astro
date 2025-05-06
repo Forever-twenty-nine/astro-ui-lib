@@ -1,226 +1,101 @@
 ---
-// Estilos de tailwind CSS
-import "../styles/global.css";
-// Componentes compuestos
-import HeaderFixed from "../components/composed/HeaderFixed.astro";
-import Footer from "../components/composed/Footer.astro";
-// Secciones compuestas
-import Hero1 from "../components/section/hero/Hero1.astro";
-import Hero2 from "../components/section/hero/Hero2.astro";
-import About1 from "../components/section/about/About1.astro";
-import Banner1 from "../components/section/banner/Banner1.astro";
-import Banner2 from "../components/section/banner/Banner2.astro";
-// Componentes individuales
-import Section from "../components/elements/Section.astro";
+import Layout from "../layouts/Layout.astro";
 import Container from "../components/elements/Container.astro";
+import Section from "../components/elements/Section.astro";
 import Typography from "../components/ui/Typography.astro";
 import Button from "../components/ui/Button.astro";
-
-const navLinks = [
-    { href: "#hero", text: "Inicio" },
-    { href: "#about", text: "Sobre Nosotros" },
-    { href: "#components", text: "Componentes" },
-    { href: "#contact", text: "Contacto" },
-];
-const brandData = {
-    href: "/",
-    src: "https://placehold.org/150x50/4A90E2/FFFFFF?text=Mi+Logo",
-    alt: "Logo de Mi Librería UI",
-    class: "custom-brand-class",
-    classImage: "h-8 w-auto",
-};
-
-const heroData = {
-    title: "Bienvenido a Mi Librería de Componentes Astro",
-    description:
-        "Componentes UI modernos y reutilizables construidos con Astro y Tailwind CSS.",
-    buttonText: "Explorar Componentes",
-    buttonHref: "#components",
-    buttonType: "solid",
-    imageSrc: "https://placehold.org/800x500/800080/FFFFFF?text=Imagen+Hero",
-    imageAlt: "Imagen de ejemplo para la sección Hero",
-};
-
-const aboutData = {
-    tagTitle: "Sobre Nosotros",
-    title: "El Propósito Detrás de la Librería",
-    imageSrc: "https://placehold.org/600x400/3CB371/FFFFFF?text=Imagen+About",
-    imageAlt: "Imagen de ejemplo para la sección About",
-    paragraphs: [
-        {
-            content:
-                "Esta librería proporciona una colección de componentes Astro pre-diseñados y fáciles de usar.",
-        },
-
-        {
-            content:
-                'Los componentes están construidos con Tailwind CSS y diseñados para ser flexibles y personalizables. Puedes usar <strong>negrita</strong>, <em>cursiva</em>, o incluso <a href="#">enlaces</a> si la prop de contenido lo permite.',
-            tag: "p",
-            class: "mt-4 text-gray-700",
-        },
-        {
-            content: "Ideal para acelerar el desarrollo de tus proyectos web.",
-            tag: "small",
-            class: "block mt-4 text-gray-600",
-        },
-    ],
-};
-
-const bannerData = {
-    title: "Impulsa tu negocio con nuestra solución",
-    description:
-        "Nuestro equipo ofrece las mejores herramientas <strong>personalizadas</strong> para tu crecimiento.",
-    buttonText: "Ver más",
-    buttonHref: "#servicios",
-    buttonType: "button" as const,
-};
-const bannerSinBoton = {
-    title: "Este es un banner sin botón",
-    description: "Podés usarlo para mensajes importantes sin CTA.",
-};
-
-const footerData = {
-    imageSrc: "https://placehold.org/100x30/A9A9A9/1C1D20?text=Logo+Footer",
-    imageAlt: "Logo Footer Demo",
-    legend: "Hecho con ❤️ y Astro",
-    navLinks: navLinks,
-    copyright: "© 2025 Mi Librería UI. Todos los derechos reservados.",
-    author: "Desarrollado por [Tu Nombre]",
-};
 ---
 
-<!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <HeaderFixed links={navLinks} brand={brandData} />
-        
-        <main class="pt-14">
-            <!-- 🧱 Sección Hero Components -->
-            <Hero1
-                title={heroData.title}
-                description={heroData.description}
-                buttonText={heroData.buttonText}
-                buttonHref={heroData.buttonHref}
-                buttonType={heroData.buttonType}
-                imageSrc={heroData.imageSrc}
-                imageAlt={heroData.imageAlt}
-            />
-            <!-- Hero2: con imagen superior, texto y dos botones -->
-            <Hero2
-                imageSrc="https://placehold.org/600x400/3CB371/FFFFFF?text=Imagen+Hero"
-                imageAlt="Hero Avatar"
-                title="Bienvenido a Hero2"
-                description="Esta es una nueva variante del componente Hero con disposición vertical y botones centrados."
-                primaryButtonText="Comenzar"
-                primaryButtonHref="#start"
-                secondaryButtonText="Más info"
-                secondaryButtonHref="#info"
-                sectionClass="bg-gray-50"
-            />
-            <!-- 🧱 Sección About -->
-            <About1
-                tagTitle={aboutData.tagTitle}
-                title={aboutData.title}
-                imageSrc={aboutData.imageSrc}
-                imageAlt={aboutData.imageAlt}
-                paragraphs={aboutData.paragraphs}
-            />
-            <!-- 🧱 Sección Componentes Individuales -->
-            <Section id="components" sectionClass="bg-gray-100">
-                <Container class="py-12">
-                    <Typography tag="h2" class="text-center mb-8 text-gray-800"
-                        >Componentes Individuales en Acción</Typography
+<Layout title="Inicio" description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind">
+    <!-- Intro principal -->
+    <Section sectionClass="bg-white py-24">
+        <Container class="text-center max-w-2xl">
+            <Typography tag="h1" class="text-4xl font-bold mb-4 text-gray-900">
+                Bienvenido a tu Librería de Componentes UI con Astro + Tailwind
+            </Typography>
+
+            <Typography tag="p" class="text-lg text-gray-600 mb-8">
+                Explora las variantes de Hero, Banner y secciones como About.
+                Componentes modernos, reutilizables y optimizados para tu flujo
+                de trabajo.
+            </Typography>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <Button href="/hero" type="primary">Ver Heroes</Button>
+                <Button href="/banner" type="secondary">Ver Banners</Button>
+                <Button href="/about" type="ghost">Sobre la Librería</Button>
+            </div>
+        </Container>
+    </Section>
+
+    <!-- Previews visuales -->
+    <Section sectionClass="bg-gray-50 py-20">
+        <Container>
+            <Typography
+                tag="h2"
+                class="text-center text-2xl font-semibold mb-12 text-gray-800"
+            >
+                Previsualización de Componentes
+            </Typography>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Hero Preview -->
+                <div
+                    class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+                >
+                    <img
+                        src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
+                        alt="Vista previa Hero"
+                        class="rounded-md mb-4 w-full"
+                    />
+                    <Typography tag="h3" class="text-lg font-semibold mb-2"
+                        >Hero Components</Typography
                     >
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div
-                            class="p-4 border rounded shadow-sm flex flex-col items-center text-center"
-                        >
-                            <Typography tag="h3" class="mb-4"
-                                >Botones</Typography
-                            >
-                            <div class="flex gap-4">
-                                <Button type="solid">Botón Sólido</Button>
-                                <Button type="ghost">Botón Ghost</Button>
-                            </div>
-                        </div>
-                        <div
-                            class="p-4 border rounded shadow-sm flex flex-col items-center text-center"
-                        >
-                            <Typography tag="h3" class="mb-4"
-                                >Tipografía</Typography
-                            >
-                            <Typography tag="h4">Título H4</Typography>
-                            <Typography tag="p"
-                                >Este es un párrafo con <Button
-                                    type="transparent">un botón</Button
-                                > inline.</Typography
-                            >
-
-                            <Typography tag="small"
-                                >Texto pequeño (small tag)</Typography
-                            >
-                        </div>
-                    </div>
-                </Container>
-            </Section>
-
-            <!-- 🧱 Sección Banners -->
-            <Banner1
-                sectionId="banner-prueba"
-                sectionClass="py-24"
-                containerId="banner-contenedor"
-                containerClass="max-w-3xl mx-auto"
-                title={bannerData.title}
-                titleClass="text-3xl md:text-4xl font-semibold"
-                description={bannerData.description}
-                descriptionClass="text-base"
-                buttonText={bannerData.buttonText}
-                buttonHref={bannerData.buttonHref}
-                buttonType={bannerData.buttonType}
-            />
-
-            <!-- Sección Banner sin botón -->
-            <Banner1
-                sectionId="banner-sin-boton"
-                sectionClass="py-24 bg-info-100"
-                containerId="container-sin-boton"
-                containerClass="text-center"
-                title={bannerSinBoton.title}
-                titleClass="text-2xl font-bold"
-                description={bannerSinBoton.description}
-                descriptionClass="text-gray-700"
-            />
-
-            <!-- Banner2: con imagen a la izquierda y texto a la derecha -->
-            <Banner2
-                title="Transforma tu presencia online"
-                description="Creamos soluciones digitales a medida. Contactanos hoy mismo y llevá tu proyecto al siguiente nivel."
-                buttonText="Conocé más"
-                buttonHref="/servicios"
-            />
-
-            <Section id="contact" sectionClass="py-20 bg-white">
-                <Container>
-                    <Typography tag="h2" class="text-center"
-                        >Contacto</Typography
+                    <Typography tag="p" class="text-sm text-gray-600 mb-4"
+                        >Secciones introductorias con imágenes, títulos y
+                        llamadas a la acción.</Typography
                     >
-                    <Typography tag="p" class="text-center mt-4"
-                        >Esta sería la sección de contacto.</Typography
-                    >
-                </Container>
-            </Section>
-        </main>
+                    <Button href="/hero" type="ghost">Ver Heroes</Button>
+                </div>
 
-        <Footer
-            copyright={footerData.copyright}
-            author={footerData.author}
-            imageSrc={footerData.imageSrc}
-            imageAlt={footerData.imageAlt}
-            legend={footerData.legend}
-        />
-    </body>
-</html>
+                <!-- Banner Preview -->
+                <div
+                    class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+                >
+                    <img
+                        src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
+                        alt="Vista previa Banner"
+                        class="rounded-md mb-4 w-full"
+                    />
+                    <Typography tag="h3" class="text-lg font-semibold mb-2"
+                        >Banners Promocionales</Typography
+                    >
+                    <Typography tag="p" class="text-sm text-gray-600 mb-4"
+                        >Bloques destacados con textos llamativos y botones de
+                        acción.</Typography
+                    >
+                    <Button href="/banner" type="ghost">Ver Banners</Button>
+                </div>
+
+                <!-- About Preview -->
+                <div
+                    class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+                >
+                    <img
+                        src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
+                        alt="Vista previa About"
+                        class="rounded-md mb-4 w-full"
+                    />
+                    <Typography tag="h3" class="text-lg font-semibold mb-2"
+                        >Sección Sobre Nosotros</Typography
+                    >
+                    <Typography tag="p" class="text-sm text-gray-600 mb-4"
+                        >Contenido explicativo sobre tu producto o equipo, con
+                        texto e imagen.</Typography
+                    >
+                    <Button href="/about" type="ghost">Ver About</Button>
+                </div>
+            </div>
+        </Container>
+    </Section>
+</Layout>

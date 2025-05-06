@@ -121,8 +121,79 @@ Ejemplos:
 
 ---
 
+# COMPONENTES
+
+## ✨ Componentes Hero
+
+La librería incluye dos variantes de secciones tipo "Hero", ideales para encabezados llamativos o secciones introductorias:
+
+### 🧩 `Hero1.astro`
+
+Un diseño moderno con layout dividido (texto + imagen), fondo en gradiente y soporte para imágenes locales o remotas.
+
+#### Props principales:
+
+| Prop           | Tipo                | Descripción                                 |
+|----------------|---------------------|---------------------------------------------|
+| `title`        | `string`            | Título principal                            |
+| `description`  | `string`            | Texto descriptivo                           |
+| `buttonText`   | `string`            | Texto del botón                             |
+| `buttonHref`   | `string`            | URL del botón                               |
+| `image`        | `ImageMetadata`     | Imagen local optimizada (`astro:assets`)    |
+| `imageSrc`     | `string`            | URL externa de la imagen                    |
+
+#### Ejemplo:
+
+```astro
+---
+import Hero1 from "@forever-twenty-nine/astro-ui-lib/components/section/hero/Hero1.astro";
+import heroImg from "../assets/hero-1.jpg";
+---
+
+<Hero1
+  title="Bienvenido"
+  description="Descubrí soluciones modernas con Astro + Tailwind"
+  buttonText="Explorar"
+  buttonHref="/servicios"
+  image={heroImg}
+/>
+```
+
+---
+
+### 🧩 `Hero2.astro`
+
+Una variante centrada, ideal para landings con uno o dos botones. Admite imagen local o externa.
+
+#### Props adicionales:
+
+| Prop                   | Tipo                | Descripción                            |
+|------------------------|---------------------|----------------------------------------|
+| `primaryButtonText`    | `string`            | Botón principal                        |
+| `primaryButtonHref`    | `string`            | Enlace del botón principal             |
+| `secondaryButtonText`  | `string`            | Botón secundario (opcional)            |
+| `secondaryButtonHref`  | `string`            | Enlace del botón secundario            |
+
+#### Ejemplo:
+
+```astro
+---
+import Hero2 from "@forever-twenty-nine/astro-ui-lib/components/section/hero/Hero2.astro";
+---
+
+<Hero2
+  title="Lanzamos tu producto"
+  description="Diseños modernos y accesibles"
+  imageSrc="https://placehold.co/600x400"
+  primaryButtonText="Comenzar"
+  primaryButtonHref="#"
+  secondaryButtonText="Ver más"
+  secondaryButtonHref="#"
+/>
+```
+
+
 ## 📝 Licencia
 
 MIT © [FTN](https://github.com/Forever-twenty-nine)
 
-```

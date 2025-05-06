@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import About1 from "../components/section/about/About1.astro";
+import About2 from "src/components/section/about/About2.astro";
+
+const aboutData = {
+    tagTitle: "Sobre Nosotros",
+    title: "El Propósito Detrás de la Librería",
+    imageSrc: "https://placehold.org/600x400/3CB371/FFFFFF?text=Imagen+About",
+    imageAlt: "Imagen de ejemplo para la sección About",
+    paragraphs: [
+        {
+            content:
+                "Esta librería proporciona una colección de componentes Astro pre-diseñados y fáciles de usar.",
+        },
+        {
+            content:
+                'Los componentes están construidos con Tailwind CSS y diseñados para ser flexibles y personalizables. Puedes usar <strong>negrita</strong>, <em>cursiva</em>, o incluso <a href="#">enlaces</a> si la prop de contenido lo permite.',
+            tag: "p",
+            class: "mt-4 text-gray-700",
+        },
+        {
+            content: "Ideal para acelerar el desarrollo de tus proyectos web.",
+            tag: "small",
+            class: "block mt-4 text-gray-600",
+        },
+    ],
+};
+const aboutData2 = {
+    tagTitle: "Quiénes Somos",
+    title: "Conocé nuestra historia",
+    imageSrc: "https://placehold.co/600x400/FFD700/000?text=About2",
+    imageAlt: "Imagen de About2",
+    paragraphs: [
+        {
+            content:
+                "Nuestro equipo está dedicado a crear interfaces modernas y accesibles.",
+        },
+        {
+            content:
+                "Explorá nuestros <strong>componentes reutilizables</strong> y adaptables a cualquier proyecto web.",
+            tag: "p",
+        },
+    ],
+    buttonText: "Ver Componentes",
+    buttonHref: "/hero",
+};
+---
+
+<Layout
+    title="Sobre Nosotros"
+    description="Conocé más sobre nuestra librería de componentes UI."
+>
+    <!-- about 1 -->
+    <About1
+        tagTitle={aboutData.tagTitle}
+        title={aboutData.title}
+        imageSrc={aboutData.imageSrc}
+        imageAlt={aboutData.imageAlt}
+        paragraphs={aboutData.paragraphs}
+    />
+    <!-- about 2 -->
+    <About2 {...aboutData2} />
+</Layout>
