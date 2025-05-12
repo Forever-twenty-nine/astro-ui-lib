@@ -4,9 +4,14 @@ import Container from "../components/elements/Container.astro";
 import Section from "../components/elements/Section.astro";
 import Typography from "../components/ui/Typography.astro";
 import Button from "../components/ui/Button.astro";
+
+import { Image } from "astro:assets";
 ---
 
-<Layout title="Inicio" description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind">
+<Layout
+    title="Inicio"
+    description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind"
+>
     <!-- Intro principal -->
     <Section sectionClass="bg-white py-24">
         <Container class="text-center max-w-2xl">
@@ -43,11 +48,16 @@ import Button from "../components/ui/Button.astro";
                 <div
                     class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
                 >
-                    <img
+                    <!-- Hero Preview -->
+                    <Image
                         src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
                         alt="Vista previa Hero"
+                        width={400}
+                        height={200}
+                        loading="eager"
                         class="rounded-md mb-4 w-full"
                     />
+
                     <Typography tag="h3" class="text-lg font-semibold mb-2"
                         >Hero Components</Typography
                     >
@@ -62,14 +72,20 @@ import Button from "../components/ui/Button.astro";
                 <div
                     class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
                 >
-                    <img
+                    <!-- Banner Preview -->
+                    <Image
                         src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
                         alt="Vista previa Banner"
+                        loading="eager"
+                        width={400}
+                        height={200}
                         class="rounded-md mb-4 w-full"
                     />
+
                     <Typography tag="h3" class="text-lg font-semibold mb-2"
                         >Banners Promocionales</Typography
                     >
+
                     <Typography tag="p" class="text-sm text-gray-600 mb-4"
                         >Bloques destacados con textos llamativos y botones de
                         acción.</Typography
@@ -81,9 +97,13 @@ import Button from "../components/ui/Button.astro";
                 <div
                     class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
                 >
-                    <img
+                    <!-- About Preview -->
+                    <Image
                         src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
                         alt="Vista previa About"
+                        width={400}
+                        loading="eager"
+                        height={200}
                         class="rounded-md mb-4 w-full"
                     />
                     <Typography tag="h3" class="text-lg font-semibold mb-2"

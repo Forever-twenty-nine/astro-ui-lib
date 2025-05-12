@@ -1,8 +1,8 @@
 ---
-import Overlay from "../ui/Overlay.astro"
-import Container from "../elements/Container.astro"
-import BrandLink from "../ui/BrandLink.astro"
-import Nav from "../elements/Nav.astro"
+import Overlay from "../ui/Overlay.astro";
+import Container from "../elements/Container.astro";
+import BrandLink from "../ui/BrandLink.astro";
+import Nav from "../elements/Nav.astro";
 
 interface Link {
   href: string;
@@ -13,7 +13,7 @@ interface Brand {
   href?: string;
   id?: string;
   class?: string;
-  src: string;
+  src: any;
   alt: string;
   classImage?: string;
 }
@@ -23,8 +23,8 @@ interface Props {
   class?: string;
   links: Link[];
   brand: Brand;
-  navVariant?: 'default' | 'muted';
-  containerVariant?: 'default' | 'compact';
+  navVariant?: "default" | "muted";
+  containerVariant?: "default" | "compact";
 }
 
 const {
@@ -52,13 +52,19 @@ const {
         classImage={brand.classImage}
       />
 
-      <button 
+      <button
         id="menu-toggle"
         class="w-14 h-14 p-4 cursor-pointer z-30 md:hidden flex items-center justify-center"
         aria-expanded="false"
       >
-        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+        <svg
+          class="w-6 h-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+        >
+          <path
+            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+          ></path>
         </svg>
       </button>
 
@@ -101,7 +107,7 @@ const {
         isOpen ? closeMenu() : openMenu();
       });
 
-      navMenu.querySelectorAll("a").forEach(link => {
+      navMenu.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
           if (window.matchMedia("(max-width: 768px)").matches) {
             closeMenu();

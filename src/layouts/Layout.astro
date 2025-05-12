@@ -2,7 +2,9 @@
 import "../styles/global.css";
 import HeaderFixed from "../components/composed/HeaderFixed.astro";
 import Footer from "../components/composed/Footer.astro";
-import BaseHead from "../components/composed/Basehead.astro";
+import BaseHead from "../components/head/Basehead.astro";
+import brandLogo from "../assets/brand.svg";
+import brandlogoDark from "../assets/brand-negative.svg";
 
 const { children } = Astro.slots;
 
@@ -23,14 +25,14 @@ const {
 
 const brandData = {
   href: "/",
-  src: "https://placehold.org/150x50/4A90E2/FFFFFF?text=Mi+Logo",
+  src: brandLogo,
   alt: "Logo de Mi Librería UI",
   class: "custom-brand-class",
   classImage: "h-8 w-auto",
 };
 
 const footerData = {
-  imageSrc: "https://placehold.org/100x30/A9A9A9/1C1D20?text=Logo+Footer",
+  imageSrc: brandlogoDark,
   imageAlt: "Logo Footer Demo",
   legend: "Hecho con ❤️ y Astro",
   navLinks: navLinks,
