@@ -49,26 +49,27 @@ const {
         <!-- Imagen -->
         {
             image ? (
-              <AstroImage
-                src={image}
-                alt={imageAlt}
-                width={600}
-                height={400}
-                class={`mx-auto mb-6 ${imageClass}`}
-                loading="lazy"
-              />
-            ) : imageSrc && (
-              <img
-                src={imageSrc}
-                alt={imageAlt}
-                width="600"
-                height="400"
-                loading="lazy"
-                class={`mx-auto mb-6 ${imageClass}`}
-              />
+                <AstroImage
+                    src={image}
+                    alt={imageAlt}
+                    width={600}
+                    height={400}
+                    class={`mx-auto mb-6 ${imageClass}`}
+                    loading="lazy"
+                />
+            ) : (
+                imageSrc && (
+                    <img
+                        src={imageSrc}
+                        alt={imageAlt}
+                        width="600"
+                        height="400"
+                        loading="lazy"
+                        class={`mx-auto mb-6 ${imageClass}`}
+                    />
+                )
             )
-          }
-          
+        }
 
         <!-- Título -->
         {

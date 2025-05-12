@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 const {
   idLink = "",
   classLink = "",
@@ -11,6 +13,11 @@ const {
 
 <a id={idLink || undefined} class={classLink || undefined} href={hrefLink}>
   <figure>
-    <img src={brandSrc} alt={brandAlt} class={classImage || undefined} />
+    <Image
+      src={brandSrc}
+      alt={brandAlt}
+      class={classImage || undefined}
+      inferSize
+    />
   </figure>
 </a>
