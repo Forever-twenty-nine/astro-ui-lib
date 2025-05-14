@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.4...v0.2.5) (2025-05-14)
+
+
+### Features
+
+* agregar nuevos componentes Hero1 y Hero2 con soporte para props personalizadas y mejoras en la estructura ([8d69282](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/8d692827bae784acc5cd2d226f1865d778b48b31))
+* agregar referencia a content.d.ts en types.d.ts ([a681702](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/a681702355ad77ffed697591a69031add2acc0d1))
+* Mejora de los componentes de encabezado con opciones de favicon y metadatos. ([5b458a2](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/5b458a29c20b8a0e0b6056dc0ad67e4379d916ea))
+
 ### [0.2.4](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.3...v0.2.4) (2025-05-12)
 
 ### [0.2.3](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.2...v0.2.3) (2025-05-07)
