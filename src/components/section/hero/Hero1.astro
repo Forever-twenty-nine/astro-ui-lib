@@ -3,41 +3,25 @@ import Typography from "../../ui/Typography.astro";
 import Container from "../../elements/Container.astro";
 import Section from "../../elements/Section.astro";
 import Button from "../../ui/Button.astro";
-import { Image as AstroImage } from "astro:assets";
-
-interface Props {
-  sectionId?: string;
-  sectionClass?: string;
-  containerId?: string;
-  containerClass?: string;
-  title?: string;
-  titleClass?: string;
-  description?: string;
-  descriptionClass?: string;
-  buttonType?: string;
-  buttonHref?: string;
-  buttonText?: string;
-  image?: ImageMetadata;
-  imageSrc?: string;
-  imageAlt?: string;
-}
+import { Image } from "astro:assets";
+import type { Hero1Props } from "../../types/Hero1Props";
+import fallbackHero1 from "../../assets/800x500.webp";
 
 const {
   sectionId,
   sectionClass = "",
   containerId,
   containerClass = "",
-  title = "",
+  title = "Hero1: layout con imagen a la derecha",
   titleClass = "",
-  description = "",
+  description = "Este componente muestra un título, una descripción y un botón, acompañado de una imagen alineada a la derecha. Ideal para destacar un mensaje principal.",
   descriptionClass = "",
   buttonType = "button",
   buttonHref = "#",
-  buttonText = "",
+  buttonText = "Este es un botón de ejemplo",
   image,
-  imageSrc,
-  imageAlt = "Imagen ilustrativa",
-} = Astro.props;
+  imageAlt = "Imagen por defecto de Hero1",
+} = Astro.props as Hero1Props;
 ---
 
 <Section
@@ -45,57 +29,48 @@ const {
   class={`bg-gradient-to-br from-secondary-700 via-secondary-800 to-secondary-900 ${sectionClass}`}
 >
   <Container id={containerId} class={containerClass}>
-    <div
-      class="flex flex-col-reverse md:flex-row items-center justify-between gap-12"
-    >
-      <!-- Left -->
-      <div class="md:w-1/2 text-center md:text-left">
-        {
-          title && (
-            <Typography tag="h1" class={`mb-6 text-white ${titleClass}`}>
-              {title}
-            </Typography>
-          )
-        }
+    <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+      <!-- Texto -->
+      <div class="md:w-1/2 text-center md:text-left max-w-xl mx-auto">
+        {title && (
+          <Typography
+            tag="h1"
+            class={`mb-6 text-white drop-shadow-md ${titleClass}`}
+          >
+            {title}
+          </Typography>
+        )}
 
-        {
-          description && (
-            <Typography class={`mb-8 text-info-200 ${descriptionClass}`}>
-              {description}
-            </Typography>
-          )
-        }
+        {description && (
+          <Typography
+            class={`mb-8 text-info-200 opacity-90 ${descriptionClass}`}
+          >
+            {description}
+          </Typography>
+        )}
 
-        {
-          buttonText && (
-            <Button type={buttonType} href={buttonHref}>
-              {buttonText}
-            </Button>
-          )
-        }
+        {buttonText && (
+          <Button
+            type={buttonType}
+            href={buttonHref}
+            class="transition duration-300 ease-in-out hover:scale-105"
+          >
+            {buttonText}
+          </Button>
+        )}
       </div>
 
-      <!-- Right: <Image /> si viene una imagen local -->
+      <!-- Imagen -->
       <div class="md:w-1/2">
-        {
-          image ? (
-            <AstroImage
-              src={image}
-              alt={imageAlt}
-              class="w-full rounded-xl shadow-lg"
-              loading="lazy"
-            />
-          ) : (
-            imageSrc && (
-              <img
-                src={imageSrc}
-                alt={imageAlt}
-                loading="lazy"
-                class="w-full rounded-xl shadow-lg"
-              />
-            )
-          )
-        }
+        <Image
+          src={image ?? fallbackHero1}
+          alt={imageAlt}
+          width={800}
+          height={500}
+          class="w-full rounded-xl shadow-lg transition-transform duration-300 hover:scale-105"
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
   </Container>

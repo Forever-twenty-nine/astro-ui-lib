@@ -4,113 +4,79 @@ import Container from "../../elements/Container.astro";
 import Section from "../../elements/Section.astro";
 import Button from "../../ui/Button.astro";
 import { Image as AstroImage } from "astro:assets";
-
-interface Props {
-    sectionId?: string;
-    sectionClass?: string;
-    containerId?: string;
-    containerClass?: string;
-    title?: string;
-    titleClass?: string;
-    description?: string;
-    descriptionClass?: string;
-    primaryButtonText?: string;
-    primaryButtonHref?: string;
-    secondaryButtonText?: string;
-    secondaryButtonHref?: string;
-    image?: ImageMetadata;
-    imageSrc?: string;
-    imageAlt?: string;
-    imageClass?: string;
-}
+import type { Hero2Props } from "../../types/Hero2Props";
+import fallbackHero2 from "../../assets/600x400.webp";
 
 const {
-    sectionId,
-    sectionClass = "",
-    containerId,
-    containerClass = "",
-    title,
-    titleClass = "",
-    description,
-    descriptionClass = "",
-    primaryButtonText,
-    primaryButtonHref = "#",
-    secondaryButtonText,
-    secondaryButtonHref = "#",
-    image,
-    imageSrc,
-    imageAlt = "Imagen ilustrativa",
-    imageClass = "",
-} = Astro.props;
+  sectionId,
+  sectionClass = "",
+  containerId,
+  containerClass = "",
+  title = "Hero2: layout centrado con doble botón",
+  titleClass = "",
+  description = "Este componente incluye una imagen centrada arriba, seguida de un título, una descripción y dos botones. Es útil para llamadas a la acción destacadas.",
+  descriptionClass = "",
+  primaryButtonText = "Botón primario de ejemplo",
+  primaryButtonHref = "#",
+  secondaryButtonText = "Botón secundario de ejemplo",
+  secondaryButtonHref = "#",
+  image,
+  imageAlt = "Imagen por defecto de Hero2",
+  imageClass = "",
+} = Astro.props as Hero2Props;
 ---
 
 <Section id={sectionId} class={`text-center ${sectionClass}`}>
-    <Container id={containerId} class={containerClass}>
-        <!-- Imagen -->
-        {
-            image ? (
-                <AstroImage
-                    src={image}
-                    alt={imageAlt}
-                    width={600}
-                    height={400}
-                    class={`mx-auto mb-6 ${imageClass}`}
-                    loading="lazy"
-                />
-            ) : (
-                imageSrc && (
-                    <img
-                        src={imageSrc}
-                        alt={imageAlt}
-                        width="600"
-                        height="400"
-                        loading="lazy"
-                        class={`mx-auto mb-6 ${imageClass}`}
-                    />
-                )
-            )
-        }
+  <Container id={containerId} class={containerClass}>
+    <AstroImage
+      src={image ?? fallbackHero2}
+      alt={imageAlt}
+      width={600}
+      height={400}
+      class={`mx-auto mb-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 ${imageClass}`}
+      loading="eager"
+      decoding="async"
+    />
 
-        <!-- Título -->
-        {
-            title && (
-                <Typography
-                    tag="h2"
-                    class={`text-3xl font-bold mb-4 ${titleClass}`}
-                >
-                    {title}
-                </Typography>
-            )
-        }
+    <div class="max-w-xl mx-auto">
+      {title && (
+        <Typography
+          tag="h2"
+          class={`text-3xl font-bold mb-4 drop-shadow-md ${titleClass}`}
+        >
+          {title}
+        </Typography>
+      )}
 
-        <!-- Descripción -->
-        {
-            description && (
-                <Typography
-                    tag="p"
-                    class={`text-gray-600 mb-6 ${descriptionClass}`}
-                >
-                    {description}
-                </Typography>
-            )
-        }
+      {description && (
+        <Typography
+          tag="p"
+          class={`text-gray-600 mb-6 opacity-90 ${descriptionClass}`}
+        >
+          {description}
+        </Typography>
+      )}
 
-        <!-- Botones -->
-        <div class="flex justify-center gap-4">
-            {
-                primaryButtonText && (
-                    <Button href={primaryButtonHref} type="solid">
-                        {primaryButtonText}
-                    </Button>
-                )
-            }
-            {
-                secondaryButtonText && (
-                    <Button href={secondaryButtonHref} type="outline">
-                        {secondaryButtonText}
-                    </Button>
-                )
-            }
-        </div>
-    </Container>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        {primaryButtonText && (
+          <Button
+            href={primaryButtonHref}
+            type="solid"
+            class="transition duration-300 ease-in-out hover:scale-105"
+          >
+            {primaryButtonText}
+          </Button>
+        )}
+        {secondaryButtonText && (
+          <Button
+            href={secondaryButtonHref}
+            type="outline"
+            class="transition duration-300 ease-in-out hover:scale-105"
+          >
+            {secondaryButtonText}
+          </Button>
+        )}
+      </div>
+    </div>
+  </Container>
 </Section>

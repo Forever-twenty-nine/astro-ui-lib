@@ -7,7 +7,7 @@ const outputFileDts = path.resolve(__dirname, '../dist/index.d.ts');
 
 // Función para obtener los nombres de los componentes
 function getComponentExports(dir, basePath = './components') {
-    let exports = [];
+    let exports = []; 
     let types = [];
 
     const files = fs.readdirSync(dir);

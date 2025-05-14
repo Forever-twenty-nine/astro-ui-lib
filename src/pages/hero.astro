@@ -6,20 +6,19 @@ import Typography from "../components/ui/Typography.astro";
 import Section from "../components/elements/Section.astro";
 
 import heroImage from "../assets/hero-1.jpg";
-import heroImage2 from "../assets/hero-1.jpg"; 
 ---
 
-<Layout title="Heroes" description="Componentes Hero con imagen local y remota">
-  <!-- Hero1 con imagen local -->
+<Layout title="Heroes" description="Demostración de Hero1 y Hero2 con y sin props">
+  <!-- Hero1 con props -->
   <Section sectionClass="py-16 bg-white">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero1 - Imagen Local
+        Hero1 - Con props
       </Typography>
     </div>
     <Hero1
-      title="Hero con imagen local"
-      description="Este Hero usa una imagen local optimizada con astro:assets."
+      title="Hero1 personalizado"
+      description="Ejemplo de Hero1 con props definidas manualmente."
       buttonText="Ver más"
       buttonHref="#"
       image={heroImage}
@@ -27,34 +26,27 @@ import heroImage2 from "../assets/hero-1.jpg";
     />
   </Section>
 
-  <!-- Hero1 con imagen remota -->
+  <!-- Hero1 sin props -->
   <Section sectionClass="py-16 bg-gray-50">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero1 - Imagen Remota
+        Hero1 - Sin props (estado por defecto)
       </Typography>
     </div>
-    <Hero1
-      title="Hero con imagen remota"
-      description="Este Hero usa una imagen externa no optimizada."
-      buttonText="Explorar"
-      buttonHref="#"
-      imageSrc="https://placehold.co/800x500/4A90E2/FFFFFF?text=Hero1+Remoto"
-      imageAlt="Imagen remota Hero1"
-    />
+    <Hero1 />
   </Section>
 
-  <!-- Hero2 con imagen local -->
+  <!-- Hero2 con props -->
   <Section sectionClass="py-16 bg-white">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero2 - Imagen Local
+        Hero2 - Con props
       </Typography>
     </div>
     <Hero2
-      title="Hero 2 con imagen local"
-      description="Hero2 con imagen local optimizada."
-      image={heroImage2}
+      title="Hero2 personalizado"
+      description="Ejemplo de Hero2 con props definidas manualmente."
+      image={heroImage}
       imageAlt="Imagen local Hero2"
       primaryButtonText="Explorar"
       primaryButtonHref="#"
@@ -63,22 +55,13 @@ import heroImage2 from "../assets/hero-1.jpg";
     />
   </Section>
 
-  <!-- Hero2 con imagen remota -->
+  <!-- Hero2 sin props -->
   <Section sectionClass="py-16 bg-gray-50">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero2 - Imagen Remota
+        Hero2 - Sin props (estado por defecto)
       </Typography>
     </div>
-    <Hero2
-      title="Hero 2 con imagen remota"
-      description="Hero2 con imagen remota externa."
-      imageSrc="https://placehold.org/600x400/3CB371/FFFFFF?text=Hero2+Remoto"
-      imageAlt="Imagen remota Hero2"
-      primaryButtonText="Comenzar"
-      primaryButtonHref="#"
-      secondaryButtonText="Ver más"
-      secondaryButtonHref="#"
-    />
+    <Hero2 />
   </Section>
 </Layout>

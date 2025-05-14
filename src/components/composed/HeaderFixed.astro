@@ -75,8 +75,8 @@ const {
   <Overlay />
 </header>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
+<script is:inline>
+  const onLoad = () => {
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
     const menuOverlay = document.getElementById("menu-overlay");
@@ -101,21 +101,36 @@ const {
       }
     };
 
-    if (menuToggle && navMenu) {
-      menuToggle.addEventListener("click", () => {
-        const isOpen = navMenu.classList.contains("translate-x-0");
-        isOpen ? closeMenu() : openMenu();
-      });
+    const toggleMenu = () => {
+      const isOpen = navMenu.classList.contains("translate-x-0");
+      isOpen ? closeMenu() : openMenu();
+    };
 
-      navMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          if (window.matchMedia("(max-width: 768px)").matches) {
-            closeMenu();
-          }
-        });
-      });
+    const handleResizeNavClose = () => {
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        closeMenu();
+      }
+    };
 
-      menuOverlay?.addEventListener("click", closeMenu);
-    }
-  });
+    menuToggle?.addEventListener("click", toggleMenu);
+    navMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", handleResizeNavClose);
+    });
+    menuOverlay?.addEventListener("click", closeMenu);
+
+    // Cleanup on pagehide (important for bfcache)
+    window.addEventListener("pagehide", () => {
+      menuToggle?.removeEventListener("click", toggleMenu);
+      navMenu?.querySelectorAll("a").forEach((link) => {
+        link.removeEventListener("click", handleResizeNavClose);
+      });
+      menuOverlay?.removeEventListener("click", closeMenu);
+    });
+  };
+
+  if (document.readyState === "complete") {
+    onLoad();
+  } else {
+    window.addEventListener("DOMContentLoaded", onLoad, { once: true });
+  }
 </script>
