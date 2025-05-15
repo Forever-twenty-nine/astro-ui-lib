@@ -1,22 +1,12 @@
 ---
-interface Link {
-  href: string;
-  text: string;
-}
-
-interface Props {
-  id?: string;
-  class?: string;
-  links: Link[];
-  variant?: "default" | "muted";
-}
+import type { NavProps } from "../types/NavProps";
 
 const {
   id,
   class: className = "",
   links = [],
   variant = "default",
-}: Props = Astro.props;
+} = Astro.props as NavProps;
 
 const variantClasses = {
   default: "text-gray-700 hover:text-blue-600",

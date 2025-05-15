@@ -1,26 +1,20 @@
 ---
-interface Props {
-  id?: string;
-  variant?: "default" | "compact";
-  class?: string;
-}
+import type { ContainerProps } from "../types/ContainerProps";
 
 const {
   id: idName = "",
   variant = "default",
   class: extraClass = "",
-}: Props = Astro.props;
+} = Astro.props as ContainerProps;
 
-const validVariants = {
+const baseClass = "max-w-7xl mx-auto";
+const variantClasses = {
   default: "px-6",
   compact: "px-4",
 };
+const paddingClass = variantClasses[variant] ?? variantClasses.default;
 
-const paddingClass = validVariants[variant] ?? validVariants.default;
-
-// Clase base segura para purge
-const baseClass = `max-w-7xl mx-auto ${paddingClass}`;
-const finalClass = `${baseClass} ${extraClass}`.trim();
+const finalClass = `${baseClass} ${paddingClass} ${extraClass}`.trim();
 ---
 
 <div id={idName || undefined} class={finalClass}>

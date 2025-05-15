@@ -45,22 +45,60 @@ import Nav from "@forever-twenty-nine/astro-ui-lib/components/elements/Nav.astro
 
 ---
 
-## 🧱 Estructura del Proyecto
+## 🗂️ Estructura de la librería
+
+La librería está organizada dentro de `src/components/`, donde se agrupan los componentes, assets y tipos de forma modular y mantenible:
 
 ```
 src/
-├── components/
-│   ├── composed/       # Ej: Footer, HeaderFixed
-│   ├── elements/       # Ej: Container, Nav, Section
-│   ├── head/           # Metadata, Favicon
-│   ├── section/        # Hero1, About1, Banner1
-│   └── ui/             # UI básica: Button, Typography
-├── pages/              # Página de test local
-├── styles/             # Estilos globales y tokens
-└── index.ts            # Punto de entrada principal
+└── components/
+    ├── layout/        # Componentes estructurales generales (header, footer, overlay)
+    │   ├── HeaderFixed.astro
+    │   ├── Footer.astro
+    │   └── Overlay.astro
+
+    ├── sections/      # Secciones listas para usar como Hero, About, Contact
+    │   ├── Hero1.astro
+    │   ├── Hero2.astro
+    │   └── About1.astro
+
+    ├── ui/            # Componentes atómicos reutilizables
+    │   ├── Button.astro
+    │   ├── Typography.astro
+    │   ├── BrandLink.astro
+
+    ├── elements/      # Componentes de estructura visual (layout wrappers)
+    │   ├── Container.astro
+    │   ├── Section.astro
+    │   └── Nav.astro
+
+    ├── assets/        # Imágenes internas usadas como fallback por los componentes
+    │   ├── brand/
+    │   │   └── default-logo.svg
+    │   ├── hero/
+    │   │   ├── hero1-default.jpg
+    │   │   └── hero2-default.jpg
+
+    └── types/         # Tipos TypeScript para props, documentados con jsondoc
+        ├── header-fixed-props.ts
+        ├── footer-props.ts
+        ├── hero1-props.ts
+        └── shared.ts
 ```
 
 ---
+
+## 📌 Convenciones
+
+* **Todos los componentes usan imágenes locales por defecto** desde `/assets/`.
+* **Las props se separan en archivos `.ts` dentro de `types/`** para facilitar documentación con `jsondoc`.
+* **Se usa `astro:assets` en todos los componentes que renderizan imágenes.**
+* Se prefiere `layout/` para componentes generales de estructura del sitio.
+* `ui/` debe contener solo piezas atómicas sin lógica de layout.
+* `elements/` sirve para estructura visual que organiza pero no representa contenido.
+
+---
+
 
 ## 🛠 Desarrollo y contribución
 
@@ -73,25 +111,6 @@ src/
 | `generate:index`  | Genera `index.ts` e `index.d.ts` con todas las exports |
 | `prepare:dist`    | Copia + genera índice, usado antes de publicar         |
 | `build`           | Alias de `prepare:dist`                                |
-| `release`         | Ejecuta `standard-version` para nueva versión          |
-| `release:patch`   | Publica nueva versión tipo `patch`                     |
-| `release:minor`   | Publica nueva versión tipo `minor`                     |
-| `release:major`   | Publica nueva versión tipo `major`                     |
-
----
-
-### ✅ Publicar una nueva versión
-
-1. Realiza los cambios en la librería.
-2. Usa uno de los siguientes comandos:
-
-```bash
-npm run release:patch  # para cambios pequeños o fixes
-npm run release:minor  # para nuevas funcionalidades
-npm run release:major  # para cambios rompientes
-```
-
-Esto actualizará la versión, generará el `CHANGELOG.md` y creará un nuevo tag automáticamente.
 
 ---
 
@@ -120,80 +139,3 @@ Ejemplos:
 2. Asegúrate de tener la variable `NPM_TOKEN` definida en tu entorno local o en GitHub Actions.
 
 ---
-
-# COMPONENTES
-
-## ✨ Componentes Hero
-
-La librería incluye dos variantes de secciones tipo "Hero", ideales para encabezados llamativos o secciones introductorias:
-
-### 🧩 `Hero1.astro`
-
-Un diseño moderno con layout dividido (texto + imagen), fondo en gradiente y soporte para imágenes locales o remotas.
-
-#### Props principales:
-
-| Prop           | Tipo                | Descripción                                 |
-|----------------|---------------------|---------------------------------------------|
-| `title`        | `string`            | Título principal                            |
-| `description`  | `string`            | Texto descriptivo                           |
-| `buttonText`   | `string`            | Texto del botón                             |
-| `buttonHref`   | `string`            | URL del botón                               |
-| `image`        | `ImageMetadata`     | Imagen local optimizada (`astro:assets`)    |
-| `imageSrc`     | `string`            | URL externa de la imagen                    |
-
-#### Ejemplo:
-
-```astro
----
-import Hero1 from "@forever-twenty-nine/astro-ui-lib/components/section/hero/Hero1.astro";
-import heroImg from "../assets/hero-1.jpg";
----
-
-<Hero1
-  title="Bienvenido"
-  description="Descubrí soluciones modernas con Astro + Tailwind"
-  buttonText="Explorar"
-  buttonHref="/servicios"
-  image={heroImg}
-/>
-```
-
----
-
-### 🧩 `Hero2.astro`
-
-Una variante centrada, ideal para landings con uno o dos botones. Admite imagen local o externa.
-
-#### Props adicionales:
-
-| Prop                   | Tipo                | Descripción                            |
-|------------------------|---------------------|----------------------------------------|
-| `primaryButtonText`    | `string`            | Botón principal                        |
-| `primaryButtonHref`    | `string`            | Enlace del botón principal             |
-| `secondaryButtonText`  | `string`            | Botón secundario (opcional)            |
-| `secondaryButtonHref`  | `string`            | Enlace del botón secundario            |
-
-#### Ejemplo:
-
-```astro
----
-import Hero2 from "@forever-twenty-nine/astro-ui-lib/components/section/hero/Hero2.astro";
----
-
-<Hero2
-  title="Lanzamos tu producto"
-  description="Diseños modernos y accesibles"
-  imageSrc="https://placehold.co/600x400"
-  primaryButtonText="Comenzar"
-  primaryButtonHref="#"
-  secondaryButtonText="Ver más"
-  secondaryButtonHref="#"
-/>
-```
-
-
-## 📝 Licencia
-
-MIT © [FTN](https://github.com/Forever-twenty-nine)
-

@@ -1,53 +1,65 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Banner1 from "../components/section/banner/Banner1.astro";
-import Banner2 from "../components/section/banner/Banner2.astro";
+import Banner1 from "../components/sections/banner/Banner1.astro";
+import Banner2 from "../components/sections/banner/Banner2.astro";
+import Typography from "../components/ui/Typography.astro";
+import Section from "../components/elements/Section.astro";
 
-const bannerData = {
-    title: "Impulsa tu negocio con nuestra solución",
-    description:
-        "Nuestro equipo ofrece herramientas <strong>personalizadas</strong> para tu crecimiento.",
-    buttonText: "Ver más",
-    buttonHref: "#servicios",
-    buttonType: "button" as const,
-};
-
-const bannerSinBoton = {
-    title: "Este es un banner sin botón",
-    description: "Podés usarlo para mensajes importantes sin CTA.",
-};
+import heroImage from "../assets/hero-1.jpg";
 ---
 
-<Layout title="Banners" description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind">
-    <Banner1
-        sectionId="banner-prueba"
-        sectionClass="py-24"
-        containerId="banner-contenedor"
-        containerClass="max-w-3xl mx-auto"
-        title={bannerData.title}
-        titleClass="text-3xl md:text-4xl font-semibold"
-        description={bannerData.description}
-        descriptionClass="text-base"
-        buttonText={bannerData.buttonText}
-        buttonHref={bannerData.buttonHref}
-        buttonType={bannerData.buttonType}
-    />
+<Layout
+    title="Banners"
+    description="Demostración de Banner1 y Banner2 con y sin props"
+>
+    <Section sectionClass="py-24 bg-white">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                Banner1 - Con props
+            </Typography>
+        </div>
+        <Banner1
+            sectionClass="py-16"
+            title="Impulsa tu negocio con nuestra solución"
+            description="Nuestro equipo ofrece herramientas <strong>personalizadas</strong> para tu crecimiento."
+            buttonText="Ver más"
+            buttonHref="#servicios"
+            buttonType="button"
+            image={heroImage}
+            imageAlt="Ejemplo de imagen para Banner1"
+        />
+    </Section>
 
-    <Banner1
-        sectionId="banner-sin-boton"
-        sectionClass="py-24 bg-pink-100"
-        containerId="container-sin-boton"
-        containerClass="text-center"
-        title={bannerSinBoton.title}
-        titleClass="text-2xl font-bold"
-        description={bannerSinBoton.description}
-        descriptionClass="text-gray-700"
-    />
+    <Section sectionClass="py-24 bg-gray-100">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                Banner1 - Sin props (estado por defecto)
+            </Typography>
+        </div>
+        <Banner1 />
+    </Section>
 
-    <Banner2
-        title="Transforma tu presencia online"
-        description="Creamos soluciones digitales a medida. Contactanos hoy mismo y llevá tu proyecto al siguiente nivel."
-        buttonText="Conocé más"
-        buttonHref="/servicios"
-    />
+    <Section sectionClass="py-24 bg-white">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                Banner2 - Con props
+            </Typography>
+        </div>
+        <Banner2
+            title="Transforma tu presencia online"
+            description="Creamos soluciones digitales a medida. Contactanos hoy mismo y llevá tu proyecto al siguiente nivel."
+            buttonText="Conocé más"
+            buttonHref="/servicios"
+            image={heroImage}
+            imageAlt="Ejemplo de imagen para Banner1"
+        />
+    </Section>
+    <Section sectionClass="py-24 bg-gray-100">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                Banner2 - Sin props (estado por defecto)
+            </Typography>
+        </div>
+        <Banner2 />
+    </Section>
 </Layout>

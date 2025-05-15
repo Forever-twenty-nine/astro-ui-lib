@@ -1,7 +1,8 @@
 ---
-const { showLightLogo = true } = Astro.props;
+import type { BrandProps } from "../types/BrandProps";
 
-const colorScheme = showLightLogo ? "light" : "dark";
+const { showLightLogo = true, class: className = "" } =
+    Astro.props as BrandProps;
 
 const accentColorLogo = showLightLogo ? "fill-[#ccfd56]" : "fill-[#1c1d20]";
 const secondaryColorLogo = showLightLogo ? "fill-[#1c1d20]" : "fill-[#ccfd56]";
@@ -18,6 +19,7 @@ const letterSecondaryColorLogo = showLightLogo
     viewBox="0 0 1340.7 195.9"
     class={Astro.props.class}
 >
+
     <path
         class={accentColorLogo}
         d="M184.4,67.1c7.9-4.8,18-7.4,31-7.9V25.4c0-4.7-3.8-8.5-8.5-8.5H22.8c-4.7,0-8.5,3.8-8.5,8.5v146.6c0,4.7,3.8,8.5,8.5,8.5h184.1c4.7,0,8.5-3.8,8.5-8.5v-19.5c-3.6.5-7.3.7-11.3.7-35.1,0-38.9-20.8-38.9-29.7h0c0-6,1.5-11.4,4.4-15.9h-4.3l1.5-12.3c1.5-12.3,7.6-22.1,17.5-28.2Z"

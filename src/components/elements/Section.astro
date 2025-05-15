@@ -1,7 +1,12 @@
 ---
-const { id: idName = "", class: className = "" } = Astro.props;
+import type { SectionProps } from "../types/SectionProps";
+
+const { id: idName = "", class: className = "" } = Astro.props as SectionProps;
+
+const baseClass = "py-10";
+const finalClass = `${baseClass} ${className}`.trim();
 ---
 
-<section id={idName || undefined} class={`py-10 ${className}`}>
+<section id={idName || undefined} class={finalClass}>
     <slot />
 </section>

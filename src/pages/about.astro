@@ -1,13 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import About1 from "../components/section/about/About1.astro";
-import About2 from "src/components/section/about/About2.astro";
+import About1 from "../components/sections/about/About1.astro";
+import About2 from "../components/sections/about/About2.astro";
+import Typography from "../components/ui/Typography.astro";
+import Section from "../components/elements/Section.astro";
+
+import heroImage from "../assets/hero-1.jpg";
 
 const aboutData = {
     tagTitle: "Sobre Nosotros",
     title: "El Propósito Detrás de la Librería",
-    imageSrc: "https://placehold.org/600x400/3CB371/FFFFFF?text=Imagen+About",
-    imageAlt: "Imagen de ejemplo para la sección About",
+    image: heroImage,
+    imageAlt: "Imagen local de ejemplo para la sección About1",
     paragraphs: [
         {
             content:
@@ -26,11 +30,12 @@ const aboutData = {
         },
     ],
 };
+
 const aboutData2 = {
     tagTitle: "Quiénes Somos",
     title: "Conocé nuestra historia",
-    imageSrc: "https://placehold.co/600x400/FFD700/000?text=About2",
-    imageAlt: "Imagen de About2",
+    image: heroImage,
+    imageAlt: "Imagen local para About2",
     paragraphs: [
         {
             content:
@@ -51,14 +56,43 @@ const aboutData2 = {
     title="Sobre Nosotros"
     description="Conocé más sobre nuestra librería de componentes UI."
 >
-    <!-- about 1 -->
-    <About1
-        tagTitle={aboutData.tagTitle}
-        title={aboutData.title}
-        imageSrc={aboutData.imageSrc}
-        imageAlt={aboutData.imageAlt}
-        paragraphs={aboutData.paragraphs}
-    />
-    <!-- about 2 -->
-    <About2 {...aboutData2} />
+    <!-- About1 con props -->
+    <Section sectionClass="py-24 bg-white">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About1 - Con props
+            </Typography>
+        </div>
+        <About1 {...aboutData} />
+    </Section>
+
+    <!-- About1 sin props -->
+    <Section sectionClass="py-24 bg-gray-100">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About1 - Sin props (estado por defecto)
+            </Typography>
+        </div>
+        <About1 />
+    </Section>
+
+    <!-- About2 con props -->
+    <Section sectionClass="py-24 bg-white">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About2 - Con props
+            </Typography>
+        </div>
+        <About2 {...aboutData2} />
+    </Section>
+
+    <!-- About2 sin props -->
+    <Section sectionClass="py-24 bg-gray-100">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About2 - Sin props (estado por defecto)
+            </Typography>
+        </div>
+        <About2 />
+    </Section>
 </Layout>

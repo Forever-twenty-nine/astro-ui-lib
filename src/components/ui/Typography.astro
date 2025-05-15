@@ -1,15 +1,11 @@
 ---
-interface Props {
-  tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "small";
-  variant?: "default" | "muted";
-  class?: string;
-}
+import type { TypographyProps } from "../types/TypographyProps";
 
 const {
   tag = "p",
   variant = "default",
   class: extraClass = "",
-}: Props = Astro.props;
+} = Astro.props as TypographyProps;
 
 const baseClasses = {
   h1: "text-6xl font-bold",

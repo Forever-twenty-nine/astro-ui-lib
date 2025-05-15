@@ -1,5 +1,5 @@
 ---
-import Overlay from "../ui/Overlay.astro";
+import Overlay from "../elements/Overlay.astro";
 import Container from "../elements/Container.astro";
 import BrandLink from "../ui/BrandLink.astro";
 import Nav from "../elements/Nav.astro";
@@ -10,6 +10,7 @@ interface Link {
 }
 
 interface Brand {
+
   href?: string;
   id?: string;
   class?: string;
@@ -48,6 +49,7 @@ const {
         idLink={brand.id || undefined}
         classLink={brand.class || ""}
         brandSrc={brand.src}
+        
         brandAlt={brand.alt}
         classImage={brand.classImage}
       />

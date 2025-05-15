@@ -1,0 +1,7 @@
+<svg width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo">
+  <rect width="150" height="50" rx="8" fill="#4A90E2"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF">
+    Mi Logo
+  </text>
+</svg>

@@ -2,23 +2,9 @@
 import Typography from "../ui/Typography.astro";
 import Container from "../elements/Container.astro";
 import Nav from "../elements/Nav.astro";
-
 import { Image } from "astro:assets";
-
-interface Link {
-  href: string;
-  text: string;
-}
-
-interface Props {
-  className?: string;
-  legend?: string;
-  imageSrc?: any;
-  imageAlt?: string;
-  navLinks?: Link[];
-  copyright?: string;
-  author?: string;
-}
+import type { FooterProps } from "../types/FooterProps";
+import fallbackFooterImage from "../assets/footer/default-footer.svg";
 
 const {
   className,
@@ -28,7 +14,9 @@ const {
   navLinks = [],
   copyright,
   author,
-}: Props = Astro.props;
+} = Astro.props as FooterProps;
+
+const logoToUse = imageSrc ?? fallbackFooterImage;
 ---
 
 <footer class={`${className ? className : "bg-gray-900"} py-10`}>
@@ -37,17 +25,14 @@ const {
       class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left"
     >
       <div>
-        {
-          imageSrc && (
-            <Image
-              src={imageSrc}
-              alt={imageAlt ?? null}
-              width={100}
-              height={30}
-              class="h-7 w-auto mb-2"
-            />
-          )
-        }
+        <Image
+          src={logoToUse}
+          alt={imageAlt}
+          width={100}
+          height={30}
+          class="h-7 w-auto mb-2"
+          loading="lazy"
+        />
         {legend && <Typography variant="muted">{legend}</Typography>}
       </div>
 
