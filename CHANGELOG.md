@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.5...v0.2.6) (2025-05-15)
+
+
+### Features
+
+* Add default logo and footer SVG assets ([fb90689](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/fb9068921d478775655458084f46aafdb983c1ad))
+
 ### [0.2.5](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.4...v0.2.5) (2025-05-14)
 
 
