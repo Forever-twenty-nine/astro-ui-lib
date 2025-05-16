@@ -33,7 +33,7 @@ const descriptionClassFinal = `mb-8 text-info-700 ${descriptionClass}`.trim();
   <Container id={containerId} class={containerClassFinal}>
     <Image
       src={image ?? fallbackBanner}
-      alt={imageAlt}
+      alt={imageAlt ?? "Imagen por defecto de sección"}
       width={600}
       height={500}
       class="mx-auto mb-8 rounded-md shadow transition-transform hover:scale-105"

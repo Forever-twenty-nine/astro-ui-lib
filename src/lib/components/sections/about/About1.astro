@@ -45,7 +45,7 @@ const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"];
             <div class="md:w-1/2">
                 <Image
                     src={image ?? fallbackAbout}
-                    alt={imageAlt}
+                    alt={imageAlt ?? "Imagen por defecto de sección"}
                     width={600}
                     height={500}
                     class={`w-full rounded-xl shadow-lg ${imageClass}`}
