@@ -1,0 +1,27 @@
+---
+import Metadata from "./Metadata.astro";
+import Favicon from "./Favicon.astro";
+import type { BaseHeadProps } from "../types/head/BaseHeadProps";
+
+const {
+    site = "Sitio por defecto",
+    title = "Título por defecto",
+    description = "Descripción por defecto",
+    url,
+    author,
+    image,
+    favicon,
+    themeColor = "#ffffff",
+} = Astro.props as BaseHeadProps;
+---
+
+<Metadata
+    site={site}
+    title={title}
+    description={description}
+    url={url}
+    author={author}
+    image={image}
+/>
+
+<Favicon favicon={favicon} themeColor={themeColor} />

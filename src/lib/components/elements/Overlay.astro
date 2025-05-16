@@ -1,0 +1,26 @@
+---
+import type { OverlayProps } from "../../types/elements/OverlayProps";
+
+const {
+  id = "menu-overlay",
+  class: className = "",
+  show = false,
+  variant = "default",
+} = Astro.props as OverlayProps;
+
+const variantClasses = {
+  default: "bg-black/50 backdrop-blur-sm",
+  solid: "bg-black/80",
+  white: "bg-white/80",
+};
+
+const visibilityClass = show
+  ? "opacity-60 pointer-events-auto"
+  : "opacity-0 pointer-events-none";
+---
+
+<div
+  id={id}
+  class={`fixed inset-0 transition-opacity duration-300 z-10 md:!hidden ${variantClasses[variant] ?? variantClasses.default} ${visibilityClass} ${className}`}
+>
+</div>

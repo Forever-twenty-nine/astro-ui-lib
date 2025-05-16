@@ -1,0 +1,34 @@
+---
+import type { TypographyProps } from "../../types/ui/TypographyProps";
+
+const {
+  tag = "p",
+  variant = "default",
+  class: extraClass = "",
+} = Astro.props as TypographyProps;
+
+const baseClasses = {
+  h1: "text-6xl font-bold",
+  h2: "text-4xl font-bold",
+  h3: "text-3xl font-bold",
+  h4: "text-2xl font-bold",
+  h5: "text-xl font-bold",
+  h6: "text-lg font-bold",
+  p: "text-base",
+  small: "text-sm",
+};
+
+const variantClasses = {
+  default: "",
+  muted: "text-gray-400",
+};
+
+const staticClass = `${baseClasses[tag] || baseClasses.h3} ${variantClasses[variant]}`;
+const finalClass = `${staticClass} ${extraClass}`.trim();
+
+const Tag = tag;
+---
+
+<Tag class={finalClass}>
+  <slot />
+</Tag>

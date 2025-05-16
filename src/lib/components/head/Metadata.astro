@@ -1,0 +1,39 @@
+---
+import type { MetadataProps } from "../types/head/MetadataProps";
+
+const {
+  site,
+  title,
+  description,
+  url,
+  author,
+  image = "/blog-placeholder-1.jpg",
+  canonical = url,
+} = Astro.props as MetadataProps;
+---
+
+<!-- Meta generales -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="index, follow" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title} | {site}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+{author && <meta name="author" content={author} />}
+{canonical && <link rel="canonical" href={canonical} />}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+{url && <meta property="og:url" content={url} />}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.site)} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+{url && <meta name="twitter:url" content={url} />}
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, Astro.site)} />

@@ -1,0 +1,67 @@
+---
+import Typography from "../../ui/Typography.astro";
+import Container from "../../elements/Container.astro";
+import Section from "../../elements/Section.astro";
+import Button from "../../ui/Button.astro";
+import { Image } from "astro:assets";
+import fallbackBanner from "../../../assets/banner/600x500.webp";
+import type { BannerProps } from "../../../types/sections/BannerProps";
+
+const {
+  sectionId,
+  sectionClass = "",
+  containerId,
+  containerClass = "",
+  title = "Título de ejemplo",
+  titleClass = "",
+  description,
+  descriptionClass = "",
+  buttonHref,
+  buttonText,
+  buttonType = "button",
+  image,
+  imageAlt = "Imagen ilustrativa del banner",
+} = Astro.props as BannerProps;
+
+const sectionClassFinal = `bg-accent-500 ${sectionClass}`.trim();
+const containerClassFinal = `text-center ${containerClass}`.trim();
+const titleClassFinal = `mb-6 text-info-950 ${titleClass}`.trim();
+const descriptionClassFinal = `mb-8 text-info-700 ${descriptionClass}`.trim();
+---
+
+<Section id={sectionId} class={sectionClassFinal}>
+  <Container id={containerId} class={containerClassFinal}>
+    <Image
+      src={image ?? fallbackBanner}
+      alt={imageAlt}
+      width={600}
+      height={500}
+      class="mx-auto mb-8 rounded-md shadow transition-transform hover:scale-105"
+      loading="eager"
+      decoding="async"
+      inferSize
+    />
+
+    <Typography tag="h2" class={titleClassFinal}>
+      {title}
+    </Typography>
+
+    {
+      description && (
+        <Typography
+          tag="p"
+          class={descriptionClassFinal}
+          set:html={description}
+        />
+      )
+    }
+
+    {
+      buttonHref && buttonText && (
+        <Button href={buttonHref} type={buttonType}>
+          {buttonText}
+        </Button>
+      )
+    }
+  </Container>
+</Section>

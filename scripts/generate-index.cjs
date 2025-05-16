@@ -7,6 +7,11 @@ const outputFileDts = path.resolve(__dirname, '../dist/index.d.ts');
 
 // Función para obtener los nombres de los componentes
 function getComponentExports(dir, basePath = './components') {
+    if (!fs.existsSync(dir)) {
+        console.error(`❌ Directorio no encontrado: ${dir}`);
+        process.exit(1);
+    }
+
     let exports = []; 
     let types = [];
 
@@ -21,10 +26,6 @@ function getComponentExports(dir, basePath = './components') {
             types = types.concat(childTypes);
         } else if (file.endsWith('.astro')) {
             const componentName = path.basename(file, '.astro');
-            if (file === 'design-tokens.css' && basePath === './components') {
-                exports.push(`export { default as DesignTokens } from '../styles/${file}';`);
-                types.push(`export const DesignTokens: string;`);
-            }
             exports.push(`export { default as ${componentName} } from '${basePath}/${file}';`);
             types.push(`export const ${componentName}: AstroComponentFactory;`);
         }

@@ -1,0 +1,101 @@
+---
+import Typography from "../../ui/Typography.astro";
+import Container from "../../elements/Container.astro";
+import Section from "../../elements/Section.astro";
+import Button from "../../ui/Button.astro";
+import { Image } from "astro:assets";
+import fallbackAbout from "../../../assets/about/600x500.webp";
+import type { AboutProps } from "../../../types/sections/AboutProps";
+
+const {
+  sectionId,
+  sectionClass = "bg-info-50",
+  containerId,
+  containerClass = "md:max-w-5xl",
+  tagTitle = "Acerca de Nosotros",
+  tagClass = "",
+  title = "Nuestra misión y valores",
+  titleClass = "",
+  image,
+  imageAlt = "Imagen ilustrativa",
+  imageClass = "",
+  paragraphs = [
+    {
+      tag: "p",
+      content: "Creamos componentes reutilizables para facilitar el desarrollo web.",
+      class: "text-gray-700 mb-4",
+    },
+    {
+      tag: "p",
+      content: "Nuestra librería está pensada para escalar en proyectos modernos.",
+      class: "text-gray-700 mb-4",
+    },
+  ],
+  buttonText = "Contactanos",
+  buttonHref = "#contacto",
+} = Astro.props as AboutProps;
+
+
+const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"];
+---
+
+<Section id={sectionId} class={`py-20 ${sectionClass}`}>
+  <Container
+    id={containerId}
+    class={`flex flex-col md:flex-row-reverse items-center gap-12 ${containerClass}`}
+  >
+    <!-- Imagen -->
+    <div class="md:w-1/2">
+      <Image
+        src={image ?? fallbackAbout}
+        alt={imageAlt}
+        width={600}
+        height={500}
+        class={`rounded-xl shadow-lg w-full ${imageClass}`}
+        loading="eager"
+        decoding="async"
+        inferSize
+      />
+    </div>
+
+    <!-- Contenido -->
+    <div class="md:w-1/2 text-center md:text-left">
+      {tagTitle && (
+        <Typography
+          tag="small"
+          class={`uppercase tracking-wide text-primary-600 font-semibold mb-2 ${tagClass}`}
+        >
+          {tagTitle}
+        </Typography>
+      )}
+
+      {title && (
+        <Typography
+          tag="h2"
+          class={`text-3xl font-bold text-gray-900 mb-6 ${titleClass}`}
+        >
+          {title}
+        </Typography>
+      )}
+
+      {paragraphs.map(({ tag = "p", content, class: paragraphClass }) => {
+        const safeTag = allowedTags.includes(tag) ? tag : "p";
+        return (
+          <Typography
+            tag={safeTag as any}
+            class={`text-gray-700 mb-4 ${paragraphClass ?? ""}`}
+            set:html={content}
+          />
+        );
+      })}
+
+      {buttonText && buttonHref && (
+        <div class="mt-6">
+          <Button href={buttonHref} type="solid">
+            {buttonText}
+          </Button>
+        </div>
+      )}
+    </div>
+  </Container>
+</Section>

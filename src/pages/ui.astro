@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Typography from "../lib/components/ui/Typography.astro";
+import Button from "../lib/components/ui/Button.astro";
+import Container from "../lib/components/elements/Container.astro";
+import Section from "../lib/components/elements/Section.astro";
+import Overlay from "../lib/components/elements/Overlay.astro";
+import OverlaySlot from "../lib/components/elements/OverlaySlot.astro";
+---
+
+<Layout title="UI Interna" description="Vista previa de componentes internos reutilizables">
+  <div slot="default">
+    <Section sectionClass="py-20 bg-white">
+      <Container class="text-center max-w-3xl">
+        <Typography tag="h1" class="text-3xl font-bold mb-6">
+          Componentes UI y Elements
+        </Typography>
+
+        <Typography tag="p" class="text-gray-600 mb-8">
+          Esta página te permite ver visualmente los componentes base como Typography, Button, Container, Overlay, etc.
+        </Typography>
+
+        <!-- Typography -->
+        <div class="mb-12 text-left">
+          <Typography tag="h2" class="text-xl font-semibold mb-4">Typography</Typography>
+          <Typography tag="p" class="text-gray-600 mb-2">Texto normal</Typography>
+          <Typography tag="small" class="text-gray-500">Texto pequeño</Typography>
+        </div>
+
+        <!-- Botones -->
+        <div class="mb-12">
+          <Typography tag="h2" class="text-xl font-semibold mb-4">Botones</Typography>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <Button type="primary">Botón Primary</Button>
+            <Button type="secondary">Botón Secondary</Button>
+            <Button type="ghost">Botón Ghost</Button>
+            <Button type="solid">Botón Solid</Button>
+          </div>
+        </div>
+
+        <!-- Overlay visual -->
+        <div class="mb-12 relative bg-gray-100 rounded p-8">
+          <Typography tag="h2" class="text-xl font-semibold mb-4">Overlay & OverlaySlot</Typography>
+          <Overlay />
+          <OverlaySlot>
+            <div class="p-6 bg-white shadow rounded">
+              <Typography tag="p" class="text-gray-800">Contenido dentro del OverlaySlot.</Typography>
+            </div>
+          </OverlaySlot>
+        </div>
+      </Container>
+    </Section>
+  </div>
+</Layout>

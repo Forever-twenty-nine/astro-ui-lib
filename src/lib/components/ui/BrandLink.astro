@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import type { BrandLinkProps } from "../../types/ui/BrandLinkProps";
+import fallbackLogo from "../../assets/brandlink/default-logo.svg";
+
+const {
+  idLink = "",
+  classLink = "",
+  hrefLink = "#",
+  brandSrc,
+  brandAlt,
+  classImage = "",
+} = Astro.props as BrandLinkProps;
+
+const imageToUse = brandSrc ?? fallbackLogo;
+---
+
+<a id={idLink || undefined} class={classLink || undefined} href={hrefLink}>
+  <figure>
+    <Image
+      src={imageToUse}
+      alt={brandAlt}
+      class={classImage}
+      inferSize
+      loading="eager"
+    />
+  </figure>
+</a>

@@ -1,121 +1,125 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Container from "../components/elements/Container.astro";
-import Section from "../components/elements/Section.astro";
-import Typography from "../components/ui/Typography.astro";
-import Button from "../components/ui/Button.astro";
-
+import Container from "../lib/components/elements/Container.astro";
+import Section from "../lib/components/elements/Section.astro";
+import Typography from "../lib/components/ui/Typography.astro";
+import Button from "../lib/components/ui/Button.astro";
 import { Image } from "astro:assets";
 ---
 
 <Layout
-    title="Inicio"
-    description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind"
+  title="Inicio"
+  description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind"
 >
-    <!-- Intro principal -->
-    <Section sectionClass="bg-white py-24">
-        <Container class="text-center max-w-2xl">
-            <Typography tag="h1" class="text-4xl font-bold mb-4 text-gray-900">
-                Bienvenido a tu Librería de Componentes UI con Astro + Tailwind
-            </Typography>
+  <!-- Intro principal -->
+  <Section sectionClass="bg-white py-24">
+    <Container class="text-center max-w-2xl">
+      <Typography tag="h1" class="text-4xl font-bold mb-4 text-gray-900">
+        Bienvenido a tu Librería de Componentes UI con Astro + Tailwind
+      </Typography>
 
-            <Typography tag="p" class="text-lg text-gray-600 mb-8">
-                Explora las variantes de Hero, Banner y secciones como About.
-                Componentes modernos, reutilizables y optimizados para tu flujo
-                de trabajo.
-            </Typography>
+      <Typography tag="p" class="text-lg text-gray-600 mb-8">
+        Esta librería está diseñada para acelerar el desarrollo de interfaces
+        modernas, limpias y reutilizables en proyectos construidos con Astro y Tailwind CSS.
+        Incluye secciones listas para producción, utilidades visuales y elementos base altamente personalizables.
+      </Typography>
 
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <Button href="/hero" type="primary">Ver Heroes</Button>
-                <Button href="/banner" type="secondary">Ver Banners</Button>
-                <Button href="/about" type="ghost">Sobre la Librería</Button>
-            </div>
-        </Container>
-    </Section>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <Button href="/hero" type="primary">Ver Heroes</Button>
+        <Button href="/banner" type="secondary">Ver Banners</Button>
+        <Button href="/about" type="ghost">Sobre la Librería</Button>
+        <Button href="/ui" type="solid">Componentes Internos</Button>
+      </div>
+    </Container>
+  </Section>
 
-    <!-- Previews visuales -->
-    <Section sectionClass="bg-gray-50 py-20">
-        <Container>
-            <Typography
-                tag="h2"
-                class="text-center text-2xl font-semibold mb-12 text-gray-800"
-            >
-                Previsualización de Componentes
-            </Typography>
+  <!-- Previews visuales -->
+  <Section sectionClass="bg-gray-50 py-20">
+    <Container>
+      <Typography
+        tag="h2"
+        class="text-center text-2xl font-semibold mb-12 text-gray-800"
+      >
+        Previsualización de Componentes
+      </Typography>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Hero Preview -->
-                <div
-                    class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-                >
-                    <!-- Hero Preview -->
-                    <Image
-                        src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
-                        alt="Vista previa Hero"
-                        width={400}
-                        height={200}
-                        loading="eager"
-                        class="rounded-md mb-4 w-full"
-                    />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Hero Preview -->
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <Image
+            src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
+            alt="Vista previa Hero"
+            width={400}
+            height={200}
+            loading="eager"
+            class="rounded-md mb-4 w-full"
+          />
+          <Typography tag="h3" class="text-lg font-semibold mb-2">
+            Secciones Hero
+          </Typography>
+          <Typography tag="p" class="text-sm text-gray-600 mb-4">
+            Diseños introductorios con imagen, texto y llamados a la acción.
+          </Typography>
+          <Button href="/hero" type="ghost">Ver Heroes</Button>
+        </div>
 
-                    <Typography tag="h3" class="text-lg font-semibold mb-2"
-                        >Hero Components</Typography
-                    >
-                    <Typography tag="p" class="text-sm text-gray-600 mb-4"
-                        >Secciones introductorias con imágenes, títulos y
-                        llamadas a la acción.</Typography
-                    >
-                    <Button href="/hero" type="ghost">Ver Heroes</Button>
-                </div>
+        <!-- Banner Preview -->
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <Image
+            src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
+            alt="Vista previa Banner"
+            loading="eager"
+            width={400}
+            height={200}
+            class="rounded-md mb-4 w-full"
+          />
+          <Typography tag="h3" class="text-lg font-semibold mb-2">
+            Banners Promocionales
+          </Typography>
+          <Typography tag="p" class="text-sm text-gray-600 mb-4">
+            Bloques destacados ideales para campañas, avisos o promociones visuales.
+          </Typography>
+          <Button href="/banner" type="ghost">Ver Banners</Button>
+        </div>
 
-                <!-- Banner Preview -->
-                <div
-                    class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-                >
-                    <!-- Banner Preview -->
-                    <Image
-                        src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
-                        alt="Vista previa Banner"
-                        loading="eager"
-                        width={400}
-                        height={200}
-                        class="rounded-md mb-4 w-full"
-                    />
+        <!-- About Preview -->
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <Image
+            src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
+            alt="Vista previa About"
+            width={400}
+            height={200}
+            loading="eager"
+            class="rounded-md mb-4 w-full"
+          />
+          <Typography tag="h3" class="text-lg font-semibold mb-2">
+            Sección "Sobre Nosotros"
+          </Typography>
+          <Typography tag="p" class="text-sm text-gray-600 mb-4">
+            Explicá tu misión, valores o equipo mediante componentes informativos con imagen.
+          </Typography>
+          <Button href="/about" type="ghost">Ver About</Button>
+        </div>
 
-                    <Typography tag="h3" class="text-lg font-semibold mb-2"
-                        >Banners Promocionales</Typography
-                    >
-
-                    <Typography tag="p" class="text-sm text-gray-600 mb-4"
-                        >Bloques destacados con textos llamativos y botones de
-                        acción.</Typography
-                    >
-                    <Button href="/banner" type="ghost">Ver Banners</Button>
-                </div>
-
-                <!-- About Preview -->
-                <div
-                    class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-                >
-                    <!-- About Preview -->
-                    <Image
-                        src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
-                        alt="Vista previa About"
-                        width={400}
-                        loading="eager"
-                        height={200}
-                        class="rounded-md mb-4 w-full"
-                    />
-                    <Typography tag="h3" class="text-lg font-semibold mb-2"
-                        >Sección Sobre Nosotros</Typography
-                    >
-                    <Typography tag="p" class="text-sm text-gray-600 mb-4"
-                        >Contenido explicativo sobre tu producto o equipo, con
-                        texto e imagen.</Typography
-                    >
-                    <Button href="/about" type="ghost">Ver About</Button>
-                </div>
-            </div>
-        </Container>
-    </Section>
+        <!-- UI Interna -->
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <Image
+            src="https://placehold.co/400x200/1E90FF/FFFFFF?text=UI+Elements"
+            alt="Vista previa UI"
+            width={400}
+            height={200}
+            loading="eager"
+            class="rounded-md mb-4 w-full"
+          />
+          <Typography tag="h3" class="text-lg font-semibold mb-2">
+            UI Interna & Utilidades
+          </Typography>
+          <Typography tag="p" class="text-sm text-gray-600 mb-4">
+            Explorá componentes base como botones, tipografías, secciones y layout para extender tu diseño.
+          </Typography>
+          <Button href="/ui" type="ghost">Ver UI</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
 </Layout>

@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
-import HeaderFixed from "../components/layout/HeaderFixed.astro";
-import Footer from "../components/layout/Footer.astro";
-import BaseHead from "../components/head/Basehead.astro";
+import HeaderFixed from "../lib/components/layout/HeaderFixed.astro";
+import Footer from "../lib/components/layout/Footer.astro";
+import BaseHead from "../lib/components/head/Basehead.astro";
 import brandLogo from "../assets/brand.svg";
 import brandlogoDark from "../assets/brand-negative.svg";
 
@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/hero", text: "Heroes" },
   { href: "/banner", text: "Banners" },
   { href: "/about", text: "About" },
+  { href: "/ui", text: "UI" },
 ];
 
 const {
