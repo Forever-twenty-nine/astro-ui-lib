@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.10...v0.2.11) (2025-05-16)
+
+
+### Features
+
+* agregar referencia a content.d.ts en types.d.ts ([319dac8](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/319dac865bacc29131361395e6798ccb046d8fa1))
+
+
+### Bug Fixes
+
+* agregar texto alternativo por defecto para imágenes en secciones About, Banner y Hero ([533e3b8](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/533e3b800d4fdd9eb94d9647763c3727d64adb01))
+
 ### [0.2.10](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.7...v0.2.10) (2025-05-16)
 
 
