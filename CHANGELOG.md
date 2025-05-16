@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.7...v0.2.8) (2025-05-16)
+
+
+### Features
+
+* Add reusable UI components and design tokens ([01e1427](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/01e142767ec7d8aca7089f9cf30de826abd8064e))
+
+
+### Bug Fixes
+
+* Corregir rutas de importación para los tipos en componentes de cabeza ([588d49e](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/588d49e74762439edc828a17e0668c12d561a157))
+
 ### [0.2.7](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.6...v0.2.7) (2025-05-15)
 
 
