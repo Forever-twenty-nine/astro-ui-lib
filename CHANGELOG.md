@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.11...v0.2.12) (2025-05-16)
+
+
+### Bug Fixes
+
+* agregar texto alternativo por defecto para imágenes en Footer y BrandLink; ajustar estructura en ui.astro ([8307be2](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/8307be2898bbe8fb7bbbdb96e213a1f007103cb2))
+
 ### [0.2.11](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.10...v0.2.11) (2025-05-16)
 
 
