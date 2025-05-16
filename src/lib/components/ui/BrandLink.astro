@@ -19,7 +19,7 @@ const imageToUse = brandSrc ?? fallbackLogo;
   <figure>
     <Image
       src={imageToUse}
-      alt={brandAlt}
+      alt={brandAlt ?? "Logo por defecto de BrandLink"}
       class={classImage}
       inferSize
       loading="eager"

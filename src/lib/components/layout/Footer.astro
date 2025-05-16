@@ -27,7 +27,7 @@ const logoToUse = imageSrc ?? fallbackFooterImage;
       <div>
         <Image
           src={logoToUse}
-          alt={imageAlt}
+          alt={imageAlt ?? "Logo por defecto del footer"}
           width={100}
           height={30}
           class="h-7 w-auto mb-2"
