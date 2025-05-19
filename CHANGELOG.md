@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.13](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.12...v0.2.13) (2025-05-19)
+
+
+### Features
+
+* agregar componentes de clima y WhatsApp; incluir animaciones y dependencias ([9d77a44](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/9d77a44e1b99bdfeeeb04bebaf35cb83dbea4d85))
+
 ### [0.2.12](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.11...v0.2.12) (2025-05-16)
 
 
