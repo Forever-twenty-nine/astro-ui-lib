@@ -53,5 +53,8 @@
   "peerDependencies": {
     "astro": "^5.7.5",
     "tailwindcss": "^4.1.4"
+  },
+  "dependencies": {
+    "tailwindcss-animated": "^2.0.0"
   }
 }

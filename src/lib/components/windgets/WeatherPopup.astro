@@ -1,0 +1,82 @@
+---
+// lib/widgets/WeatherPopup.astro
+import type { WeatherPopupProps } from "../../types/widgets/WeatherPopupProps";
+
+import iconweather from "../../assets/icons/cloud.svg";
+import { Image } from "astro:assets";
+
+const { city = "Buenos Aires", className = "" } =
+    Astro.props as WeatherPopupProps;
+---
+
+<div>
+    <button
+        id="weather-btn"
+        class={`fixed bottom-4 left-4 z-50 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg transition-colors
+            animate-jump-in animate-duration-1000
+            hover:-translate-y-1 hover:scale-110 ${className}`}
+        aria-label="Mostrar clima"
+    >
+        <Image
+            src={iconweather}
+            alt="Icono del clima"
+            width={32}
+            height={32}
+            loading="eager"
+            class="w-8 h-8"
+        />
+    </button>
+
+    <div
+        id="weather-popup"
+        data-city={city}
+        class="hidden fixed bottom-24 left-4 w-72 z-50 bg-gradient-to-br from-blue-100 to-white border border-blue-300 rounded-xl shadow-xl p-5 text-gray-800
+           animate-in fade-in duration-500 backdrop-blur-md"
+    >
+        <div class="flex items-center gap-3 mb-4">
+            <!-- Inicialmente invisible -->
+            <div
+                id="weather-icon-wrapper"
+                class="p-1 bg-blue-500 rounded-full border border-gray-300 shadow-md"
+            >
+                <Image
+                    src="https://openweathermap.org/img/wn/01d@2x.png"
+                    alt="Icono del clima"
+                    width={50}
+                    height={50}
+                    class="w-10 h-10 hidden"
+                    id="weather-icon"
+                    inferSize
+                />
+            </div>
+
+            <div>
+                <h3 class="text-lg font-bold text-blue-800">Clima actual</h3>
+                <p id="weather-city" class="text-sm text-gray-500">
+                    Cargando ciudad...
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-y-2 text-sm">
+            <div class="font-medium text-gray-600">Temperatura:</div>
+            <div
+                id="weather-temp"
+                class="text-right font-semibold text-gray-900"
+            >
+                --°C
+            </div>
+
+            <div class="font-medium text-gray-600">Condición:</div>
+            <div
+                id="weather-cond"
+                class="text-right font-semibold text-gray-900"
+            >
+                ---
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../scripts/fetchWeather.ts"></script>
+<script src="../../scripts/toggleWeather.ts"></script>

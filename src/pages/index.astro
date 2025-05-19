@@ -5,6 +5,9 @@ import Section from "../lib/components/elements/Section.astro";
 import Typography from "../lib/components/ui/Typography.astro";
 import Button from "../lib/components/ui/Button.astro";
 import { Image } from "astro:assets";
+// widgets
+import WhatsAppButton from "../lib/components/windgets/WhatsAppButton.astro";
+import WeatherPopup from "../lib/components/windgets/WeatherPopup.astro";
 ---
 
 <Layout
@@ -20,8 +23,9 @@ import { Image } from "astro:assets";
 
       <Typography tag="p" class="text-lg text-gray-600 mb-8">
         Esta librería está diseñada para acelerar el desarrollo de interfaces
-        modernas, limpias y reutilizables en proyectos construidos con Astro y Tailwind CSS.
-        Incluye secciones listas para producción, utilidades visuales y elementos base altamente personalizables.
+        modernas, limpias y reutilizables en proyectos construidos con Astro y
+        Tailwind CSS. Incluye secciones listas para producción, utilidades
+        visuales y elementos base altamente personalizables.
       </Typography>
 
       <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -31,6 +35,20 @@ import { Image } from "astro:assets";
         <Button href="/ui" type="solid">Componentes Internos</Button>
       </div>
     </Container>
+  </Section>
+  <!-- Animación de carga -->
+
+  <Section sectionClass="bg-gray-100 py-24">
+    <Container class="text-center max-w-2xl">
+      <Typography tag="h2" class="animate-fade-down text-3xl font-bold mb-4 text-gray-900">
+        Animación de Carga
+      </Typography>
+
+      <Typography tag="p" class="animate-jump-in animate-duration-1000 text-lg text-gray-600 mb-8">
+        Esta sección muestra una animación de carga al cargar la página.
+      </Typography>
+    </Container>
+
   </Section>
 
   <!-- Previews visuales -->
@@ -45,7 +63,9 @@ import { Image } from "astro:assets";
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- Hero Preview -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+        <div
+          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+        >
           <Image
             src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
             alt="Vista previa Hero"
@@ -64,7 +84,9 @@ import { Image } from "astro:assets";
         </div>
 
         <!-- Banner Preview -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+        <div
+          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+        >
           <Image
             src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
             alt="Vista previa Banner"
@@ -77,13 +99,16 @@ import { Image } from "astro:assets";
             Banners Promocionales
           </Typography>
           <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Bloques destacados ideales para campañas, avisos o promociones visuales.
+            Bloques destacados ideales para campañas, avisos o promociones
+            visuales.
           </Typography>
           <Button href="/banner" type="ghost">Ver Banners</Button>
         </div>
 
         <!-- About Preview -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+        <div
+          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+        >
           <Image
             src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
             alt="Vista previa About"
@@ -96,13 +121,16 @@ import { Image } from "astro:assets";
             Sección "Sobre Nosotros"
           </Typography>
           <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Explicá tu misión, valores o equipo mediante componentes informativos con imagen.
+            Explicá tu misión, valores o equipo mediante componentes
+            informativos con imagen.
           </Typography>
           <Button href="/about" type="ghost">Ver About</Button>
         </div>
 
         <!-- UI Interna -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+        <div
+          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
+        >
           <Image
             src="https://placehold.co/400x200/1E90FF/FFFFFF?text=UI+Elements"
             alt="Vista previa UI"
@@ -115,11 +143,19 @@ import { Image } from "astro:assets";
             UI Interna & Utilidades
           </Typography>
           <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Explorá componentes base como botones, tipografías, secciones y layout para extender tu diseño.
+            Explorá componentes base como botones, tipografías, secciones y
+            layout para extender tu diseño.
           </Typography>
           <Button href="/ui" type="ghost">Ver UI</Button>
         </div>
       </div>
     </Container>
   </Section>
+
+  <WhatsAppButton
+    phone="+5493811234567"
+    message="¡Hola! ¿Me pasás info sobre la librería?"
+  />
+
+  <WeatherPopup city="Mendoza"  />
 </Layout>

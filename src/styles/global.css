@@ -1,2 +1,3 @@
 @import "tailwindcss";
+@import "tailwindcss-animated";
 @import "../lib/styles/design-tokens.css";

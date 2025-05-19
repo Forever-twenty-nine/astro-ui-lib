@@ -1,0 +1,35 @@
+---
+import type { WhatsAppButtonProps } from "../../types/widgets/WhatsAppButtonProps";
+
+import iconwhatssapp from "../../assets/icons/whatsapp-symbol-logo.svg";
+
+import { Image } from "astro:assets";
+
+const {
+    phone = "+5491123456789",
+    message = "¡Hola! Me gustaría más información.",
+    className = "",
+} = Astro.props as WhatsAppButtonProps;
+
+const link = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+---
+
+<a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`animate-jump-in animate-duration-1000 fixed bottom-4 right-4 z-50 bg-green-500 text-white rounded-full p-4 shadow-lg
+          transition delay-150 duration-300 ease-in-out
+          hover:-translate-y-1 hover:scale-110 hover:bg-emerald-600
+          ${className}`}
+    aria-label="Contacto por WhatsApp"
+>
+    <Image
+        src={iconwhatssapp}
+        alt="WhatsApp Icon"
+        width={32}
+        height={32}
+        loading="eager"
+        class="w-8 h-8"
+    />
+</a>
