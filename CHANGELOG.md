@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.13...v0.2.14) (2025-05-19)
+
+
+### Bug Fixes
+
+* agregar referencia a content.d.ts en types.d.ts ([044c672](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/044c67225d160c12c86080ba0f5fe8a3d96ec120))
+
 ### [0.2.13](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.12...v0.2.13) (2025-05-19)
 
 
