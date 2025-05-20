@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.17](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.16...v0.2.17) (2025-05-20)
+
+
+### Features
+
+* agregar nuevos widgets de ubicación y redes sociales; eliminar componentes obsoletos ([73c6208](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/73c6208308cbd5b04e9b1bea65adc8d811ba8f31))
+
 ### [0.2.16](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.14...v0.2.16) (2025-05-20)
 
 
