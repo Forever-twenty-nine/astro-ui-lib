@@ -6,9 +6,14 @@ import Container from "../lib/components/elements/Container.astro";
 import Section from "../lib/components/elements/Section.astro";
 import Overlay from "../lib/components/elements/Overlay.astro";
 import OverlaySlot from "../lib/components/elements/OverlaySlot.astro";
+
+import TestAnimation from "../lib/components/ui/TestAnimation.astro";
 ---
 
-<Layout title="UI Interna" description="Vista previa de componentes internos reutilizables">
+<Layout
+  title="UI Interna"
+  description="Vista previa de componentes internos reutilizables"
+>
   <div slot="default">
     <Section sectionClass="py-20 bg-white">
       <Container class="text-center max-w-3xl">
@@ -17,19 +22,28 @@ import OverlaySlot from "../lib/components/elements/OverlaySlot.astro";
         </Typography>
 
         <Typography tag="p" class="text-gray-600 mb-8">
-          Esta página te permite ver visualmente los componentes base como Typography, Button, Container, Overlay, etc.
+          Esta página te permite ver visualmente los componentes base como
+          Typography, Button, Container, Overlay, etc.
         </Typography>
 
         <!-- Typography -->
         <div class="mb-12 text-left">
-          <Typography tag="h2" class="text-xl font-semibold mb-4">Typography</Typography>
-          <Typography tag="p" class="text-gray-600 mb-2">Texto normal</Typography>
-          <Typography tag="small" class="text-gray-500">Texto pequeño</Typography>
+          <Typography tag="h2" class="text-xl font-semibold mb-4"
+            >Typography</Typography
+          >
+          <Typography tag="p" class="text-gray-600 mb-2"
+            >Texto normal</Typography
+          >
+          <Typography tag="small" class="text-gray-500"
+            >Texto pequeño</Typography
+          >
         </div>
 
         <!-- Botones -->
         <div class="mb-12">
-          <Typography tag="h2" class="text-xl font-semibold mb-4">Botones</Typography>
+          <Typography tag="h2" class="text-xl font-semibold mb-4"
+            >Botones</Typography
+          >
           <div class="flex flex-wrap gap-4 justify-center">
             <Button type="primary">Botón Primary</Button>
             <Button type="secondary">Botón Secondary</Button>
@@ -37,20 +51,36 @@ import OverlaySlot from "../lib/components/elements/OverlaySlot.astro";
             <Button type="solid">Botón Solid</Button>
           </div>
         </div>
+      </Container>
 
-      </Container >
-
-        <!-- Overlay visual -->
-        <div class="mb-12 relative bg-gray-100 rounded p-8">
-          <Typography tag="h2" class="text-xl font-semibold mb-4">Overlay & OverlaySlot</Typography>
-          <Overlay />
-          <OverlaySlot>
-            <div class="p-6 bg-white shadow rounded">
-              <Typography tag="p" class="text-gray-800">Contenido dentro del OverlaySlot.</Typography>
-            </div>
-          </OverlaySlot>
+      <!-- Animaciones -->
+      <Container>
+        <div class="mb-12">
+          <Typography tag="h2" class="text-xl font-semibold mb-4"
+            >Animaciones</Typography
+          >
+          <div class="flex flex-wrap gap-4 justify-center">
+            <TestAnimation text="Sin animación" animationLevel="none" />
+            <TestAnimation text="Animación básica" animationLevel="basic" />
+            <TestAnimation text="Animación elaborada" animationLevel="fancy" />
+          </div>
         </div>
       </Container>
+
+      <!-- Overlay visual -->
+      <div class="mb-12 relative bg-gray-100 rounded p-8">
+        <Typography tag="h2" class="text-xl font-semibold mb-4"
+          >Overlay & OverlaySlot</Typography
+        >
+        <Overlay />
+        <OverlaySlot>
+          <div class="p-6 bg-white shadow rounded">
+            <Typography tag="p" class="text-gray-800"
+              >Contenido dentro del OverlaySlot.</Typography
+            >
+          </div>
+        </OverlaySlot>
+      </div>
     </Section>
   </div>
 </Layout>

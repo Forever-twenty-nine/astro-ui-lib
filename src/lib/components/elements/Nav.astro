@@ -21,11 +21,18 @@ const linkClasses =
   links.length > 0 && (
     <nav
       id={id}
-      class={`shadow md:shadow-none md:bg-transparent absolute top-0 right-0 w-2/3 h-screen translate-x-full md:-translate-x-0 transition-transform duration-300 z-20 md:!relative md:h-auto md:!w-auto ${className}`}
+      class={`flex flex-col justify-between items-center py-12
+    shadow-2xl drop-shadow-md border-l border-gray-200
+    rounded-l-3xl md:rounded-none
+    md:!flex-row md:!justify-normal md:!items-center md:!py-0 md:shadow-none md:border-none md:bg-transparent 
+    bg-white absolute top-0 right-0 w-full max-w-xs h-auto max-h-screen overflow-y-auto
+    translate-x-full md:!translate-x-0
+    md:!relative md:h-auto md:!w-auto md:max-h-none md:overflow-visible transition-transform duration-300 ease-in-out z-40
+    ${className}`}
     >
-      <ul class="flex flex-col text-center pt-20 md:flex-row md:!pt-0">
+      <ul class="flex flex-col gap-6 text-center md:flex-row md:!gap-0 md:!pt-0">
         {links.map((link) => (
-          <li>
+          <li class="pt-4 first:pt-0 first:border-t-0 border-t border-gray-100">
             <a
               href={link.href}
               class={`text-xl mb-4 md:text-base md:!mb-0 font-normal px-3 py-2 block transition duration-200 ${linkClasses}`}

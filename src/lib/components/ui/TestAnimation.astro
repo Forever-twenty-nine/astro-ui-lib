@@ -1,0 +1,28 @@
+---
+type AnimationLevel = "none" | "basic" | "fancy";
+
+interface TestAnimationProps {
+    text?: string;
+    animationLevel?: AnimationLevel;
+    className?: string;
+}
+
+const {
+    text = "Animación de prueba",
+    animationLevel = "basic",
+    className = "",
+} = Astro.props as TestAnimationProps;
+
+const animationClass =
+    animationLevel === "fancy"
+        ? "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom duration-1000 delay-300 hover:animate-bounce"
+        : animationLevel === "basic"
+          ? "transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-blue-600 focus:-translate-y-1 focus:scale-105 focus:bg-blue-600 active:scale-100"
+          : "";
+---
+
+<div
+    class={`max-w-md mx-auto mt-10 p-6 bg-blue-500 text-white rounded-xl shadow-lg text-center text-lg font-medium ${animationClass} ${className}`}
+>
+    {text}
+</div>
