@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.16](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.14...v0.2.16) (2025-05-20)
+
+
+### Features
+
+* agregar animaciones de prueba y mejorar el menú móvil; actualizar componentes de UI ([1e6ab03](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/1e6ab03a6bab80ccf0c4b6a27dec96548446a0ae))
+
 ### [0.2.14](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.13...v0.2.14) (2025-05-19)
 
 
