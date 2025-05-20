@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../lib/components/elements/Container.astro";
+import Section from "../lib/components/elements/Section.astro";
+import Typography from "../lib/components/ui/Typography.astro";
+
+import TestAnimation from "../lib/components/ui/TestAnimation.astro";
+---
+
+<Layout title="Animaciones" description="Demostración de Animaciones">
+    <Section sectionClass="bg-white py-24">
+        <Container class="text-center max-w-2xl">
+            <Typography tag="h1" class="text-4xl font-bold mb-4 text-gray-900">
+                Animaciones
+            </Typography>
+
+            <Typography tag="p" class="text-lg text-gray-600 mb-8">
+                Aquí puedes ver algunas animaciones que puedes integrar en tu
+                sitio.
+            </Typography>
+
+            <Section sectionClass="bg-gray-100 py-24">
+                <Container class="text-center max-w-2xl">
+                    <Typography
+                        tag="h2"
+                        class="animate-fade-down text-3xl font-bold mb-4 text-gray-900"
+                    >
+                        Animación de Carga
+                    </Typography>
+
+                    <Typography
+                        tag="p"
+                        class="animate-jump-in animate-duration-1000 text-lg text-gray-600 mb-8"
+                    >
+                        Esta sección muestra una animación de carga al cargar la
+                        página.
+                    </Typography>
+                </Container>
+            </Section>
+        </Container>
+    </Section>
+    <Section sectionClass="bg-gray-100 py-24">
+        <!-- Animaciones -->
+      <Container>
+        <div class="mb-12">
+          <Typography tag="h2" class="text-xl font-semibold mb-4"
+            >Animaciones</Typography
+          >
+          <div class="flex flex-wrap gap-4 justify-center">
+            <TestAnimation text="Sin animación" animationLevel="none" />
+            <TestAnimation text="Animación básica" animationLevel="basic" />
+            <TestAnimation text="Animación elaborada" animationLevel="fancy" />
+          </div>
+        </div>
+      </Container>
+    </Section>
+</Layout>

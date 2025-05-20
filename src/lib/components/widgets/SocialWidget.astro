@@ -1,0 +1,33 @@
+---
+import type { SocialWidgetProps } from "../../types/widgets/SocialWidgetProps";
+
+const {
+    title = "Seguinos en redes",
+    description = "Conectá con nosotros a través de estas plataformas:",
+    links = [],
+    className = "",
+} = Astro.props as SocialWidgetProps;
+---
+
+<div
+    class={`bg-white rounded-xl shadow-lg p-6 max-w-md text-center ${className}`}
+>
+    <h3 class="text-xl font-bold text-gray-800 mb-2">{title}</h3>
+    <p class="text-sm text-gray-600 mb-4">{description}</p>
+
+    <div class="flex justify-center gap-4">
+        {
+            links.map(({ href, label, icon: Icon }) => (
+                <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    class="text-blue-600 hover:text-blue-800 p-2 transition transform hover:scale-110"
+                >
+                    <Icon class="w-6 h-6" />
+                </a>
+            ))
+        }
+    </div>
+</div>

@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../lib/components/elements/Container.astro";
+import Section from "../lib/components/elements/Section.astro";
+import Typography from "../lib/components/ui/Typography.astro";
+
+// widgets
+import WhatsAppButton from "../lib/components/widgets/WhatsAppButton.astro";
+import WeatherPopup from "../lib/components/widgets/WeatherPopup.astro";
+import LocationWidget from "../lib/components/widgets/LocationWidget.astro";
+
+import SocialWidget from "../lib/components/widgets/SocialWidget.astro";
+import { Facebook, Instagram, Linkedin } from "@lucide/astro";
+---
+
+<Layout title="Widgets" description="Demostración de Widgets">
+    <Section sectionClass="bg-white py-24">
+        <Container class="text-center max-w-2xl">
+            <Section>
+                <Typography
+                    tag="h1"
+                    class="text-4xl font-bold mb-4 text-gray-900"
+                >
+                    Widgets
+                </Typography>
+
+                <Typography tag="p" class="text-lg text-gray-600 mb-8">
+                    Aquí puedes ver algunos widgets interactivos que puedes
+                    integrar en tu sitio.
+                </Typography>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <LocationWidget
+                        latitude="-24.7883"
+                        longitude="-65.4106"
+                        placeName="Oficina FTN - Salta, Argentina"
+                        mapHeight={300}
+                        zoom={15}
+                    />
+                </div>
+            </Section>
+            <Section>
+                <Typography
+                    tag="h2"
+                    class="text-3xl font-semibold mb-4 text-gray-900"
+                >
+                    Redes Sociales
+                </Typography>
+
+                <Typography tag="p" class="text-lg text-gray-600 mb-8">
+                    Conectá con nosotros a través de nuestras redes sociales.
+                </Typography>
+
+                <SocialWidget
+                    title="Seguinos"
+                    links={[
+                        {
+                            href: "https://facebook.com/ftn",
+                            label: "Facebook",
+                            icon: Facebook,
+                        },
+                        {
+                            href: "https://instagram.com/ftn",
+                            label: "Instagram",
+                            icon: Instagram,
+                        },
+                        {
+                            href: "https://linkedin.com/company/ftn",
+                            label: "LinkedIn",
+                            icon: Linkedin,
+                        },
+                    ]}
+                />
+            </Section>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <WhatsAppButton
+                    phone="+5492615564713"
+                    message="¡Hola! ¿Me pasás info sobre la librería?"
+                />
+
+                <WeatherPopup city="Mendoza" />
+            </div>
+        </Container>
+    </Section>
+</Layout>

@@ -5,9 +5,7 @@ import Section from "../lib/components/elements/Section.astro";
 import Typography from "../lib/components/ui/Typography.astro";
 import Button from "../lib/components/ui/Button.astro";
 import { Image } from "astro:assets";
-// widgets
-import WhatsAppButton from "../lib/components/windgets/WhatsAppButton.astro";
-import WeatherPopup from "../lib/components/windgets/WeatherPopup.astro";
+
 ---
 
 <Layout
@@ -36,21 +34,6 @@ import WeatherPopup from "../lib/components/windgets/WeatherPopup.astro";
       </div>
     </Container>
   </Section>
-  <!-- Animación de carga -->
-
-  <Section sectionClass="bg-gray-100 py-24">
-    <Container class="text-center max-w-2xl">
-      <Typography tag="h2" class="animate-fade-down text-3xl font-bold mb-4 text-gray-900">
-        Animación de Carga
-      </Typography>
-
-      <Typography tag="p" class="animate-jump-in animate-duration-1000 text-lg text-gray-600 mb-8">
-        Esta sección muestra una animación de carga al cargar la página.
-      </Typography>
-    </Container>
-
-  </Section>
-
   <!-- Previews visuales -->
   <Section sectionClass="bg-gray-50 py-20">
     <Container>
@@ -152,10 +135,5 @@ import WeatherPopup from "../lib/components/windgets/WeatherPopup.astro";
     </Container>
   </Section>
 
-  <WhatsAppButton
-    phone="+5493811234567"
-    message="¡Hola! ¿Me pasás info sobre la librería?"
-  />
 
-  <WeatherPopup city="Mendoza"  />
 </Layout>

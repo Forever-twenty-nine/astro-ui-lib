@@ -1,0 +1,30 @@
+---
+import type { LocationWidgetProps } from "../../types/widgets/LocationWidgetProps";
+
+const {
+  latitude = "-24.7883",
+  longitude = "-65.4106",
+  placeName = "Oficina FTN - Salta, Argentina",
+  mapHeight = 300,
+  zoom = 15,
+  className = "",
+} = Astro.props as LocationWidgetProps;
+
+const mapSrc = `https://www.google.com/maps?q=${latitude},${longitude}&hl=es&z=${zoom}&output=embed`;
+---
+
+<div class={`rounded-xl overflow-hidden shadow-lg w-full max-w-md ${className}`}>
+  <div class="p-4 bg-white">
+    <h3 class="text-lg font-bold text-gray-800 mb-2">Ubicación</h3>
+    <p class="text-sm text-gray-600 mb-4">{placeName}</p>
+  </div>
+  <iframe
+    src={mapSrc}
+    width="100%"
+    height={mapHeight}
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    class="border-0 w-full"
+  />
+</div>
