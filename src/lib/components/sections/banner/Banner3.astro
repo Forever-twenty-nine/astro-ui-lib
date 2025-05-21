@@ -1,0 +1,63 @@
+---
+import Typography from "../../ui/Typography.astro";
+import Button from "../../ui/Button.astro";
+import fallbackBanner from "../../../assets/banner/600x500.webp";
+import type { BannerProps } from "../../../types/sections/BannerProps";
+import type { AnimationLevel } from "../../../types/Shared";
+
+const {
+  sectionId,
+  sectionClass = "",
+  title = "Tu mensaje destacado va aquí",
+  titleClass = "",
+  description = "Este banner usa una imagen de fondo y contenido centrado para destacar una acción o idea.",
+  descriptionClass = "",
+  buttonText = "Saber más",
+  buttonHref = "#",
+  buttonType = "button",
+  image,
+  imageAlt = "",
+  animationLevel,
+} = Astro.props as BannerProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const overlayAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-up motion-safe:animate-duration-[2000ms]"
+    : resolvedAnimationLevel === "basic"
+    ? "transition-all duration-300 ease-in-out hover:scale-105"
+    : "";
+---
+
+<section
+  id={sectionId}
+  class={`relative w-full min-h-[500px] bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 py-20 text-white ${sectionClass}`}
+  style={`background-image: url('${image?.src ?? fallbackBanner.src}')`}
+>
+  <!-- Capa oscura -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- Contenido centrado -->
+  <div class={`relative z-10 text-center max-w-2xl ${overlayAnim}`}>
+    {title && (
+      <Typography tag="h2" class={`text-3xl md:text-4xl font-bold mb-4 ${titleClass}`}>
+        {title}
+      </Typography>
+    )}
+
+    {description && (
+      <Typography tag="p" class={`mb-6 opacity-90 ${descriptionClass}`} set:html={description} />
+    )}
+
+    {buttonText && buttonHref && (
+      <Button
+        href={buttonHref}
+        type={buttonType}
+        class="transition duration-300 ease-in-out hover:scale-105"
+      >
+        {buttonText}
+      </Button>
+    )}
+  </div>
+</section>

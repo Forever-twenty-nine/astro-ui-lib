@@ -2,29 +2,31 @@
 import Layout from "../layouts/Layout.astro";
 import About1 from "../lib/components/sections/about/About1.astro";
 import About2 from "../lib/components/sections/about/About2.astro";
+import About3 from "../lib/components/sections/about/About3.astro";
 import Typography from "../lib/components/ui/Typography.astro";
 import Section from "../lib/components/elements/Section.astro";
 
 import heroImage from "../assets/hero-1.jpg";
 
 const aboutData = {
-    tagTitle: "Sobre Nosotros",
-    title: "El Propósito Detrás de la Librería",
+    tagTitle: "Diseño en dos columnas",
+    title: "Imagen a la izquierda, texto a la derecha",
     image: heroImage,
-    imageAlt: "Imagen local de ejemplo para la sección About1",
+    imageAlt: "About1 con imagen y texto",
     paragraphs: [
         {
             content:
-                "Esta librería proporciona una colección de componentes Astro pre-diseñados y fáciles de usar.",
+                "Este componente está diseñado para mostrar una imagen y una descripción breve uno al lado del otro, ideal para resúmenes institucionales o de equipo.",
         },
         {
             content:
-                'Los componentes están construidos con Tailwind CSS y diseñados para ser flexibles y personalizables. Puedes usar <strong>negrita</strong>, <em>cursiva</em>, o incluso <a href="#">enlaces</a> si la prop de contenido lo permite.',
+                "Los textos están alineados a la izquierda en desktop y centrados en mobile. Además, podés usar <strong>negrita</strong>, <em>cursiva</em> o <a href='#'>enlaces</a> según el contenido HTML.",
             tag: "p",
             class: "mt-4 text-gray-700",
         },
         {
-            content: "Ideal para acelerar el desarrollo de tus proyectos web.",
+            content:
+                "Es una opción visual balanceada para secciones tipo 'Acerca de'.",
             tag: "small",
             class: "block mt-4 text-gray-600",
         },
@@ -32,67 +34,155 @@ const aboutData = {
 };
 
 const aboutData2 = {
-    tagTitle: "Quiénes Somos",
-    title: "Conocé nuestra historia",
+    tagTitle: "Contenido con llamado a la acción",
+    title: "Texto explicativo más botón",
     image: heroImage,
-    imageAlt: "Imagen local para About2",
+    imageAlt: "About2 con botón",
     paragraphs: [
         {
             content:
-                "Nuestro equipo está dedicado a crear interfaces modernas y accesibles.",
+                "About2 combina contenido textual con una imagen alineada en reversa y un botón principal para redirigir al usuario.",
         },
         {
             content:
-                "Explorá nuestros <strong>componentes reutilizables</strong> y adaptables a cualquier proyecto web.",
+                "Es ideal para secciones que buscan guiar al usuario hacia una acción: visitar otra página, conocer más o contactar.",
             tag: "p",
         },
     ],
-    buttonText: "Ver Componentes",
+    buttonText: "Ver más detalles",
     buttonHref: "/hero",
 };
+
+const about3Data = {
+    tagTitle: "Fondo con imagen y superposición",
+    title: "Texto centrado sobre una imagen de fondo",
+    image: heroImage,
+    imageAlt: "About3 con imagen de fondo",
+    paragraphs: [
+        {
+            content:
+                "Este componente usa una imagen de fondo a pantalla ancha con contenido superpuesto, ideal para destacar valores, misión o una presentación visual impactante.",
+            tag: "p",
+        },
+    ],
+    buttonText: "Contactanos",
+    buttonHref: "#contacto",
+};
+
+const aboutAnim = {
+  ...aboutData,
+  animationLevel: "basic",
+};
+
+const aboutAnimFancy = {
+  ...aboutData,
+  animationLevel: "fancy",
+};
+
+const about2Anim = {
+  ...aboutData2,
+  animationLevel: "basic",
+};
+
+const about2AnimFancy = {
+  ...aboutData2,
+  animationLevel: "fancy",
+};
+
+
 ---
 
 <Layout
     title="Sobre Nosotros"
     description="Conocé más sobre nuestra librería de componentes UI."
 >
-    <!-- About1 con props -->
-    <Section sectionClass="py-24 bg-white">
-        <div class="text-center mb-8">
-            <Typography tag="h2" class="text-2xl font-semibold">
-                About1 - Con props
-            </Typography>
-        </div>
-        <About1 {...aboutData} />
-    </Section>
-
-    <!-- About1 sin props -->
+    <!-- About1 - NONE -->
     <Section sectionClass="py-24 bg-gray-100">
         <div class="text-center mb-8">
             <Typography tag="h2" class="text-2xl font-semibold">
-                About1 - Sin props (estado por defecto)
+                About1 - Sin props (none)
             </Typography>
         </div>
         <About1 />
     </Section>
 
-    <!-- About2 con props -->
+    <!-- About1 - BASIC -->
     <Section sectionClass="py-24 bg-white">
         <div class="text-center mb-8">
             <Typography tag="h2" class="text-2xl font-semibold">
-                About2 - Con props
+                About1 - Animación básica
             </Typography>
         </div>
-        <About2 {...aboutData2} />
+        <About1 {...aboutAnim} />
     </Section>
 
-    <!-- About2 sin props -->
+    <!-- About1 - FANCY -->
     <Section sectionClass="py-24 bg-gray-100">
         <div class="text-center mb-8">
             <Typography tag="h2" class="text-2xl font-semibold">
-                About2 - Sin props (estado por defecto)
+                About1 - Animación elaborada (fancy)
+            </Typography>
+        </div>
+        <About1 {...aboutAnimFancy} />
+    </Section>
+
+    <!-- About2 - NONE -->
+    <Section sectionClass="py-24 bg-white">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About2 - Sin props (none)
             </Typography>
         </div>
         <About2 />
+    </Section>
+
+    <!-- About2 - BASIC -->
+    <Section sectionClass="py-24 bg-gray-100">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About2 - Animación básica
+            </Typography>
+        </div>
+        <About2 {...about2Anim} />
+    </Section>
+
+    <!-- About2 - FANCY -->
+    <Section sectionClass="py-24 bg-white">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold">
+                About2 - Animación elaborada (fancy)
+            </Typography>
+        </div>
+        <About2 {...about2AnimFancy} />
+    </Section>
+
+    <!-- About3 - NONE -->
+    <Section sectionClass="py-24 bg-gray-100">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold text-white">
+                About3 - Sin props (none)
+            </Typography>
+        </div>
+        <About3 />
+    </Section>
+
+    <!-- About3 - BASIC -->
+    <Section sectionClass="py-24 bg-gray-900">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold text-white">
+                About3 - Animación básica
+            </Typography>
+        </div>
+        <About3 {...about3Data} animationLevel="basic" />
+    </Section>
+
+    <!-- About3 - FANCY -->
+    <Section sectionClass="py-24 bg-gray-800">
+        <div class="text-center mb-8">
+            <Typography tag="h2" class="text-2xl font-semibold text-white">
+                About3 - Animación elaborada (fancy)
+            </Typography>
+        </div>
+        <About3 {...about3Data} animationLevel="fancy" />
     </Section>
 </Layout>

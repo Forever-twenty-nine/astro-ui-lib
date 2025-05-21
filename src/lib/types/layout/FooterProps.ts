@@ -1,3 +1,6 @@
+import type { AnimationLevel } from "../Shared";
+
+
 /**
  * Estructura de cada enlace del footer.
  */
@@ -52,4 +55,13 @@ export interface FooterProps {
      * Por ejemplo: "Creado por FTN"
      */
     author?: string;
+    /**
+     * Nivel de animación visual aplicado al componente.
+     * Controla cómo entra el contenido al viewport:
+     * 
+     * - `"none"`: sin animación
+     * - `"basic"`: transiciones simples (hover, escala)
+     * - `"fancy"`: animaciones completas (`fade`, `slide`, etc.)
+     */
+    animationLevel?: AnimationLevel;
 }

@@ -2,64 +2,138 @@
 import Layout from "../layouts/Layout.astro";
 import Banner1 from "../lib/components/sections/banner/Banner1.astro";
 import Banner2 from "../lib/components/sections/banner/Banner2.astro";
+import Banner3 from "../lib/components/sections/banner/Banner3.astro";
 import Typography from "../lib/components/ui/Typography.astro";
 import Section from "../lib/components/elements/Section.astro";
 
 import heroImage from "../assets/hero-1.jpg";
+
+// Variantes animadas
+const banner1Basic = {
+  title: "Impulsá tu marca con Banner1",
+  description: "Banner1 muestra imagen, título, descripción y botón en un layout simple.",
+  buttonText: "Saber más",
+  buttonHref: "#servicios",
+  image: heroImage,
+  imageAlt: "Banner1 básico",
+  animationLevel: "basic",
+};
+
+const banner1Fancy = {
+  ...banner1Basic,
+  animationLevel: "fancy",
+};
+
+const banner2Basic = {
+  title: "Conectá con tu audiencia",
+  description: "Banner2 alinea contenido a la izquierda con diseño responsivo y botón claro.",
+  buttonText: "Conocé más",
+  buttonHref: "/servicios",
+  image: heroImage,
+  imageAlt: "Banner2 básico",
+  animationLevel: "basic",
+};
+
+const banner2Fancy = {
+  ...banner2Basic,
+  animationLevel: "fancy",
+};
+
+const banner3Base = {
+  title: "Capturá atención con Banner3",
+  description: "Banner3 presenta contenido centrado sobre una imagen de fondo impactante.",
+  buttonText: "Comenzar",
+  buttonHref: "/registro",
+  image: heroImage,
+  imageAlt: "Banner3 fondo",
+};
 ---
 
-<Layout
-    title="Banners"
-    description="Demostración de Banner1 y Banner2 con y sin props"
->
-    <Section sectionClass="py-24 bg-white">
-        <div class="text-center mb-8">
-            <Typography tag="h2" class="text-2xl font-semibold">
-                Banner1 - Con props
-            </Typography>
-        </div>
-        <Banner1
-            sectionClass="py-16"
-            title="Impulsa tu negocio con nuestra solución"
-            description="Nuestro equipo ofrece herramientas <strong>personalizadas</strong> para tu crecimiento."
-            buttonText="Ver más"
-            buttonHref="#servicios"
-            buttonType="button"
-            image={heroImage}
-            imageAlt="Ejemplo de imagen para Banner1"
-        />
-    </Section>
+<Layout title="Banners" description="Demostración de Banner1, Banner2 y Banner3 con niveles de animación">
+  <!-- BANNER 1 -->
 
-    <Section sectionClass="py-24 bg-gray-100">
-        <div class="text-center mb-8">
-            <Typography tag="h2" class="text-2xl font-semibold">
-                Banner1 - Sin props (estado por defecto)
-            </Typography>
-        </div>
-        <Banner1 />
-    </Section>
+  <Section sectionClass="py-24 bg-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Banner1 - Sin props (none)
+      </Typography>
+    </div>
+    <Banner1 />
+  </Section>
 
-    <Section sectionClass="py-24 bg-white">
-        <div class="text-center mb-8">
-            <Typography tag="h2" class="text-2xl font-semibold">
-                Banner2 - Con props
-            </Typography>
-        </div>
-        <Banner2
-            title="Transforma tu presencia online"
-            description="Creamos soluciones digitales a medida. Contactanos hoy mismo y llevá tu proyecto al siguiente nivel."
-            buttonText="Conocé más"
-            buttonHref="/servicios"
-            image={heroImage}
-            imageAlt="Ejemplo de imagen para Banner1"
-        />
-    </Section>
-    <Section sectionClass="py-24 bg-gray-100">
-        <div class="text-center mb-8">
-            <Typography tag="h2" class="text-2xl font-semibold">
-                Banner2 - Sin props (estado por defecto)
-            </Typography>
-        </div>
-        <Banner2 />
-    </Section>
+  <Section sectionClass="py-24 bg-gray-100">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Banner1 - Animación básica
+      </Typography>
+    </div>
+    <Banner1 {...banner1Basic} />
+  </Section>
+
+  <Section sectionClass="py-24 bg-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Banner1 - Animación elaborada (fancy)
+      </Typography>
+    </div>
+    <Banner1 {...banner1Fancy} />
+  </Section>
+
+  <!-- BANNER 2 -->
+
+  <Section sectionClass="py-24 bg-gray-100">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Banner2 - Sin props (none)
+      </Typography>
+    </div>
+    <Banner2 />
+  </Section>
+
+  <Section sectionClass="py-24 bg-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Banner2 - Animación básica
+      </Typography>
+    </div>
+    <Banner2 {...banner2Basic} />
+  </Section>
+
+  <Section sectionClass="py-24 bg-gray-100">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Banner2 - Animación elaborada (fancy)
+      </Typography>
+    </div>
+    <Banner2 {...banner2Fancy} />
+  </Section>
+
+  <!-- BANNER 3 -->
+
+  <Section sectionClass="py-24 bg-black">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold text-white">
+        Banner3 - Sin props (none)
+      </Typography>
+    </div>
+    <Banner3 />
+  </Section>
+
+  <Section sectionClass="py-24 bg-gray-900">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold text-white">
+        Banner3 - Animación básica
+      </Typography>
+    </div>
+    <Banner3 {...banner3Base} animationLevel="basic" />
+  </Section>
+
+  <Section sectionClass="py-24 bg-gray-800">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold text-white">
+        Banner3 - Animación elaborada (fancy)
+      </Typography>
+    </div>
+    <Banner3 {...banner3Base} animationLevel="fancy" />
+  </Section>
 </Layout>

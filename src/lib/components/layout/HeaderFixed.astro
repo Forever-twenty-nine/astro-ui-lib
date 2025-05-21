@@ -13,13 +13,23 @@ const {
   navVariant = "default",
   containerVariant = "default",
 } = Astro.props as HeaderFixedProps;
+
+const headerShrinkClasses =
+  "py-1 rounded-b-xl shadow-md bg-white/90 backdrop-blur";
 ---
 
 <header
-  id={id || undefined}
-  class={`fixed top-0 left-0 w-full shadow-md py-2 bg-white z-30 ${className}`}
+  id="header"
+  class={`fixed top-0 left-0 right-0 z-30 bg-white py-2 mx-auto transition-all duration-300 max-w-full ${className}`}
 >
-  <Container variant={containerVariant}>
+
+  <Container
+  id="header-container"
+  variant={containerVariant}
+  class="w-full mx-auto transition-all duration-300 max-w-full"
+>
+
+
     <div class="flex justify-between items-center">
       <BrandLink
         hrefLink={brand.href || "#"}
@@ -54,3 +64,4 @@ const {
 </header>
 
 <script src="../../scripts/menuToggle.ts"></script>
+<script src="../../scripts/headerShrink.ts"></script>

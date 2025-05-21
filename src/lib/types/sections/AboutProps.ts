@@ -1,52 +1,55 @@
+import type { SectionBaseProps } from "./SectionBaseProps";
+import type { ButtonType } from "../Shared";
+
 /**
- * Props reutilizables para los componentes About1 y About2.
+ * Propiedades comunes para los componentes tipo About.
+ * 
+ * Este modelo sirve para secciones informativas como About1, About2, About3, etc.,
+ * y permite mostrar texto, imagen y llamadas a la acción con estilo configurable.
  */
-export interface AboutProps {
-    /** ID del section */
-    sectionId?: string;
-
-    /** Clases adicionales para el section */
-    sectionClass?: string;
-
-    /** ID del container */
-    containerId?: string;
-
-    /** Clases adicionales para el container */
-    containerClass?: string;
-
-    /** Texto pequeño de encabezado (badge) */
+export interface AboutProps extends SectionBaseProps {
+    /** Texto superior en formato etiqueta (ej: "Nuestra Visión"). */
     tagTitle?: string;
 
-    /** Clases para el tag */
+    /** Clases CSS para estilizar el `tagTitle`. */
     tagClass?: string;
 
-    /** Título principal */
+    /** Título principal del bloque About. Suele ir dentro de un `h2`, `h3`, etc. */
     title?: string;
 
-    /** Clases para el título */
+    /** Clases CSS adicionales para el título. */
     titleClass?: string;
 
-    /**
-     * Imagen ilustrativa (local o remota). Se usa una imagen por defecto si no se provee.
-     */
+    /** Imagen ilustrativa asociada al contenido. */
     image?: any;
 
-    /** Texto alternativo para accesibilidad */
+    /** Texto alternativo (`alt`) para accesibilidad. */
     imageAlt?: string;
 
-    /** Clases adicionales para la imagen */
+    /** Clases CSS adicionales para personalizar la imagen. */
     imageClass?: string;
 
-    /** Arreglo de párrafos con sus props individuales */
+    /**
+     * Lista de párrafos o bloques de texto dinámico.
+     * Cada objeto puede incluir el tag HTML deseado, clases y contenido.
+     */
     paragraphs?: {
+        /** Tag HTML para renderizar el bloque (ej: "p", "small", "h4", etc.). */
         tag?: string;
+        /** Clases CSS para aplicar al párrafo individual. */
         class?: string;
+        /** Contenido HTML del párrafo. Se renderiza como HTML con `set:html`. */
         content: string;
     }[];
 
-    /** Texto del botón */
+    /** Texto que se muestra dentro del botón principal (si se usa). */
     buttonText?: string;
 
-    /** URL del botón */
+    /** URL o ancla a la que apunta el botón. */
     buttonHref?: string;
+    /**
+   * Tipo de botón HTML: `"button"`, `"submit"` o `"reset"`.
+   * Por defecto se utiliza `"button"`.
+   */
+    buttonType?: ButtonType;
 }

@@ -4,6 +4,7 @@ import Container from "../elements/Container.astro";
 import Nav from "../elements/Nav.astro";
 import { Image } from "astro:assets";
 import type { FooterProps } from "../../types/layout/FooterProps";
+import type { AnimationLevel } from "../../types/Shared";
 import fallbackFooterImage from "../../assets/footer/default-footer.svg";
 
 const {
@@ -14,48 +15,86 @@ const {
   navLinks = [],
   copyright,
   author,
+  animationLevel,
 } = Astro.props as FooterProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const col1Anim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-right motion-safe:animate-duration-1000"
+    : resolvedAnimationLevel === "basic"
+      ? "transition hover:opacity-90"
+      : "";
+
+const col2Anim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-up motion-safe:animate-delay-200 motion-safe:animate-duration-1000"
+    : resolvedAnimationLevel === "basic"
+      ? "transition hover:opacity-90"
+      : "";
+
+const col3Anim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-left motion-safe:animate-delay-400 motion-safe:animate-duration-1000"
+    : resolvedAnimationLevel === "basic"
+      ? "transition hover:opacity-90"
+      : "";
 
 const logoToUse = imageSrc ?? fallbackFooterImage;
 ---
 
-<footer class={`${className ? className : "bg-gray-900"} py-10`}>
+<footer class={`${className ?? "bg-gray-900 text-white"} py-12`}>
   <Container>
-    <div
-      class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left"
-    >
-      <div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <!-- Columna 1: Logo + leyenda -->
+      <div class="flex flex-col items-start">
         <Image
           src={logoToUse}
-          alt={imageAlt ?? "Logo por defecto del footer"}
-          width={100}
+          alt={imageAlt ?? "Logo del sitio"}
+          width={120}
           height={30}
-          class="h-7 w-auto mb-2"
+          class="h-8 w-auto mb-4"
           loading="lazy"
         />
-        {legend && <Typography variant="muted">{legend}</Typography>}
+        {legend && (
+          <Typography tag="p" class="text-sm text-gray-400 leading-relaxed">
+            {legend}
+          </Typography>
+        )}
       </div>
 
+      <!-- Columna 2: Navegación -->
       <div>
-        <Nav links={navLinks} variant="muted" />
+        <Typography tag="h3" class="text-sm font-semibold mb-4 text-white">
+          Navegación
+        </Typography>
+        <ul class="space-y-1 text-sm text-gray-300">
+          {navLinks.map(link => (
+            <li><a href={link.href} class="hover:text-white transition">{link.text}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto -->
+      <div>
+        <Typography tag="h3" class="text-sm font-semibold mb-4 text-white">
+          Contacto
+        </Typography>
+        <Typography tag="p" class="text-sm text-gray-400 mb-1">
+          info@tulibreria.dev
+        </Typography>
+        <Typography tag="p" class="text-sm text-gray-400">
+          Argentina, LATAM
+        </Typography>
       </div>
     </div>
 
-    <div class="mt-8">
-      {
-        copyright && (
-          <Typography tag="small" variant="muted">
-            {copyright}
-          </Typography>
-        )
-      }
-      {
-        author && (
-          <Typography tag="small" variant="muted">
-            {author}
-          </Typography>
-        )
-      }
+    <div class="mt-10 text-center text-sm text-gray-500 space-y-1">
+      {copyright &&
+        <Typography tag="p" variant="muted">{copyright}</Typography>}
+      {author &&
+        <Typography tag="p" variant="muted">{author}</Typography>}
     </div>
   </Container>
 </footer>

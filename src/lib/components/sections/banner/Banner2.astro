@@ -6,6 +6,7 @@ import Button from "../../ui/Button.astro";
 import { Image } from "astro:assets";
 import fallbackBanner from "../../../assets/banner/600x500.webp";
 import type { BannerProps } from "../../../types/sections/BannerProps";
+import type { AnimationLevel } from "../../../types/Shared";
 
 const {
   sectionId,
@@ -21,7 +22,24 @@ const {
   buttonType = "button",
   image,
   imageAlt = "Imagen ilustrativa del banner",
+  animationLevel,
 } = Astro.props as BannerProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const imageAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-left motion-safe:animate-duration-[2000ms]"
+    : resolvedAnimationLevel === "basic"
+    ? "transition-transform duration-300 hover:scale-105"
+    : "";
+
+const textAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-right motion-safe:animate-duration-[2000ms]"
+    : resolvedAnimationLevel === "basic"
+    ? "transition-all duration-300 ease-in-out hover:scale-105"
+    : "";
 
 const sectionClassFinal = `bg-pink-100 ${sectionClass}`.trim();
 const containerClassFinal = `text-left md:max-w-3xl ${containerClass}`.trim();
@@ -31,33 +49,35 @@ const descriptionClassFinal = `text-lg text-gray-600 mb-6 ${descriptionClass}`.t
 
 <Section id={sectionId} class={sectionClassFinal}>
   <Container id={containerId} class={containerClassFinal}>
-    <Image
-      src={image ?? fallbackBanner}
-      alt={imageAlt}
-      width={600}
-      height={500}
-      class="mx-auto mb-6 rounded-md shadow transition-transform hover:scale-105"
-      loading="eager"
-      decoding="async"
-      inferSize
-    />
+    <div class={textAnim}>
+      <Image
+        src={image ?? fallbackBanner}
+        alt={imageAlt}
+        width={600}
+        height={500}
+        class={`mx-auto mb-6 rounded-md shadow ${imageAnim}`}
+        loading="eager"
+        decoding="async"
+        inferSize
+      />
 
-    <Typography tag="h2" class={titleClassFinal}>
-      {title}
-    </Typography>
+      <Typography tag="h2" class={titleClassFinal}>
+        {title}
+      </Typography>
 
-    {description && (
-      <Typography tag="p" class={descriptionClassFinal} set:html={description} />
-    )}
+      {description && (
+        <Typography tag="p" class={descriptionClassFinal} set:html={description} />
+      )}
 
-    {buttonHref && buttonText && (
-      <Button
-        href={buttonHref}
-        type={buttonType}
-        class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3"
-      >
-        {buttonText}
-      </Button>
-    )}
+      {buttonHref && buttonText && (
+        <Button
+          href={buttonHref}
+          type={buttonType}
+          class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3"
+        >
+          {buttonText}
+        </Button>
+      )}
+    </div>
   </Container>
 </Section>

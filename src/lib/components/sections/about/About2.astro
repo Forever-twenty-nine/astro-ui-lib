@@ -6,35 +6,65 @@ import Button from "../../ui/Button.astro";
 import { Image } from "astro:assets";
 import fallbackAbout from "../../../assets/about/600x500.webp";
 import type { AboutProps } from "../../../types/sections/AboutProps";
+import type { AnimationLevel } from "../../../types/Shared";
 
+// Extraer props (incluyendo animationLevel)
 const {
-  sectionId,
-  sectionClass = "bg-info-50",
-  containerId,
-  containerClass = "md:max-w-5xl",
-  tagTitle = "Acerca de Nosotros",
-  tagClass = "",
-  title = "Nuestra misión y valores",
-  titleClass = "",
-  image,
-  imageAlt = "Imagen ilustrativa",
-  imageClass = "",
+  // Identificadores HTML
+  sectionId, // ID para la sección principal del componente
+  containerId, // ID para el contenedor interno
+
+  // Clases personalizadas
+  sectionClass = "", // Clases adicionales para el <Section>
+  containerClass = "", // Clases adicionales para el <Container>
+  tagClass = "", // Clases para el tagTitle
+  titleClass = "", // Clases para el título
+  imageClass = "", // Clases para la imagen
+
+  // Contenido textual
+  tagTitle = "Etiqueta superior", // Ej: "Acerca de nosotros"
+  title = "Título principal de la sección", // Ej: "Conocé nuestro equipo"
   paragraphs = [
     {
       tag: "p",
-      content: "Creamos componentes reutilizables para facilitar el desarrollo web.",
-      class: "text-gray-700 mb-4",
+      content: "Texto de ejemplo para el componente About.",
+      class: "text-gray-600 mb-4",
     },
     {
-      tag: "p",
-      content: "Nuestra librería está pensada para escalar en proyectos modernos.",
-      class: "text-gray-700 mb-4",
+      tag: "small",
+      content: "Texto auxiliar en tamaño pequeño.",
+      class: "text-gray-500",
     },
   ],
-  buttonText = "Contactanos",
-  buttonHref = "#contacto",
+
+  // Imagen
+  image, // Imagen importada desde assets
+  imageAlt = "Texto alternativo de la imagen", // Alt por accesibilidad
+
+  // Comportamiento visual
+  animationLevel, // 'none' | 'basic' | 'fancy'
+
+  // Botón opcional (solo si se usa)
+  buttonText, // Texto del botón (opcional)
+  buttonHref, // Enlace al que redirige el botón (opcional)
 } = Astro.props as AboutProps;
 
+// Definir nivel resuelto de animación
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const imageAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-up motion-safe:animate-duration-[2000ms] transition-transform duration-300 hover:scale-105"
+    : resolvedAnimationLevel === "basic"
+      ? "transition-transform duration-300 hover:scale-105"
+      : "";
+
+const textAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-down motion-safe:animate-duration-[2000ms] transition-all duration-300 ease-in-out hover:scale-105"
+    : resolvedAnimationLevel === "basic"
+      ? "transition-all duration-300 ease-in-out hover:scale-105"
+      : "";
 
 const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"];
 ---
@@ -45,7 +75,7 @@ const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"];
     class={`flex flex-col md:flex-row-reverse items-center gap-12 ${containerClass}`}
   >
     <!-- Imagen -->
-    <div class="md:w-1/2">
+    <div class={`md:w-1/2 ${imageAnim}`}>
       <Image
         src={image ?? fallbackAbout}
         alt={imageAlt}
@@ -59,43 +89,51 @@ const allowedTags = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "small"];
     </div>
 
     <!-- Contenido -->
-    <div class="md:w-1/2 text-center md:text-left">
-      {tagTitle && (
-        <Typography
-          tag="small"
-          class={`uppercase tracking-wide text-primary-600 font-semibold mb-2 ${tagClass}`}
-        >
-          {tagTitle}
-        </Typography>
-      )}
-
-      {title && (
-        <Typography
-          tag="h2"
-          class={`text-3xl font-bold text-gray-900 mb-6 ${titleClass}`}
-        >
-          {title}
-        </Typography>
-      )}
-
-      {paragraphs.map(({ tag = "p", content, class: paragraphClass }) => {
-        const safeTag = allowedTags.includes(tag) ? tag : "p";
-        return (
+    <div class={`md:w-1/2 text-center md:text-left ${textAnim}`}>
+      {
+        tagTitle && (
           <Typography
-            tag={safeTag as any}
-            class={`text-gray-700 mb-4 ${paragraphClass ?? ""}`}
-            set:html={content}
-          />
-        );
-      })}
+            tag="small"
+            class={`uppercase tracking-wide text-primary-600 font-semibold mb-2 ${tagClass}`}
+          >
+            {tagTitle}
+          </Typography>
+        )
+      }
 
-      {buttonText && buttonHref && (
-        <div class="mt-6">
-          <Button href={buttonHref} type="solid">
-            {buttonText}
-          </Button>
-        </div>
-      )}
+      {
+        title && (
+          <Typography
+            tag="h2"
+            class={`text-3xl font-bold text-gray-900 mb-6 ${titleClass}`}
+          >
+            {title}
+          </Typography>
+        )
+      }
+
+      {
+        paragraphs.map(({ tag = "p", content, class: paragraphClass }) => {
+          const safeTag = allowedTags.includes(tag) ? tag : "p";
+          return (
+            <Typography
+              tag={safeTag as any}
+              class={`text-gray-700 mb-4 ${paragraphClass ?? ""}`}
+              set:html={content}
+            />
+          );
+        })
+      }
+
+      {
+        buttonText && buttonHref && (
+          <div class="mt-6">
+            <Button href={buttonHref} type="solid">
+              {buttonText}
+            </Button>
+          </div>
+        )
+      }
     </div>
   </Container>
 </Section>

@@ -38,11 +38,14 @@ const brandData = {
 const footerData = {
   imageSrc: brandlogoDark,
   imageAlt: "Logo Footer Demo",
-  legend: "Hecho con ❤️ y Astro",
-  navLinks: navLinks,
-  copyright: "© 2025 Mi Librería UI. Todos los derechos reservados.",
-  author: "Desarrollado por [Tu Nombre]",
+  legend:
+    "FTN UI es una librería de componentes visuales para Astro + Tailwind. Flexible, accesible y lista para producción.",
+  navLinks,
+  copyright: "© 2025 FTN UI. Todos los derechos reservados.",
+  author: "Desarrollado por FTN Agency",
+  animationLevel: "fancy",
 };
+
 ---
 
 <!doctype html>
@@ -63,12 +66,6 @@ const footerData = {
       <slot name="default" />
     </main>
 
-    <Footer
-      copyright={footerData.copyright}
-      author={footerData.author}
-      imageSrc={footerData.imageSrc}
-      imageAlt={footerData.imageAlt}
-      legend={footerData.legend}
-    />
+    <Footer {...footerData} />
   </body>
 </html>

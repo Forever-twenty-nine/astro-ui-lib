@@ -4,7 +4,8 @@ import Container from "../../elements/Container.astro";
 import Section from "../../elements/Section.astro";
 import Button from "../../ui/Button.astro";
 import { Image as AstroImage } from "astro:assets";
-import type { Hero2Props } from "../../../types/sections/Hero2Props";
+import type { HeroProps } from "../../../types/sections/HeroProps";
+import type { AnimationLevel } from "../../../types/Shared";
 import fallbackHero2 from "../../../assets/hero/600x400.webp";
 
 const {
@@ -12,18 +13,33 @@ const {
   sectionClass = "",
   containerId,
   containerClass = "",
-  title = "Hero2: layout centrado con doble botón",
+  title = "Hero2: layout centrado",
   titleClass = "",
-  description = "Este componente incluye una imagen centrada arriba, seguida de un título, una descripción y dos botones. Es útil para llamadas a la acción destacadas.",
+  description = "Este componente incluye una imagen centrada arriba, seguida de un título, una descripción y un botón. Es útil para llamadas a la acción destacadas.",
   descriptionClass = "",
-  primaryButtonText = "Botón primario de ejemplo",
-  primaryButtonHref = "#",
-  secondaryButtonText = "Botón secundario de ejemplo",
-  secondaryButtonHref = "#",
+  buttonText = "Botón de ejemplo",
+  buttonHref = "#",
+  buttonType = "button",
   image,
   imageAlt = "Imagen por defecto de Hero2",
-  imageClass = "",
-} = Astro.props as Hero2Props;
+  animationLevel,
+} = Astro.props as HeroProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const imageAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-down motion-safe:animate-duration-[2000ms]"
+    : resolvedAnimationLevel === "basic"
+    ? "transition-transform duration-300 hover:scale-105"
+    : "";
+
+const textAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-up motion-safe:animate-duration-[2000ms]"
+    : resolvedAnimationLevel === "basic"
+    ? "transition-all duration-300 ease-in-out hover:scale-105"
+    : "";
 ---
 
 <Section id={sectionId} class={`text-center ${sectionClass}`}>
@@ -33,12 +49,12 @@ const {
       alt={imageAlt}
       width={600}
       height={400}
-      class={`mx-auto mb-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 ${imageClass}`}
+      class={`mx-auto mb-6 rounded-xl shadow-lg ${imageAnim}`}
       loading="eager"
       decoding="async"
     />
 
-    <div class="max-w-xl mx-auto">
+    <div class={`max-w-xl mx-auto ${textAnim}`}>
       {
         title && (
           <Typography
@@ -61,30 +77,19 @@ const {
         )
       }
 
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        {
-          primaryButtonText && (
+      {
+        buttonText && (
+          <div class="flex justify-center">
             <Button
-              href={primaryButtonHref}
-              type="solid"
+              href={buttonHref}
+              type={buttonType}
               class="transition duration-300 ease-in-out hover:scale-105"
             >
-              {primaryButtonText}
+              {buttonText}
             </Button>
-          )
-        }
-        {
-          secondaryButtonText && (
-            <Button
-              href={secondaryButtonHref}
-              type="outline"
-              class="transition duration-300 ease-in-out hover:scale-105"
-            >
-              {secondaryButtonText}
-            </Button>
-          )
-        }
-      </div>
+          </div>
+        )
+      }
     </div>
   </Container>
 </Section>

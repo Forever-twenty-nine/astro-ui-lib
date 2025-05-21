@@ -1,0 +1,73 @@
+---
+import Button from "../../ui/Button.astro";
+import Typography from "../../ui/Typography.astro";
+import fallbackHero from "../../../assets/hero/800x500.webp";
+import type { HeroProps } from "../../../types/sections/HeroProps";
+import type { AnimationLevel } from "../../../types/Shared";
+
+const {
+  sectionId,
+  sectionClass = "",
+  title = "Hero3: Imagen de fondo con texto centrado",
+  titleClass = "",
+  description = "Este Hero muestra una imagen de fondo con contenido superpuesto.",
+  descriptionClass = "",
+  buttonText = "Acción principal",
+  buttonHref = "#",
+  buttonType = "button",
+  image,
+  imageAlt = "",
+  animationLevel,
+} = Astro.props as HeroProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const overlayAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-up motion-safe:animate-duration-[2000ms]"
+    : resolvedAnimationLevel === "basic"
+      ? "transition-all duration-300 ease-in-out hover:scale-105"
+      : "";
+---
+
+<section
+  id={sectionId}
+  class={`relative w-full h-[600px] bg-cover bg-center bg-no-repeat ${sectionClass}`}
+  style={`background-image: url('${image?.src ?? fallbackHero.src}')`}
+>
+  <!-- Capa oscura -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- Contenido -->
+  <div
+    class={`relative z-10 flex flex-col justify-center items-center h-full text-white text-center px-6 ${overlayAnim}`}
+  >
+    {
+      title && (
+        <Typography tag="h1" class={`text-4xl font-bold mb-4 ${titleClass}`}>
+          {title}
+        </Typography>
+      )
+    }
+
+    {
+      description && (
+        <Typography tag="p" class={`max-w-xl mb-6 ${descriptionClass}`}>
+          {description}
+        </Typography>
+      )
+    }
+
+    {
+      buttonText && (
+        <Button
+          href={buttonHref}
+          type={buttonType}
+          class="transition duration-300 ease-in-out hover:scale-105"
+        >
+          {buttonText}
+        </Button>
+      )
+    }
+  </div>
+</section>

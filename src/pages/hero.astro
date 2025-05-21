@@ -2,66 +2,151 @@
 import Layout from "../layouts/Layout.astro";
 import Hero1 from "../lib/components/sections/hero/Hero1.astro";
 import Hero2 from "../lib/components/sections/hero/Hero2.astro";
+import Hero3 from "src/lib/components/sections/hero/Hero3.astro";
 import Typography from "../lib/components/ui/Typography.astro";
 import Section from "../lib/components/elements/Section.astro";
 
 import heroImage from "../assets/hero-1.jpg";
 ---
 
-<Layout title="Heroes" description="Demostración de Hero1 y Hero2 con y sin props">
-  <!-- Hero1 con props -->
-  <Section sectionClass="py-16 bg-white">
-    <div class="text-center mb-8">
-      <Typography tag="h2" class="text-2xl font-semibold">
-        Hero1 - Con props
-      </Typography>
-    </div>
-    <Hero1
-      title="Hero1 personalizado"
-      description="Ejemplo de Hero1 con props definidas manualmente."
-      buttonText="Ver más"
-      buttonHref="#"
-      image={heroImage}
-      imageAlt="Imagen local Hero1"
-    />
-  </Section>
-
-  <!-- Hero1 sin props -->
+<Layout
+  title="Heroes"
+  description="Demostración de Hero1 y Hero2 con y sin props"
+>
+  <!-- Hero1 - NONE -->
   <Section sectionClass="py-16 bg-gray-50">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero1 - Sin props (estado por defecto)
+        Hero1 - Sin props (none)
       </Typography>
     </div>
     <Hero1 />
   </Section>
 
-  <!-- Hero2 con props -->
+  <!-- Hero1 - BASIC -->
   <Section sectionClass="py-16 bg-white">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero2 - Con props
+        Hero1 - Animación básica
       </Typography>
     </div>
-    <Hero2
-      title="Hero2 personalizado"
-      description="Ejemplo de Hero2 con props definidas manualmente."
+    <Hero1
+      title="Animación básica"
+      description="Este Hero1 tiene una transición simple al hacer hover."
+      buttonText="Descubrir"
+      buttonHref="#"
       image={heroImage}
-      imageAlt="Imagen local Hero2"
-      primaryButtonText="Explorar"
-      primaryButtonHref="#"
-      secondaryButtonText="Más info"
-      secondaryButtonHref="#"
+      imageAlt="Imagen Hero básica"
+      animationLevel="basic"
     />
   </Section>
 
-  <!-- Hero2 sin props -->
+  <!-- Hero1 - FANCY -->
+  <Section class="py-16">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Hero1 - Animación elaborada (fancy)
+      </Typography>
+    </div>
+    <Hero1
+      title="Animación fancy"
+      description="Este Hero1 anima el texto desde la izquierda y la imagen desde la derecha."
+      buttonText="Explorar"
+      buttonHref="#"
+      image={heroImage}
+      imageAlt="Imagen Hero fancy"
+      animationLevel="fancy"
+    />
+  </Section>
+
+  <!-- Hero2 - NONE -->
   <Section sectionClass="py-16 bg-gray-50">
     <div class="text-center mb-8">
       <Typography tag="h2" class="text-2xl font-semibold">
-        Hero2 - Sin props (estado por defecto)
+        Hero2 - Sin props (none)
       </Typography>
     </div>
     <Hero2 />
+  </Section>
+
+  <!-- Hero2 - BASIC -->
+  <Section sectionClass="py-16 bg-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Hero2 - Animación básica
+      </Typography>
+    </div>
+    <Hero2
+      title="Animación básica"
+      description="Este Hero2 tiene una transición simple al hacer hover."
+      buttonText="Más información"
+      buttonHref="#"
+      image={heroImage}
+      imageAlt="Imagen Hero2 básica"
+      animationLevel="basic"
+    />
+  </Section>
+
+  <!-- Hero2 - FANCY -->
+  <Section sectionClass="py-16 bg-gray-100">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">
+        Hero2 - Animación elaborada (fancy)
+      </Typography>
+    </div>
+    <Hero2
+      title="Animación fancy"
+      description="Este Hero2 aplica animación fade-down a la imagen y fade-up al contenido."
+      buttonText="Ver más"
+      buttonHref="#"
+      image={heroImage}
+      imageAlt="Imagen Hero2 fancy"
+      animationLevel="fancy"
+    />
+  </Section>
+  <!-- Hero3 - NONE -->
+  <Section sectionClass="py-16 bg-gray-50">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold text-center">
+        Hero3 - Sin props (none)
+      </Typography>
+    </div>
+    <Hero3 />
+  </Section>
+
+  <!-- Hero3 - BASIC -->
+  <Section sectionClass="py-16 bg-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold text-center">
+        Hero3 - Animación básica
+      </Typography>
+    </div>
+    <Hero3
+      title="Hero3 básico"
+      description="Este Hero3 utiliza una imagen de fondo con transición en hover."
+      buttonText="Acción simple"
+      buttonHref="#"
+      image={heroImage}
+      imageAlt="Imagen Hero3 básica"
+      animationLevel="basic"
+    />
+  </Section>
+
+  <!-- Hero3 - FANCY -->
+  <Section sectionClass="py-16 bg-gray-100">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold text-center">
+        Hero3 - Animación elaborada (fancy)
+      </Typography>
+    </div>
+    <Hero3
+      title="Hero3 fancy"
+      description="Este Hero3 aplica fade-up al contenido sobre la imagen de fondo."
+      buttonText="Ver más"
+      buttonHref="#"
+      image={heroImage}
+      imageAlt="Imagen Hero3 fancy"
+      animationLevel="fancy"
+    />
   </Section>
 </Layout>

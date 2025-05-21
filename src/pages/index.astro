@@ -4,37 +4,56 @@ import Container from "../lib/components/elements/Container.astro";
 import Section from "../lib/components/elements/Section.astro";
 import Typography from "../lib/components/ui/Typography.astro";
 import Button from "../lib/components/ui/Button.astro";
-import { Image } from "astro:assets";
+import Hero3 from "../lib/components/sections/hero/Hero3.astro";
+import Banner1 from "../lib/components/sections/banner/Banner1.astro";
+import About3 from "../lib/components/sections/about/About3.astro";
 
+import heroImage from "../assets/hero-1.jpg";
 ---
 
 <Layout
   title="Inicio"
   description="Componentes UI modernos y reutilizables para proyectos Astro + Tailwind"
 >
-  <!-- Intro principal -->
-  <Section sectionClass="bg-white py-24">
-    <Container class="text-center max-w-2xl">
-      <Typography tag="h1" class="text-4xl font-bold mb-4 text-gray-900">
-        Bienvenido a tu Librería de Componentes UI con Astro + Tailwind
-      </Typography>
+  <!-- Hero de apertura -->
+  <Hero3
+    title="Componentes UI modernos con Astro + Tailwind"
+    description="Esta librería ofrece estructuras visuales listas para producción, con soporte para animaciones, accesibilidad y personalización total."
+    buttonText="Explorar Componentes"
+    buttonHref="/hero"
+    image={heroImage}
+    animationLevel="fancy"
+  />
 
-      <Typography tag="p" class="text-lg text-gray-600 mb-8">
-        Esta librería está diseñada para acelerar el desarrollo de interfaces
-        modernas, limpias y reutilizables en proyectos construidos con Astro y
-        Tailwind CSS. Incluye secciones listas para producción, utilidades
-        visuales y elementos base altamente personalizables.
-      </Typography>
+  <!-- Banner principal -->
+  <Banner1
+    title="Listo para producción. Flexible por diseño."
+    description="Integrá secciones como Hero, Banner o About sin preocuparte por estructuras ni estilos: todo está pensado para escalar con tu proyecto."
+    buttonText="Ver ejemplos"
+    buttonHref="/banner"
+    image={heroImage}
+    animationLevel="basic"
+  />
 
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <Button href="/hero" type="primary">Ver Heroes</Button>
-        <Button href="/banner" type="secondary">Ver Banners</Button>
-        <Button href="/about" type="ghost">Sobre la Librería</Button>
-        <Button href="/ui" type="solid">Componentes Internos</Button>
-      </div>
-    </Container>
-  </Section>
-  <!-- Previews visuales -->
+  <!-- About de propósito -->
+  <About3
+    tagTitle="Nuestra Filosofía"
+    title="Una librería UI enfocada en velocidad, consistencia y experiencia"
+    paragraphs={[
+      {
+        content: "Construimos esta librería para resolver el problema común de reusar UI entre proyectos Astro sin comprometer diseño ni performance.",
+      },
+      {
+        content: "Cada componente está diseñado para ser minimalista, accesible, animado y fácil de extender con Tailwind CSS.",
+      },
+    ]}
+    buttonText="Ver componentes"
+    buttonHref="/about"
+    image={heroImage}
+    animationLevel="fancy"
+  />
+
+  <!-- Grid de previsualizaciones -->
   <Section sectionClass="bg-gray-50 py-20">
     <Container>
       <Typography
@@ -46,15 +65,12 @@ import { Image } from "astro:assets";
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- Hero Preview -->
-        <div
-          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-        >
-          <Image
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <img
             src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
             alt="Vista previa Hero"
             width={400}
             height={200}
-            loading="eager"
             class="rounded-md mb-4 w-full"
           />
           <Typography tag="h3" class="text-lg font-semibold mb-2">
@@ -67,13 +83,10 @@ import { Image } from "astro:assets";
         </div>
 
         <!-- Banner Preview -->
-        <div
-          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-        >
-          <Image
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <img
             src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
             alt="Vista previa Banner"
-            loading="eager"
             width={400}
             height={200}
             class="rounded-md mb-4 w-full"
@@ -82,58 +95,47 @@ import { Image } from "astro:assets";
             Banners Promocionales
           </Typography>
           <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Bloques destacados ideales para campañas, avisos o promociones
-            visuales.
+            Bloques destacados ideales para campañas, avisos o promociones visuales.
           </Typography>
           <Button href="/banner" type="ghost">Ver Banners</Button>
         </div>
 
         <!-- About Preview -->
-        <div
-          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-        >
-          <Image
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <img
             src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
             alt="Vista previa About"
             width={400}
             height={200}
-            loading="eager"
             class="rounded-md mb-4 w-full"
           />
           <Typography tag="h3" class="text-lg font-semibold mb-2">
-            Sección "Sobre Nosotros"
+            Secciones About
           </Typography>
           <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Explicá tu misión, valores o equipo mediante componentes
-            informativos con imagen.
+            Mostrá tu historia, valores o equipo en secciones visuales bien estructuradas.
           </Typography>
           <Button href="/about" type="ghost">Ver About</Button>
         </div>
 
         <!-- UI Interna -->
-        <div
-          class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white"
-        >
-          <Image
+        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
+          <img
             src="https://placehold.co/400x200/1E90FF/FFFFFF?text=UI+Elements"
             alt="Vista previa UI"
             width={400}
             height={200}
-            loading="eager"
             class="rounded-md mb-4 w-full"
           />
           <Typography tag="h3" class="text-lg font-semibold mb-2">
             UI Interna & Utilidades
           </Typography>
           <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Explorá componentes base como botones, tipografías, secciones y
-            layout para extender tu diseño.
+            Explorá elementos base como tipografías, botones, secciones y layout.
           </Typography>
           <Button href="/ui" type="ghost">Ver UI</Button>
         </div>
       </div>
     </Container>
   </Section>
-
-
 </Layout>

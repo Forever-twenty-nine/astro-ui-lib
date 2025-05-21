@@ -1,0 +1,118 @@
+---
+
+import Typography from "../../ui/Typography.astro";
+import Button from "../../ui/Button.astro";
+import fallbackAbout from "../../../assets/about/600x500.webp";
+
+import type { AboutProps } from "../../../types/sections/AboutProps";
+import type { AnimationLevel } from "../../../types/Shared";
+
+const {
+    // Identificadores HTML
+    sectionId, // ID para la sección principal del componente
+    containerId, // ID para el contenedor interno
+
+    // Clases personalizadas
+    sectionClass = "", // Clases adicionales para el <Section>
+    containerClass = "", // Clases adicionales para el <Container>
+    tagClass = "", // Clases para el tagTitle
+    titleClass = "", // Clases para el título
+    imageClass = "", // Clases para la imagen
+
+    // Contenido textual
+    tagTitle = "Etiqueta superior", // Ej: "Acerca de nosotros"
+    title = "Título principal de la sección", // Ej: "Conocé nuestro equipo"
+    paragraphs = [
+        {
+            tag: "p",
+            content: "Texto de ejemplo para el componente About.",
+            class: "text-gray-600 mb-4",
+        },
+        {
+            tag: "small",
+            content: "Texto auxiliar en tamaño pequeño.",
+            class: "text-gray-500",
+        },
+    ],
+
+    // Imagen
+    image, // Imagen importada desde assets
+    imageAlt = "Texto alternativo de la imagen", // Alt por accesibilidad
+
+    // Comportamiento visual
+    animationLevel, // 'none' | 'basic' | 'fancy'
+
+    // Botón opcional (solo si se usa)
+    buttonText, // Texto del botón (opcional)
+    buttonHref, // Enlace al que redirige el botón (opcional)
+} = Astro.props as AboutProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const contentAnim =
+    resolvedAnimationLevel === "fancy"
+        ? "motion-safe:animate-fade-up motion-safe:animate-duration-[2000ms] transition-all duration-300 ease-in-out hover:scale-105"
+        : resolvedAnimationLevel === "basic"
+          ? "transition-all duration-300 ease-in-out hover:scale-105"
+          : "";
+
+// Validación de etiquetas permitidas
+const allowedTags = ["p", "small", "h3", "h4", "h5", "h6"];
+---
+
+<section
+    id={sectionId}
+    class={`relative w-full min-h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 py-20 ${sectionClass}`}
+    style={`background-image: url('${image?.src ?? fallbackAbout.src}')`}
+>
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <div
+        class={`relative z-10 max-w-3xl text-center text-white ${contentAnim}`}
+    >
+        {
+            tagTitle && (
+                <Typography
+                    tag="small"
+                    class={`uppercase tracking-widest font-bold text-blue-200 mb-2 ${tagClass}`}
+                >
+                    {tagTitle}
+                </Typography>
+            )
+        }
+
+        {
+            title && (
+                <Typography
+                    tag="h2"
+                    class={`text-4xl font-bold mb-6 ${titleClass}`}
+                >
+                    {title}
+                </Typography>
+            )
+        }
+
+        {
+            paragraphs.map(({ tag = "p", content, class: paragraphClass }) => {
+                const safeTag = allowedTags.includes(tag) ? tag : "p";
+                return (
+                    <Typography
+                        tag={safeTag as any}
+                        class={`mb-4 opacity-90 ${paragraphClass ?? ""}`}
+                        set:html={content}
+                    />
+                );
+            })
+        }
+
+        {
+            buttonText && buttonHref && (
+                <div class="mt-6">
+                    <Button href={buttonHref} type="solid">
+                        {buttonText}
+                    </Button>
+                </div>
+            )
+        }
+    </div>
+</section>

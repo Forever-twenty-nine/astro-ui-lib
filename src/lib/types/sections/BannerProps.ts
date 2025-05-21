@@ -1,75 +1,42 @@
+import type { SectionBaseProps } from "./SectionBaseProps";
+import type { ButtonType } from "../Shared";
 /**
- * Props reutilizables para los componentes Banner1 y Banner2.
+ * Propiedades reutilizables para los componentes Banner (ej. Banner1, Banner2).
  * 
- * Permite definir título, descripción, botones y una imagen ilustrativa (local o remota).
+ * Este tipo permite definir estructura de texto, imagen y botón opcional, con soporte para clases personalizadas
+ * y animaciones definidas por nivel.
  */
-export interface BannerProps {
-  /**
-   * ID opcional para el elemento <section>.
-   */
-  sectionId?: string;
-
-  /**
-   * Clases CSS adicionales para el contenedor <section>.
-   */
-  sectionClass?: string;
-
-  /**
-   * ID para el componente <Container>.
-   */
-  containerId?: string;
-
-  /**
-   * Clases CSS adicionales para el <Container>.
-   */
-  containerClass?: string;
-
-  /**
-   * Título principal del banner.
-   */
+export interface BannerProps extends SectionBaseProps {
+  /** Título principal del banner. Puede ser un `h2`, `h3`, etc. */
   title?: string;
 
-  /**
-   * Clases adicionales para el elemento de título.
-   */
+  /** Clases adicionales para el título. */
   titleClass?: string;
 
   /**
-   * Texto descriptivo debajo del título.
-   * Se puede usar HTML.
+   * Texto descriptivo complementario.
+   * Puede incluir HTML básico para negrita, enlaces o estilos semánticos.
    */
   description?: string;
 
-  /**
-   * Clases CSS para el texto descriptivo.
-   */
+  /** Clases personalizadas para el párrafo de descripción. */
   descriptionClass?: string;
 
   /**
-   * Imagen ilustrativa del banner.
-   * Puede ser una imagen local (importada desde assets) o una URL remota.
-   * Se usará una imagen por defecto si no se proporciona.
+   * Imagen asociada al banner.
+   * Puede ser una imagen importada desde `astro:assets` o una URL.
    */
   image?: any;
 
-  /**
-   * Texto alternativo para accesibilidad.
-   */
+  /** Texto alternativo de la imagen (`alt`) para accesibilidad. */
   imageAlt?: string;
 
-  /**
-   * Texto del botón (si se desea incluir uno).
-   */
+  /** Texto visible del botón (si se usa). */
   buttonText?: string;
 
-  /**
-   * Enlace de destino del botón.
-   */
+  /** URL o ancla a la que dirige el botón. */
   buttonHref?: string;
 
-  /**
-   * Tipo de botón (button, submit o reset).
-   * @default "button"
-   */
-  buttonType?: "button" | "submit" | "reset";
+  /** Tipo de botón HTML: `"button"`, `"submit"` o `"reset"` (por defecto `"button"`). */
+  buttonType?: ButtonType;
 }
