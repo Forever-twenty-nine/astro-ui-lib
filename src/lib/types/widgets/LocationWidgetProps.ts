@@ -3,6 +3,8 @@ export interface LocationWidgetProps {
   longitude?: string;
   placeName?: string;
   mapHeight?: number;
+  width?: number;      
+  height?: number;     
   zoom?: number;
   className?: string;
 }
