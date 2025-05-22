@@ -1,30 +1,47 @@
 ---
+// lib/widgets/LocationWidget.astro
 import type { LocationWidgetProps } from "../../types/widgets/LocationWidgetProps";
 
 const {
   latitude = "-24.7883",
   longitude = "-65.4106",
   placeName = "Oficina FTN - Salta, Argentina",
-  mapHeight = 300,
-  zoom = 15,
+  zoom = 16,
   className = "",
 } = Astro.props as LocationWidgetProps;
 
-const mapSrc = `https://www.google.com/maps?q=${latitude},${longitude}&hl=es&z=${zoom}&output=embed`;
+const bbox = [
+  parseFloat(longitude) - 0.01,
+  parseFloat(latitude) - 0.01,
+  parseFloat(longitude) + 0.01,
+  parseFloat(latitude) + 0.01,
+].join(",");
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latitude},${longitude}`;
+const mapLink = `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=${zoom}/${latitude}/${longitude}`;
 ---
 
-<div class={`rounded-xl overflow-hidden shadow-lg w-full max-w-md ${className}`}>
+<div
+  class={`rounded-xl overflow-hidden shadow-lg w-full max-w-md ${className}`}
+>
   <div class="p-4 bg-white">
-    <h3 class="text-lg font-bold text-gray-800 mb-2">Ubicación</h3>
+    <h2 class="text-lg font-bold text-gray-800 mb-2">Ubicación</h2>
+
     <p class="text-sm text-gray-600 mb-4">{placeName}</p>
+    <div class="rounded-lg overflow-hidden border border-gray-300">
+      <iframe
+        src={mapSrc}
+        width="100%"
+        height="300"
+        frameborder="0"
+        scrolling="no"
+        loading="lazy"
+        title={`Mapa de ubicación: ${placeName}`}
+        class="w-full"></iframe>
+      <small class="block text-xs text-center mt-1">
+        <a href={mapLink} target="_blank" rel="noopener noreferrer">
+          Ver mapa completo en OpenStreetMap
+        </a>
+      </small>
+    </div>
   </div>
-  <iframe
-    src={mapSrc}
-    width="100%"
-    height={mapHeight}
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    class="border-0 w-full"
-  />
 </div>
