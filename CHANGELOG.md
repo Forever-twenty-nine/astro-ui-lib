@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.20](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.19...v0.2.20) (2025-05-23)
+
+
+### Features
+
+* agregar sección de Portfolio con carrusel y grilla de proyectos ([688fdc8](https://github.com/Forever-twenty-nine/astro-ui-lib/commit/688fdc86396d3a3470cc1b3d16b858ff689fead6))
+
 ### [0.2.19](https://github.com/Forever-twenty-nine/astro-ui-lib/compare/v0.2.18...v0.2.19) (2025-05-22)
 
 
