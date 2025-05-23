@@ -1,0 +1,102 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Portfolio1 from "../lib/components/sections/PortFolio/Portfolio1.astro";
+import PortfolioCarousel from "../lib/components/sections/PortFolio/PortfolioCarousel.astro";
+import Section from "../lib/components/elements/Section.astro";
+import Typography from "../lib/components/ui/Typography.astro";
+
+import projectImage from "../assets/hero-1.jpg";
+---
+
+<Layout title="Portfolio" description="Demostración de Portfolio1 y PortfolioCarousel">
+  <!-- Sección Grid -->
+  <Section sectionClass="py-20 bg-gray-50">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">Portfolio1 - Sin animación</Typography>
+    </div>
+    <Portfolio1 />
+  </Section>
+
+  <Section sectionClass="py-20 bg-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">Portfolio1 - Animación básica</Typography>
+    </div>
+    <Portfolio1
+      title="Proyectos destacados"
+      description="Estos son algunos de nuestros trabajos más recientes."
+      animationLevel="basic"
+      items={[
+        {
+          title: "Landing moderna",
+          description: "Página responsive con Astro y Tailwind.",
+          image: projectImage,
+          imageAlt: "Landing moderna",
+          href: "#"
+        },
+        {
+          title: "E-commerce UI",
+          description: "Interfaz visual de tienda con animaciones.",
+          image: projectImage,
+          imageAlt: "E-commerce UI",
+          href: "#"
+        },
+        {
+          title: "Blog personal",
+          description: "Blog técnico con diseño limpio y accesible.",
+          image: projectImage,
+          imageAlt: "Blog técnico",
+          href: "#"
+        }
+      ]}
+    />
+  </Section>
+
+  <!-- Sección Carousel -->
+  <Section sectionClass="py-20 bg-gray-900 text-white">
+    <div class="text-center mb-8">
+      <Typography tag="h2" class="text-2xl font-semibold">PortfolioCarousel - Animación fancy</Typography>
+    </div>
+    <PortfolioCarousel
+      title="Carrusel de proyectos"
+      description="Explorá nuestros trabajos con scroll horizontal responsivo."
+      animationLevel="fancy"
+      items={[
+        {
+          title: "Landing moderna",
+          description: "Página responsive con Astro y Tailwind.",
+          image: projectImage,
+          imageAlt: "Landing moderna",
+          href: "#"
+        },
+        {
+          title: "E-commerce UI",
+          description: "Interfaz visual de tienda con animaciones.",
+          image: projectImage,
+          imageAlt: "E-commerce UI",
+          href: "#"
+        },
+        {
+          title: "Blog personal",
+          description: "Blog técnico con diseño limpio y accesible.",
+          image: projectImage,
+          imageAlt: "Blog técnico",
+          href: "#"
+        },
+        {
+          title: "Dashboard Pro",
+          description: "Panel admin con Astro Islands.",
+          image: projectImage,
+          imageAlt: "Dashboard",
+          href: "#"
+        },
+        {
+          title: "Portfolio creativo",
+          description: "Diseño experimental para estudio creativo.",
+          image: projectImage,
+          imageAlt: "Portfolio creativo",
+          href: "#"
+        }
+      ]}
+    />
+  </Section>
+</Layout>

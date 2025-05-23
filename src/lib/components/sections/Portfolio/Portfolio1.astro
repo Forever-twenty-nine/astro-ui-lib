@@ -1,0 +1,89 @@
+---
+import Typography from "../../ui/Typography.astro";
+import Container from "../../elements/Container.astro";
+import Section from "../../elements/Section.astro";
+import { Image } from "astro:assets";
+import type { PortfolioProps } from "../../../types/sections/PortFolioProps";
+import fallbackImage from "../../../assets/hero/600x400.webp"; 
+import type { AnimationLevel } from "../../../types/Shared";
+
+const {
+  sectionId,
+  sectionClass = "",
+  containerId,
+  containerClass = "",
+  title = "Nuestro Portfolio",
+  titleClass = "",
+  description = "Una selección de nuestros proyectos recientes.",
+  descriptionClass = "",
+  items = [],
+  animationLevel,
+} = Astro.props as PortfolioProps;
+
+const resolvedAnimationLevel: AnimationLevel = animationLevel ?? "none";
+
+const gridAnim =
+  resolvedAnimationLevel === "fancy"
+    ? "motion-safe:animate-fade-up motion-safe:animate-duration-[3000ms] hover:scale-105 transition-all duration-300"
+    : resolvedAnimationLevel === "basic"
+      ? "hover:scale-105 transition-all duration-300"
+      : "";
+---
+<Section
+  id={sectionId}
+  class={`bg-neutral-950 text-white py-20 ${sectionClass}`}
+>
+  <Container id={containerId} class={containerClass}>
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      {
+        title && (
+          <Typography
+            tag="h2"
+            class={`text-3xl font-bold mb-4 ${titleClass}`}
+          >
+            {title}
+          </Typography>
+        )
+      }
+      {
+        description && (
+          <Typography class={`text-info-200 opacity-90 ${descriptionClass}`}>
+            {description}
+          </Typography>
+        )
+      }
+    </div>
+
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item, index) => (
+          <a
+            href={item.href ?? "#"}
+            class={`group bg-secondary-800 hover:bg-secondary-700 rounded-lg overflow-hidden shadow-xl transition-all ${gridAnim}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src={item.image ?? fallbackImage}
+              alt={item.imageAlt ?? item.title}
+              width={600}
+              height={400}
+              class="w-full h-48 object-cover group-hover:opacity-90 transition duration-300"
+              loading="lazy"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold mb-2">{item.title}</h3>
+              {
+                item.description && (
+                  <p class="text-info-200 text-sm opacity-90">
+                    {item.description}
+                  </p>
+                )
+              }
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </Container>
+</Section>

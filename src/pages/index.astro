@@ -7,6 +7,7 @@ import Button from "../lib/components/ui/Button.astro";
 import Hero3 from "../lib/components/sections/hero/Hero3.astro";
 import Banner1 from "../lib/components/sections/banner/Banner1.astro";
 import About3 from "../lib/components/sections/about/About3.astro";
+import PortfolioCarousel from "../lib/components/sections/Portfolio/PortfolioCarousel.astro";
 
 import heroImage from "../assets/hero-1.jpg";
 ---
@@ -41,10 +42,12 @@ import heroImage from "../assets/hero-1.jpg";
     title="Una librería UI enfocada en velocidad, consistencia y experiencia"
     paragraphs={[
       {
-        content: "Construimos esta librería para resolver el problema común de reusar UI entre proyectos Astro sin comprometer diseño ni performance.",
+        content:
+          "Construimos esta librería para resolver el problema común de reusar UI entre proyectos Astro sin comprometer diseño ni performance.",
       },
       {
-        content: "Cada componente está diseñado para ser minimalista, accesible, animado y fácil de extender con Tailwind CSS.",
+        content:
+          "Cada componente está diseñado para ser minimalista, accesible, animado y fácil de extender con Tailwind CSS.",
       },
     ]}
     buttonText="Ver componentes"
@@ -53,89 +56,43 @@ import heroImage from "../assets/hero-1.jpg";
     animationLevel="fancy"
   />
 
-  <!-- Grid de previsualizaciones -->
-  <Section sectionClass="bg-gray-50 py-20">
-    <Container>
-      <Typography
-        tag="h2"
-        class="text-center text-2xl font-semibold mb-12 text-gray-800"
-      >
-        Previsualización de Componentes
-      </Typography>
-
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- Hero Preview -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
-          <img
-            src="https://placehold.co/400x200/4A90E2/FFFFFF?text=Hero+Component"
-            alt="Vista previa Hero"
-            width={400}
-            height={200}
-            class="rounded-md mb-4 w-full"
-          />
-          <Typography tag="h3" class="text-lg font-semibold mb-2">
-            Secciones Hero
-          </Typography>
-          <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Diseños introductorios con imagen, texto y llamados a la acción.
-          </Typography>
-          <Button href="/hero" type="ghost">Ver Heroes</Button>
-        </div>
-
-        <!-- Banner Preview -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
-          <img
-            src="https://placehold.co/400x200/50E3C2/1C1C1C?text=Banner+Component"
-            alt="Vista previa Banner"
-            width={400}
-            height={200}
-            class="rounded-md mb-4 w-full"
-          />
-          <Typography tag="h3" class="text-lg font-semibold mb-2">
-            Banners Promocionales
-          </Typography>
-          <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Bloques destacados ideales para campañas, avisos o promociones visuales.
-          </Typography>
-          <Button href="/banner" type="ghost">Ver Banners</Button>
-        </div>
-
-        <!-- About Preview -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
-          <img
-            src="https://placehold.co/400x200/F5A623/000000?text=About+Section"
-            alt="Vista previa About"
-            width={400}
-            height={200}
-            class="rounded-md mb-4 w-full"
-          />
-          <Typography tag="h3" class="text-lg font-semibold mb-2">
-            Secciones About
-          </Typography>
-          <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Mostrá tu historia, valores o equipo en secciones visuales bien estructuradas.
-          </Typography>
-          <Button href="/about" type="ghost">Ver About</Button>
-        </div>
-
-        <!-- UI Interna -->
-        <div class="border rounded-lg shadow hover:shadow-lg transition p-4 bg-white">
-          <img
-            src="https://placehold.co/400x200/1E90FF/FFFFFF?text=UI+Elements"
-            alt="Vista previa UI"
-            width={400}
-            height={200}
-            class="rounded-md mb-4 w-full"
-          />
-          <Typography tag="h3" class="text-lg font-semibold mb-2">
-            UI Interna & Utilidades
-          </Typography>
-          <Typography tag="p" class="text-sm text-gray-600 mb-4">
-            Explorá elementos base como tipografías, botones, secciones y layout.
-          </Typography>
-          <Button href="/ui" type="ghost">Ver UI</Button>
-        </div>
-      </div>
-    </Container>
-  </Section>
+  <PortfolioCarousel
+    sectionId="preview-carousel"
+    sectionClass="bg-gray-50"
+    containerClass=""
+    title="Componentes destacados"
+    description="Deslizá para ver algunas de las secciones y elementos disponibles en FTN UI."
+    items={[
+      {
+        title: "Secciones Hero",
+        description:
+          "Diseños introductorios con imagen, texto y llamados a la acción.",
+        image: "https://placehold.co/600x400/4A90E2/FFFFFF?text=Hero",
+        imageAlt: "Vista previa Hero",
+        href: "/hero",
+      },
+      {
+        title: "Banners Promocionales",
+        description: "Bloques ideales para promociones o campañas visuales.",
+        image: "https://placehold.co/600x400/50E3C2/1C1C1C?text=Banner",
+        imageAlt: "Vista previa Banner",
+        href: "/banner",
+      },
+      {
+        title: "Secciones About",
+        description: "Contá tu historia, equipo o misión con estilo visual.",
+        image: "https://placehold.co/600x400/F5A623/000000?text=About",
+        imageAlt: "Vista previa About",
+        href: "/about",
+      },
+      {
+        title: "UI Interna & Utilidades",
+        description: "Tipografías, botones y elementos base reutilizables.",
+        image: "https://placehold.co/600x400/1E90FF/FFFFFF?text=UI",
+        imageAlt: "Vista previa UI",
+        href: "/ui",
+      },
+    ]}
+    animationLevel="fancy"
+  />
 </Layout>
